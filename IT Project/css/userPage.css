@@ -1,0 +1,538 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: #F4F2F2;
+
+}
+
+.left{
+    width: 20%;
+    height: 100%;
+    background-color: #3D5967;
+    position: fixed;
+    text-align: center;
+    display: inline-block;
+    
+}
+h1,p,li{
+    color: white;
+}
+
+.left .name{
+    font-size: 62px;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 71px;
+    padding-top: 96px;
+    font-weight: bold;
+}
+
+.left .position{
+    font-size: 27px;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 31px;
+    font-weight: bold;
+    padding-bottom: 81px;
+}
+
+.left ul li{
+    font: 38px/77px Arial;
+    font-weight: bold;
+}
+
+.left ul li .sub{
+    /* border: solid 1px black; */
+    margin-bottom: 34px;
+    border-top-left-radius:32px;
+    border-bottom-left-radius:32px;
+}
+.left ul li .sub:hover{
+    background-color: #fff;
+    color: black;
+}
+
+.left ul #overview{
+    background-color: white;
+    color: black;
+}
+
+.logo{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+
+
+
+.content{
+    width: 80%;
+    display: inline-block;
+    margin-left: 20%;
+    overflow-x: scroll;
+    height: 1080px;
+}
+
+.attr{
+    border-bottom: 2px solid #DEDDDD;
+    
+}
+
+
+/* overview part */
+#over{
+    display: block;
+    
+}
+#over span{
+    display: block;
+    font: 32px/37px Arial;
+    margin-top: 40px;
+    margin-left: 20%;
+    margin-bottom: 10px;
+}
+.chart{
+    width: 688px;
+    height:415px;
+    background-color: white;
+    margin-left: 20%;
+    text-align: center;
+}
+#over .type1{
+    display: inline-block;
+    position: absolute;
+    top: 15%;
+    right: 10%;
+}
+#over .type2{
+    display: inline-block;
+    position: absolute;
+    bottom: 20%;
+    right: 10%;
+}
+#over .type1 label, #over .type2 label{
+    display: block;
+    font: 30px/34px Arial;
+}
+#over .type1 .radio input[type="radio"] ,#over .type2 .radio input[type="radio"]{
+    width: 20px;
+    height: 20px;
+    margin: 0 20px 0 0;
+}
+.downloadpdf{
+    color:black;
+    font: 30px/40px PingFang SC;
+    font-weight: bold;
+    position: absolute;
+    right: 10%;
+    bottom: 5%;
+}
+
+/* usage part */
+#usag{
+    display: none;
+}
+#usag .device{
+    display: inline-block;
+    background-color: white;
+    width: 765px;
+    border-radius: 30px;
+    font-size: 38px;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 90px;
+    padding: 0 30px;
+    margin-left: 125px;
+    margin-top: 100px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+#usag .device .btn2{
+    background-color: #3D5967;
+    color: white;
+    float: right;
+    margin-bottom: 20px;
+    margin-right: 20px;
+    width: 165px;
+    height: 56px;
+    border: none;
+    border-radius: 28px;
+    font-weight: bold;
+    font-size: 38px;
+    font-family: Arial, Helvetica, sans-serif;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    cursor: pointer;
+}
+
+
+#usag .device input{
+    width: 350px;
+    height: 40px;
+    float: right;
+    margin-top: 25px;
+    border: solid 1px #707070;
+    border-radius: 5px;
+    padding-left: 10px;
+    font: 25px/40px Arial;
+}
+#usag .deviceImg{
+    display: inline-block;
+    margin-left: 70px;
+}
+#usag img{
+    width: 387px;
+    height: 616px;
+    border-radius: 20px;
+}
+
+/* data part */
+#data{
+    display: none;
+    
+    
+}
+#data .top{
+    display: inline-block;
+    width: 460px;
+    margin-top: 50px;
+    margin-left: 150px;
+}
+
+ #data .top span{
+    font-size: 45px;
+    line-height: 60px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+}
+#data .top .box{
+    width: 200px;
+    height: 50px;
+    position: relative;
+    top: -7px;
+    text-align: center;
+    font-size: 20px;
+    margin-left: 30px;
+   
+}
+
+#data a{
+    float: right;
+    position: absolute;
+    top: 60px;
+    right: 100px;
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: black;
+}
+
+/* table */
+#data table{
+    width: 85%;
+    text-align: center;
+    border-collapse: collapse;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+#data table td{
+    height: 60px;
+}
+#data table tr:nth-child(odd){
+    background-color: #e4f6ff;
+}
+#data table tr:nth-child(even){
+    background-color: #fff;
+}
+#data table th{
+    background-color: white;
+    height: 80px;
+}
+
+#data table .on{
+    background-color: green;
+}
+#data table .off{
+    background-color: red;
+}
+.lastRow{
+    background-color: #fff;
+    font-weight: bold;
+}
+
+
+
+
+
+
+/* profile part */
+
+#prof{
+    
+    display: none;
+    
+}
+
+#prof #detail{
+    font: 38px/51px Arial;
+    font-weight: bold;
+    position: relative;
+    top: 100px;
+    left: 110px;
+    
+
+}
+#prof .person {
+    width: 1265px;
+    height: 750px;
+    background-color: #fff;
+    border-radius: 58px;
+    position: relative;
+    top: 192px;
+    margin: 0 auto;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1) inset;
+}
+#prof .person span{
+    font: 32px/125px Arial;
+    font-weight: bold;
+}
+
+#prof .person .attr{
+    padding-left: 66px;
+}
+#prof .person .name div{
+    padding: 0;
+    display: inline-block;
+    width: 48%;
+}
+#prof .person .name input{
+    margin-left: 80px;
+    width: 200px;
+    font: 32px/39px Arial;
+    border: none;
+    
+}
+#prof .person .name img{
+    position: relative;
+    top: 8px;
+    right: 40px;
+    display: inline;
+    
+}
+
+.dropBox::before{
+    content: '';
+    position: absolute;
+    right: 735px;
+    top: 181px;
+    z-index: 10000;
+    width: 8px;
+    height: 8px;
+    border: 2px solid #333;
+    border-top: 2px solid #fff;
+    border-right: 2px solid #fff;
+    transform: rotate(-45deg);
+    transition: 0.5s;
+    pointer-events: none;
+    
+}
+.dropBox.active::before{
+    top: 188px;
+    transform: rotate(-225deg);
+}
+
+
+.dropBox input{
+    margin-left: 150px;
+    /* cursor: pointer; */
+    width: 200px;
+    height: 40px;
+    outline: none;
+    border: none;
+    text-align: center;
+    font-size: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.dropBox .option{
+    position: absolute;
+    top: 215px;
+    left: 330px;
+    width: 200px;
+    box-shadow: 0 20px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 10%;
+    overflow: hidden;
+    display: none;
+}
+.dropBox.active .option{
+    display: block;
+}
+.dropBox .option div{
+    padding:12px 20px;
+    /* cursor: pointer; */
+    text-align: center;
+    background-color: #fff;
+    
+}
+.dropBox .option div:hover{
+    background-color: #62baea;
+}
+.text{
+    font: 32px/37px Arial;
+}
+.text1{
+    margin-left: 275px;
+}
+.text2{
+    margin-left: 305px;
+}
+.text3{
+    margin-left: 145px;
+    border: none;
+    font-size: 32px;
+    font-weight: bold;
+}
+.text4{
+    margin-left: 240px;
+}
+.text4 a{
+    color: black;
+}
+.contact img{
+    /* display: inline-block; */
+    float: right;
+    margin-top: 47px;
+    margin-right: 142px;
+}
+.password{
+    border: none;
+}
+
+
+
+#changePassword{
+    /* display: inline-block; */
+    display: none;
+}
+
+#changePassword #title, #changeSucc #title{
+    margin-left: 57px;
+    margin-bottom: 50px;
+}
+#changePassword span, #changeSucc span{
+    color: #AFAFAF;
+    font: 32px/127px Arial;
+}
+#changePassword #part2,#changeSucc #part2{
+    color: black;
+}
+
+#changePassword p{
+    font: 32px/40px Arial;
+    color: black;
+    font-weight: bold;
+    margin-left: 110px;
+}
+#changePassword input{
+    width: 1155px;
+    height: 91px;
+    padding: 10px 20px;
+    border-radius: 15px;
+    margin-left: 110px;
+    margin-bottom: 50px;
+    margin-top: 15px;
+    font-size: 30px
+    
+}
+
+#changePassword #newPassword{
+    margin-bottom: 0;
+}
+#changePassword svg{
+    position: absolute;
+    margin-left: 20px;
+    margin-top: 15px;
+    
+}
+#changePassword button{
+    margin-left:450px;
+    width: 433px;
+    height: 93px;
+    border-radius: 30px;
+    font-size: 38px;
+}
+#changePassword .pass, #changePassword .fail{
+    position: absolute;
+    margin-top: 30px;
+}
+#changePassword .pass{
+    display: none;
+}
+#changePassword .fail{
+    display: inline-block;
+} 
+#changePassword .validation{
+    margin-top: 5px;
+    margin-left: 110px;
+    width: 1155px;
+    background-color: #fff;
+    padding: 30px 50px;
+    border-radius: 10px;
+    transition: all 0.3s ease-in-out;
+}
+#changePassword .validation ul{
+   position: relative;
+   display: flex;
+   flex-direction: column;
+   gap: 10px;
+}
+#changePassword .validation ul li{
+    position: relative;
+    list-style: none;
+    color: black;
+    font-size: 20px;
+    transition: 0.5s;
+}
+#changePassword .validation ul li.valid{
+    color: green;
+}
+#changePassword .validation ul li::before{
+    content: "\f192";
+    font-family: fontAwesome;
+    margin-right: 10px;
+}
+#changePassword .validation ul li.valid::before{
+    content: "\f00c";
+}
+#changePassword #passOld{
+    display: inline-block;
+}
+#changePassword #failOld{
+    display: none;
+}
+
+#changeSucc{
+    display: none;
+}
+#changeSucc #pswdChangeSucc{
+    color: black;
+    font-size: 70px;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    margin-bottom: 110px;
+}
+#changeSucc svg{
+
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    
+}
+#changeSucc a{
+    
+    position: relative;
+    top: 200px;
+    left: 140px;
+    
+    font: 38px/51px Arial;
+    color: black;
+}
