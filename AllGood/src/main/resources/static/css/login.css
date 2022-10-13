@@ -1,5 +1,6 @@
-body,p,section,nav,header,h1,h2,h3,h4,h5{
+*{
 	margin: 0;
+    padding: 0;
 }
 
 input{
@@ -9,48 +10,32 @@ input{
 
 
 body{
-
-    background: url("../picture/Staff.jpg") no-repeat;
-    background-size: cover;
-    position: relative;
-    
+    width: 1920px;
+    height: 1080px;
+    background-image: url("../picture/Staff.jpg");
+    background-size: 100%;
 }
-.container{
-    
-    width: 809px;
+
+.logo{
+    position: absolute;
+    right: 0;
+    top: 0;
+ }
+
+body .container{
+    overflow: hidden;
+    width: 35%;
     background-color: #FAFAFA;
-    opacity: 0.77;
     box-shadow: 0 0 17px #333;
     border-radius: 25px;
     position: absolute;
     left: 50%;
-    transform: translateX(-50%);
-    top: 260px;
-}
-
-
-.logo{
-    width: 161px;
-    height: 161px;
-    float: right;
- }
-
-.main button{
-    margin-top: 115px;
-    width: 328px;
-    height: 89px;
-    background-color: #538E9F;
-    border: none;
-    border-radius: 33px;
-    font: 42px/56px Luminari ;
-    color: #FFFFFF;
-    margin-bottom: 50px;
-    opacity:1;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    
     
 }
-button:hover{
-    background-color: #376E7E;
-}
+
 
 .header{
     text-align: center;
@@ -89,4 +74,22 @@ button:hover{
     font-size: 20px;
     left: 20px;
     top: -3px;
+}
+
+
+
+.container .main input[type = "submit"]:hover{
+    background-color: #376E7E;
+} 
+.container .main input[type = "submit"]{
+    background-color: #538E9F;
+    margin-top: 100px;
+    width: 328px;
+    height: 89px;
+    border: none;
+    border-radius: 33px;
+    font: 42px/56px Luminari ;
+    color: #FFFFFF;
+    margin-bottom: 50px;
+    opacity:1;
 }

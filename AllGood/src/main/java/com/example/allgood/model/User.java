@@ -25,7 +25,7 @@ public class User {
     @Field
     private String contactNumber;
 
-    public User(String password, String firstName, String lastName, String gender, String email, String contactnumber){
+    public User(String password, String firstName, String lastName, String gender, String email, String contactnumber) {
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
