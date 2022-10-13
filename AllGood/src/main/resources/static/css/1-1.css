@@ -1,67 +1,64 @@
-body,p,section,nav,header,h2,h3,h4,h5{
-	margin: 0;
-}
-ul{
-	margin: 0;
-	padding: 0;
-	list-style: none;
-}
-input{
-	margin: 0;
-	padding: 0;
-}
-img{
-	border: none;
-	vertical-align: middle;
+*{
+    margin: 0;
+    padding: 0;
 }
 
 body{
-    width: 100%;
-    height: 100%;
-    background: url("../picture/homebac.jpeg") no-repeat;
+    width: 1920px;
+    height: 1080px;
+    background-image: url("../picture/homebac.jpeg");
     background-size: 100%;
-    background-attachment: fixed;
+   
 }
 
-.div1{
+.logo {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.container{
     width: 1354px;
-    height: 675px;
-    margin: 0 auto;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
     
+   
 }
-.logo{
-   width: 161px;
-   height: 161px;
-   float: right;
- 
-}
-.block{
+
+.container .block{
     display: inline-block;
+    border: solid 1px black;
     width: 675px;
     height: 675px;
-    border: 1px solid #707070;
-    text-align: center;
-    background-color: #FFFFFF;
-    opacity: 0.77;
-    margin-top: 25%;
-    
+    background-color: white;
+    opacity: 77%;
 }
+
 h1{
+    text-align: center;
     font-size: 48px;
     margin-top: 56px;
     margin-bottom: 0;
 }
+
 p{
-    display: inline-block;
+    margin: 0 auto;
+    text-align: center;
     width: 552px;
-    height: 135px;
     font-family: Arial;
     font-size: 36px;
     line-height: 42px;
     margin-top: 161px;
 }
+
 button{
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
     margin-top: 115px;
+    margin-bottom: 66px;
     width: 328px;
     height: 89px;
     background-color: #538E9F;

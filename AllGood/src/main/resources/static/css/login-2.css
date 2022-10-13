@@ -9,29 +9,31 @@ input{
 
 
 body{
-
-    background: url("../picture/jeshoots-com-LtNvQHdKkmw-unsplash.jpg") no-repeat;
-    background-size: cover;
-    position: relative;
+    width: 1920px;
+    height: 1080px;
+    background-image: url("../picture/jeshoots-com-LtNvQHdKkmw-unsplash.jpg");
+    background-size: 100%;
+    
     
 }
 .container{
     
-    width: 809px;
+    width: 35%;
     background-color: rgba(0, 0, 0, 0.1);
     box-shadow: 0 0 17px #333;
     border-radius: 25px;
     position: absolute;
     left: 50%;
-    transform: translateX(-50%);
-    top: 260px;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    
 }
 
 
 .logo{
-    width: 161px;
-    height: 161px;
-    float: right;
+    position: absolute;
+    right: 0;
+    top: 0;
  }
 
 .main button{
@@ -44,7 +46,7 @@ body{
     font: 42px/56px Luminari ;
     color: #FFFFFF;
     margin-bottom: 50px;
-    opacity:1;
+    opacity:0.77;
     
 }
 button:hover{
