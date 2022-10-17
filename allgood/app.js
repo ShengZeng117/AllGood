@@ -10,6 +10,8 @@ app.use(express.static('public'))
 const exphbs = require('express-handlebars')
 app.engine('hbs', exphbs.engine({extname: 'hbs'}));
 app.set('view engine', 'hbs')
+
+
 // link to our router
 const managerRouter = require('./routes/managerRouter')
 const staffRouter = require('./routes/staffRouter')

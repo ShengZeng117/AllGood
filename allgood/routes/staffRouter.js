@@ -7,11 +7,23 @@ const staffRouter = express.Router()
 const staffController = require('../controllers/staffController')
 
 staffRouter.get('/', staffController.stafflogIn)
-/*staffRoute.post(
+staffRouter.post(
     '/',
     function (req, res) {
         res.redirect('/staff/' + req.user._id + '/overview')
-    }
-)*/
+    },
+    staffController.getstaffID
+)
+
+staffRouter.get(
+    '/:staff_id/overview', 
+    function patientLogin(req, res, next) {
+        if (req){
+            return next()
+        }
+        res.redirect('/staff')
+    },
+    staffController.staffoverview
+)
 
 module.exports = staffRouter;
