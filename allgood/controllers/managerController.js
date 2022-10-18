@@ -6,9 +6,31 @@ const managerLogin = (req, res) => {
     res.render('manager_loginD.hbs', { layout: 'manager_login'})
 }
 
+const getmanagerID =  (req, res) => {
+    const password = req.body.password
+    const email = req.body.email
+    Manager.findOne({Email: email}, async (err, manager) => {
+        if (err) {
+            return done(err)
+        }else if (!manager){
+            return done(
+                null,
+                false
+            )
+        }else if (password != manager.Password){
+            return done(
+                null,
+                false
+            )
+        }else{
+            return res.redirect('/manager/' + manager._id + '/personalpage')
+        }
+    })
+}
+
 const managerOverview = async (req, res, next) => {
     try{
-        const manager = await Manager.findById(req.params.managers_id).lean()
+        const manager = await Manager.findById(req.params.manager_id).lean()
         if (!manager){
             return res.sendStatus(404)
         }
@@ -31,8 +53,8 @@ const managerOverview = async (req, res, next) => {
             }
         }
 
-        res.render('manager_areaD.hbs', { 
-            layout: 'manager_area',
+        res.render('managersD.hbs', { 
+            layout: 'managers',
             staff: manager,
             AllDeviceList: allDevicesList,
             gender: genderList,
@@ -44,5 +66,6 @@ const managerOverview = async (req, res, next) => {
 
 module.exports = {
     managerLogin,
-    managerOverview
+    managerOverview,
+    getmanagerID
 }

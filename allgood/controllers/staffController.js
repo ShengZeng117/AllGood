@@ -18,14 +18,11 @@ const getstaffID =  (req, res) => {
                 false
             )
         }else if (password != staff.Password){
-            console.log(password)
-            console.log(staff.password)
             return done(
                 null,
                 false
             )
         }else{
-            console.log(staff)
             return res.redirect('/staff/' + staff._id + '/personalpage')
         }
     })

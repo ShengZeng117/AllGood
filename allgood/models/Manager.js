@@ -1,5 +1,4 @@
 const mongoose = require('mongoose')
-const Device = require('./Devices')
 const Department = require('./Department')
 
 const schema = new mongoose.Schema({

@@ -8,16 +8,16 @@ const managerController = require('../controllers/managerController')
 
 managerRouter.get('/', managerController.managerLogin)
 
-/*managerRoute.post(
+managerRouter.post(
     '/',
-    function (req, res) {
+    /*function (req, res) {
         res.redirect('/manager/' + req.user._id + '/dashboard')
-    }
-    managerController.getstaffID
-)*/
+    }*/
+    managerController.getmanagerID
+)
 
 managerRouter.get(
-    '/:managers_id/personalpage', 
+    '/:manager_id/personalpage', 
     function managerLogin(req, res, next) {
         if (req){
             return next()
