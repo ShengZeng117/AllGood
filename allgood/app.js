@@ -11,6 +11,10 @@ const exphbs = require('express-handlebars')
 app.engine('hbs', exphbs.engine({extname: 'hbs'}));
 app.set('view engine', 'hbs')
 
+const login = (req, res) => {
+    res.render('select_loginD.hbs', {layout: 'select_login'})
+}
+app.use('/home', login)
 
 // link to our router
 const managerRouter = require('./routes/managerRouter')
