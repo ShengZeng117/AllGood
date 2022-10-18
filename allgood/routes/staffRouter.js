@@ -17,7 +17,7 @@ staffRouter.post(
 
 staffRouter.get(
     '/:staff_id/personalpage', 
-    function patientLogin(req, res, next) {
+    function staffLogin(req, res, next) {
         if (req){
             return next()
         }

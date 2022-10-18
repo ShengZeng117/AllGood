@@ -8,6 +8,7 @@ const schema = new mongoose.Schema({
     LastName: { type: String, required: true },
     Age: Number,
     Gender: String,
+    ContactNumber: { type: String, required: true },
     Position: { type: String, required: true },
     Department: {type: String, required: true },
     DepartmentId: {type: Department.schema},

@@ -8,13 +8,13 @@ const schema = new mongoose.Schema({
     LastName: { type: String, required: true },
     Age: Number,
     Gender: String,
+    ContactNumber: { type: String, required: true },
     Position: { type: String, required: true },
     Department: {type: String, required: true },
     DepartmentId: {type: Department.schema},
     Email: { type: String, required: true, unique: true },
     Password: { type: String, required: true },
     Permission: { type: String, required: true },
-    AvailableDevices: [Device.schema]
 
 })
 const Manager = mongoose.model('Manager', schema)
