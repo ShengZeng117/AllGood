@@ -29,5 +29,3 @@ jobs:
       working-directory: ./allgood
     - run: npm run build --if-present
       working-directory: ./allgood
-    - run: npm test
-      working-directory: ./allgood
