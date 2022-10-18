@@ -14,7 +14,7 @@ app.set('view engine', 'hbs')
 const login = (req, res) => {
     res.render('select_loginD.hbs', {layout: 'select_login'})
 }
-app.use('/', login)
+app.use('/home', login)
 
 // link to our router
 const managerRouter = require('./routes/managerRouter')
