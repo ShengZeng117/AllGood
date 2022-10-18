@@ -56,7 +56,6 @@ const staffoverview = async (req, res, next) => {
         }else{
             var genderList = {Male: false, Female: false, other: true}
         }
-        console.log(genderList)
         //find all the devices that this staff are available
         const AvailabledevicesArray = staff.AvailableDevices
         var availableDevicesList = new Array()

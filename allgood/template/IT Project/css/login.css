@@ -1,0 +1,95 @@
+*{
+	margin: 0;
+    padding: 0;
+}
+
+input{
+	margin: 0;
+	padding: 0;
+}
+
+
+body{
+    width: 1920px;
+    height: 1080px;
+    background-image: url("/picture/Staff.jpg");
+    background-size: 100%;
+}
+
+.logo{
+    position: absolute;
+    right: 0;
+    top: 0;
+ }
+
+body .container{
+    overflow: hidden;
+    width: 35%;
+    background-color: #FAFAFA;
+    box-shadow: 0 0 17px #333;
+    border-radius: 25px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    
+    
+}
+
+
+.header{
+    text-align: center;
+}
+
+.header h1{
+    font-size: 48px;
+    line-height: 170px;
+}
+
+.main{
+    text-align: center;
+}
+.main p{
+    font-size: 26px;
+    line-height: 97px;
+   
+}
+.main input{
+    width: 450px;
+    height: 65px;
+    border-radius: 25px;
+    border: 1px solid #707070;
+    font-size: 20px;
+    text-align: center;
+}
+.main input:hover{
+    box-shadow: 2px 2px 5px #555;
+}
+.main span{
+    position: relative;
+}
+
+.main img{
+    position: absolute;
+    font-size: 20px;
+    left: 20px;
+    top: -3px;
+}
+
+
+
+.container .main input[type = "submit"]:hover{
+    background-color: #376E7E;
+} 
+.container .main input[type = "submit"]{
+    background-color: #538E9F;
+    margin-top: 100px;
+    width: 328px;
+    height: 89px;
+    border: none;
+    border-radius: 33px;
+    font: 42px/56px Luminari ;
+    color: #FFFFFF;
+    margin-bottom: 50px;
+    opacity:1;
+}
