@@ -131,30 +131,20 @@
             <th>Usage</th>
             <th>Status</th>
            </thead>
+           {{#each AllDeviceList}}
             <tr>
-                <td>Air conditioner</td>
-                <td>01</td>
-                <td>Electricity</td>
-                <td>Sales</td>
-                <td>123</td>
+                <td>{{this.Device_name}}</td>
+                <td>{{this._id}}</td>
+                <td>{{this.Energy_type}}</td>
+                <td>{{this.Department}}</td>
+                <td>{{this.Week_Energy_Usage}}</td>
+                {{#if this.Status}}
                 <td class="on"></td>
-            </tr>
-            <tr>
-                <td>Heater</td>
-                <td>02</td>
-                <td>Natural Gas</td>
-                <td>Sales</td>
-                <td>598</td>
+                {{else}}
                 <td class="off"></td>
+                {{/if}}
             </tr>
-            <tr>
-                <td>Light</td>
-                <td>03</td>
-                <td>Electricity</td>
-                <td>Sales</td>
-                <td>158</td>
-                <td class="on"></td>
-            </tr>
+            {{/each}}
             <tr>
                 <td></td>
                 <td></td>
@@ -252,23 +242,28 @@
     <div class="content" id="prof">
         <span id="detail">Personal detail</span>
         <div class="person">
+            {{#with staff}}
             <div class=" attr name">
                 <div>
-                    <span class="info">First name</span>
-                    <input type="text" id="firstName" name="firstName" value="Alex" >
+                    <span class="info">First Name</span>
+                    <input type="text" id="firstName" name="firstName" value={{this.FirstName}} >
                     <img src="/picture/pencil-solid.png" class="changes">
                 </div>
                 <div id="last">
-                    <span class="info">Last name</span>
-                    <input type="text" id="lastName" name="lastName" value="Lu">
+                    <span class="info">Last Name</span>
+                    <input type="text" id="lastName" name="lastName" value={{this.LastName}}>
                     <img src="/picture/pencil-solid.png" class="changes">
                 </div>
-                
             </div>
+            {{/with}}
+
+
             <div class="attr gender">
                 <div class="dropBox">
                     <span class="info">Gender</span>
-                    <input type="text" class="textBox" placeholder="Male" readonly>
+                    {{#with gender}}
+                    <input type="text" class="textBox" {{#if this.Male}}placeholder="Male" {{else}}{{#if this.Female}}placeholder="Female" {{else}}placeholder="Other"{{/if}}{{/if}}readonly>
+                    {{/with}}
                     <div class="option">
                         <div onclick="show('Male')">Male</div>
                         <div onclick="show('Female')">Female</div>
@@ -277,23 +272,25 @@
                 </div>
             </div>
             
+            {{#with staff}}
             <div class="attr id">
-                <span class="info">Stuff ID</span>
-                <span class="text1 text"> 1232938320</span>
+                <span class="info">Staff ID</span>
+                <span class="text1 text">{{this.StaffId}}</span>
             </div>
             <div class="attr email">
                 <span class="info">Email</span>
-                <span class="text2 text">skdjjfhksj@gmeil.com</span>
+                <span class="text2 text">{{this.Email}}</span>
             </div>
             <div class="attr contact">
                 <span class="info">Contact number</span>
-                <input type="text" class="text3 text" value="923829999">
+                <input type="text" class="text3 text" value={{this.ContactNumber}}>
                 <img src="/picture/pencil-solid.png" class="changes">
             </div>
             <div class="attr password">
                 <span class="info">Password</span>
                 <span class="text4 text"><a href="#" id="changePass">Change Password</a></span>
             </div>
+            {{/with}}
             
         </div>
     </div>

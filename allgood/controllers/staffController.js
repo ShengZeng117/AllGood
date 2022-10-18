@@ -1,5 +1,6 @@
 const User = require('../models/User')
 const Device = require('../models/Devices')
+const Department = require('../models/Department')
 
 const stafflogIn = (req, res) => {
     res.render('staff_loginD.hbs', { layout: 'staff_login'})
@@ -44,21 +45,41 @@ const getstaffID =  (req, res) => {
 const staffoverview = async (req, res, next) => {
     try{
         const staff = await User.findById(req.params.staff_id).lean()
-        const deviceArray = staff.AvailableDevices
-        console.log(staff.AvailableDevices)
-        var deviceList = new Array()
-        for (let i = 0; i < deviceArray.length; i++){
-            var onedeviceData = await Device.findById(deviceArray[i]).lean()
-            deviceList.push(onedeviceData)
-        }
         if (!staff){
             return res.sendStatus(404)
         }
-        var router = {staffId: staff._id}
+        const gender = staff.Gender
+        if(gender == "Male"){
+            var genderList = {Male: true, Female: false, other: false}
+        }else if(gender == "Female"){
+            var genderList = {Male: false, Female: true, other: false}
+        }else{
+            var genderList = {Male: false, Female: false, other: true}
+        }
+        console.log(genderList)
+        //find all the devices that this staff are available
+        const AvailabledevicesArray = staff.AvailableDevices
+        var availableDevicesList = new Array()
+        for (let i = 0; i < AvailabledevicesArray.length; i++){
+            var onedeviceData = await Device.findById(AvailabledevicesArray[i]).lean()
+            availableDevicesList.push(onedeviceData)
+        }
+
+        //find all the devices that are in this department
+        const department = await Department.findById(staff.DepartmentId).lean()
+        const allDevicesArray = department.Devices
+        var allDevicesList = new Array()
+        for (let i = 0; i < allDevicesArray.length; i++){
+            var onedeviceData = await Device.findById(allDevicesArray[i]).lean()
+            allDevicesList.push(onedeviceData)
+        }
+
         res.render('staff_areaD.hbs', { 
             layout: 'staff_area',
             staff: staff,
-            DeviceList: deviceList,
+            DeviceList: availableDevicesList,
+            AllDeviceList: allDevicesList,
+            gender: genderList,
         })
     }catch(err){
         return next(err)
