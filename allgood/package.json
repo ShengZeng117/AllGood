@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jests",
     "start": "node app.js",
     "prettier": "prettier --single-quote --no-semi --tab-width 4 --write **/*.js *.js"
   },
@@ -17,6 +17,7 @@
   },
   "devDependencies": {
     "dotenv": "^16.0.3",
+    "jest": "^29.2.0",
     "prettier": "^2.7.1"
   }
 }
