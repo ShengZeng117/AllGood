@@ -149,8 +149,6 @@ const inputUsage = async (req, res, next) => {
     }
 }
 
-
-
 module.exports = {
     stafflogIn,
     staffoverview,
