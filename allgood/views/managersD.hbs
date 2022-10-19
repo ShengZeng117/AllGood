@@ -431,6 +431,17 @@
             <th></th>
         </thead>
         <tbody>
+            {{#each StaffList}}
+            <tr>
+                <td>{{this.FirstName}}</td>
+                <td>{{this.LastName}}</td>
+                <td>{{this.Position}}</td>
+                <td>{{this.StaffId}}</td>
+                <td>{{this.Email}}</td>
+                <td>{{this.ContactNumber}}</td>
+                <td><a href="#" class="delet">delet</a></td>
+            </tr>
+            {{/each}}
             <tr>
                 <td>Jason</td>
                 <td>Lu</td>
