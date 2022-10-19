@@ -55,7 +55,7 @@ const managerOverview = async (req, res, next) => {
 
         res.render('managersD.hbs', { 
             layout: 'managers',
-            staff: manager,
+            manager: manager,
             AllDeviceList: allDevicesList,
             gender: genderList,
         })
