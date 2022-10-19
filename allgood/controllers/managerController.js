@@ -71,6 +71,7 @@ const managerOverview = async (req, res, next) => {
 /*const createAccount = async (req, res, next) => {
     try {
         const manager = await Manager.findById(req.params.manager_id).lean()
+        const department = await Department.findById(manager.DepartmentId).lean()
         if (!manager) {
             return res.sendStatus(404)
         }
@@ -81,16 +82,17 @@ const managerOverview = async (req, res, next) => {
             Position: req.body.position,
             Email: req.body.email,
             EntryTime: new Date(),
-            ContectNumber: req.body.contactNum,
+            ContactNumber: req.body.contactNum,
             StaffId: '1174109',
-            Age: '22',
+            Age: 22,
             Password: '1226WA',
             Permission: "Department Manager",
-            allDevicesArray: ['63297945bfcc56a25f455256'],
-            Department: 'IT',
-            DepartmentId: '63304ad8a2c12b2655942a18'
+            AvailiableDevices: department.Devices,
+            Department: "IT",
+            DepartmentId: department._id
         }
         var user = new User(info)
+        console.log(department._id)
         user.save()
         return res.redirect('/manager/' + manager._id + '/personalpage').catch((err) => res.send(err))
     }
