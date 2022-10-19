@@ -112,10 +112,9 @@ const inputUsage = async (req, res, next) => {
         const AvailabledevicesArray = staff.AvailableDevices
         const editUsage = Number(req.body.editU)
         const confirmU =  Number(req.body.confU)
-        const confrimDN = req.body.confN
         for (let i = 0; i < AvailabledevicesArray.length; i++){
             var onedeviceData = await Device.findById(AvailabledevicesArray[i]).lean()
-            if(onedeviceData.Device_name == confrimDN){
+            if(onedeviceData.Device_name == req.body.confN){
                 break
             }
         }
