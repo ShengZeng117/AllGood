@@ -1,6 +1,8 @@
  <div class="left">
-    <h1 class="name">Alex Lu</h1>
-    <p class="position">General Manager</p>
+    {{#with manager}}
+    <h1 class="name">{{this.FirstName}} {{this.LastName}}</h1>
+    <p class="position">{{this.Position}} Manager</p>
+    {{/with}}
     <ul>
         <li><div class="sub" id="overview">Overview</div></li>
         <li><div class="sub" id="creatNew">Creat Account</div></li>
@@ -148,6 +150,20 @@
         <th>Usage</th>
         <th>Status</th>
         </thead>
+        {{#each AllDeviceList}}
+        <tr>
+            <td>{{this.Device_name}}</td>
+            <td>{{this._id}}</td>
+            <td>{{this.Energy_type}}</td>
+            <td>{{this.Department}}</td>
+            <td>{{this.Week_Energy_Usage}}</td>
+            {{#if this.Status}}
+            <td class="on"></td>
+            {{else}}
+            <td class="off"></td>
+            {{/if}}
+        </tr>
+        {{/each}}
         <tr>
             <td>Air conditioner</td>
             <td>01</td>
@@ -268,23 +284,27 @@
 <div class="content" id="prof">
     <span id="detail">Personal detail</span>
     <div class="person">
+        {{#with manager}}
         <div class=" attr name">
             <div>
                 <span class="info">First name</span>
-                <input type="text" id="firstName" name="firstName" value="Alex" >
+                <input type="text" id="firstName" name="firstName" value = {{this.FirstName}} >
                 <img src="/picture/pencil-solid.png" class="changes">
             </div>
             <div id="last">
                 <span class="info">Last name</span>
-                <input type="text" id="lastName" name="lastName" value="Lu">
+                <input type="text" id="lastName" name="lastName" value = {{this.LastName}}>
                 <img src="/picture/pencil-solid.png" class="changes">
             </div>
-            
         </div>
+        {{/with}}
+        
         <div class="attr gender">
             <div class="dropBox">
                 <span class="info">Gender</span>
-                <input type="text" class="textBox" placeholder="Male" readonly>
+                {{#with gender}}
+                <input type="text" class="textBox" {{#if this.Male}}placeholder="Male" {{else}}{{#if this.Female}}placeholder="Female" {{else}}placeholder="Other"{{/if}}{{/if}} readonly>
+                {{/with}}
                 <div class="option">
                     <div onclick="show('Male')">Male</div>
                     <div onclick="show('Female')">Female</div>
@@ -293,16 +313,17 @@
             </div>
         </div>
         
+        {{#with manager}}
         <div class="attr id">
             <span class="info">Stuff ID</span>
-            <span class="text1 text"> 1232938320</span>
+            <span class="text1 text">{{this.StaffId}}</span>
         </div>
         <div class="attr email">
             <span class="info">Email</span>
-            <span class="text2 text">skdjjfhksj@gmeil.com</span>
+            <span class="text2 text">{{this.Email}}</span>
         </div>
         <div class="attr contact">
-            <span class="info">Contact number</span>
+            <span class="info">{{this.ContactNumber}}</span>
             <input type="text" class="text3 text" value="923829999">
             <img src="/picture/pencil-solid.png" class="changes">
         </div>
@@ -310,7 +331,7 @@
             <span class="info">Password</span>
             <span class="text4 text"><a href="#" id="changePass">Change Password</a></span>
         </div>
-        
+        {{/with}}
     </div>
 </div>
 <div class="content" id="changePassword">
@@ -397,6 +418,7 @@
         </svg>
     <a href="#" id="backToProf">Return to profile page</a>
 </div>
+
 <div class="content" id="staf">
     <table border="1">
         <thead>
@@ -409,6 +431,17 @@
             <th></th>
         </thead>
         <tbody>
+            {{#each StaffList}}
+            <tr>
+                <td>{{this.FirstName}}</td>
+                <td>{{this.LastName}}</td>
+                <td>{{this.Position}}</td>
+                <td>{{this.StaffId}}</td>
+                <td>{{this.Email}}</td>
+                <td>{{this.ContactNumber}}</td>
+                <td><a href="#" class="delet">delet</a></td>
+            </tr>
+            {{/each}}
             <tr>
                 <td>Jason</td>
                 <td>Lu</td>

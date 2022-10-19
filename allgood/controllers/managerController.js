@@ -1,6 +1,7 @@
 const Manager = require('../models/Manager')
 const Device = require('../models/Devices')
 const Department = require('../models/Department')
+const User = require('../models/User')
 
 const managerLogin = (req, res) => {
     res.render('manager_loginD.hbs', { layout: 'manager_login'})
@@ -53,11 +54,15 @@ const managerOverview = async (req, res, next) => {
             }
         }
 
+        const staffList = await User.find({Department: manager.Department}).lean()
+        console.log(staffList)
+
         res.render('managersD.hbs', { 
             layout: 'managers',
-            staff: manager,
+            manager: manager,
             AllDeviceList: allDevicesList,
             gender: genderList,
+            StaffList: staffList
         })
     }catch(err){
         return next(err)
