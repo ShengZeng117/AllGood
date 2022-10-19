@@ -21,3 +21,5 @@ db.once('open', async () => {
 
 require('./User')
 require('./Devices')
+require('./Department')
+require('./Manager')

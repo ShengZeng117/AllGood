@@ -1,6 +1,7 @@
 const User = require('../models/User')
 const Device = require('../models/Devices')
 const Department = require('../models/Department')
+var moment = require('moment')
 
 const stafflogIn = (req, res) => {
     res.render('staff_loginD.hbs', { layout: 'staff_login'})
@@ -44,7 +45,6 @@ function calculateUsage(energy, list){
 const staffoverview = async (req, res, next) => {
     try{
         const staff = await User.findById(req.params.staff_id).lean()
-        console.log(staff)
         if (!staff){
             return res.sendStatus(404)
         }
@@ -103,9 +103,58 @@ const staffoverview = async (req, res, next) => {
 }
 
 
+const inputUsage = async (req, res, next) => {
+    try{
+        const staff = await User.findById(req.params.staff_id).lean()
+        if(!staff){
+            return res.sendStatus(404)
+        }
+        const AvailabledevicesArray = staff.AvailableDevices
+        const editUsage = Number(req.body.editU)
+        const confirmU =  Number(req.body.confU)
+        const confrimDN = req.body.confN
+        for (let i = 0; i < AvailabledevicesArray.length; i++){
+            var onedeviceData = await Device.findById(AvailabledevicesArray[i]).lean()
+            if(onedeviceData.Device_name == confrimDN){
+                break
+            }
+        }
+
+        var date = new Date()
+        var Day = moment(date).format('dddd')
+        if(Day == "Monday"){
+            onedeviceData.Daily_Energy_Usage[0] = editUsage
+        }else if(Day == "Tuesday"){
+            onedeviceData.Daily_Energy_Usage[1] = editUsage
+        }else if(Day == "Wendesday"){
+            onedeviceData.Daily_Energy_Usage[2] = editUsage
+            //dailyU[2] = editUsage
+        }else if(Day == "Thursday"){
+            onedeviceData.Daily_Energy_Usage[3] = editUsage
+            //oneDevice.Daily_Energy_Usage[3] = editUsage
+        }else if(Day == "Friday"){
+            onedeviceData.Daily_Energy_Usage[4] = editUsage
+        }else if(Day == "Saturday"){
+            onedeviceData.Daily_Energy_Usage[5] = editUsage
+        }else if (Day == "Sunday"){
+            onedeviceData.Daily_Energy_Usage[6] = editUsage
+        }
+
+        await Device.replaceOne({_id: onedeviceData._id}, onedeviceData).catch((err) => res.send(err))
+        return res.redirect('/staff/' + staff._id + '/personalpage')
+
+
+
+    }catch(err){
+        return next(err)
+    }
+}
+
+
 
 module.exports = {
     stafflogIn,
     staffoverview,
-    getstaffID
+    getstaffID,
+    inputUsage
 }

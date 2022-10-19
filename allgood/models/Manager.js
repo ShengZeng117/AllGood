@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const Department = require('./Department')
 
 const schema = new mongoose.Schema({
-    StaffId: { type: String, required: true },
+    Id: { type: String, required: true },
     FirstName: { type: String, required: true },
     LastName: { type: String, required: true },
     Age: Number,
@@ -15,6 +15,6 @@ const schema = new mongoose.Schema({
     Password: { type: String, required: true },
     Permission: { type: String, required: true },
 
-})
+}, {versionKey: false})
 const Manager = mongoose.model('Manager', schema)
 module.exports = Manager

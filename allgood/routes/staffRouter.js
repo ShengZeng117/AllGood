@@ -26,4 +26,15 @@ staffRouter.get(
     staffController.staffoverview
 )
 
+staffRouter.post(
+    '/:staff_id/personalpage', 
+    function staffLogin(req, res, next) {
+        if (req){
+            return next()
+        }
+        res.redirect('/staff')
+    },
+    staffController.inputUsage
+)
+
 module.exports = staffRouter;

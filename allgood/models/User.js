@@ -17,6 +17,6 @@ const schema = new mongoose.Schema({
     Permission: { type: String, required: true },
     AvailableDevices: [Device.schema]
 
-})
+},{versionKey: false})
 const User = mongoose.model('User', schema)
 module.exports = User

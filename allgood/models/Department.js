@@ -10,6 +10,6 @@ const schema = new mongoose.Schema({
     Hydrogen: [Device.schema],
     other: [Device.schema]
 
-})
+}, {versionKey: false})
 const Department = mongoose.model('Department', schema)
 module.exports = Department

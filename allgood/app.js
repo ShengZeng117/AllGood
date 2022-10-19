@@ -7,6 +7,7 @@ app.use(express.json()) // needed if POST data is in JSON format
 // app.use(express.urlencoded())  // only needed for URL-encoded input
 app.use(express.urlencoded({ extended: true }))
 app.use(express.static('public'))
+
 const exphbs = require('express-handlebars')
 app.engine('hbs', exphbs.engine({extname: 'hbs'}));
 app.set('view engine', 'hbs')

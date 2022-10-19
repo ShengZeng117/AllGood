@@ -10,6 +10,6 @@ const schema = new mongoose.Schema({
     Location: { type: String, required: true },
     Daily_Energy_Usage: [Number]
 
-})
+}, {versionKey: false})
 const Devices = mongoose.model('Devices', schema)
 module.exports = Devices
