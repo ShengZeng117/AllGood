@@ -1,158 +1,130 @@
 *{
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 
 body{
-    background-color: #F4F2F2;
-
+    height: 100vh;
+    display: flex;
+    background-color: #F4F2F2; 
 }
 
 .left{
-    width: 20%;
-    height: 100%;
-    background-color: #3D5967;
-    position: fixed;
-    text-align: center;
-    display: inline-block;
-    
-}
-h1,p,li{
     color: white;
+    flex: 2;
+    background-color: #3D5967;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
 }
-
-.left .name{
-    font-size: 62px;
-    font-family: Arial, Helvetica, sans-serif;
-    line-height: 71px;
-    padding-top: 96px;
+.left #name{
+    font: 62px/71px Arial;
     font-weight: bold;
+    margin-top: 70px;
+    margin-bottom: 10pxpx;
+}
+.left #position{
+    text-align: center;
+    font: 27px/31px Arial;
+}
+#main{
+    width: 100%;
 }
 
-.left .position{
-    font-size: 27px;
-    font-family: Arial, Helvetica, sans-serif;
-    line-height: 31px;
-    font-weight: bold;
-    padding-bottom: 81px;
-}
-
-.left ul li{
+#main div{
     font: 38px/77px Arial;
     font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
 }
 
-.left ul li .sub{
-    /* border: solid 1px black; */
-    margin-bottom: 34px;
-    border-top-left-radius:32px;
-    border-bottom-left-radius:32px;
-}
-.left ul li .sub:hover{
+
+#overview{
     background-color: #fff;
     color: black;
 }
 
-.left ul #overview{
-    background-color: white;
-    color: black;
-}
-
-.logo{
-    position: absolute;
-    left: 0;
-    bottom: 0;
-}
-
-
-
 .content{
-    width: 80%;
-    display: inline-block;
-    margin-left: 20%;
-    overflow-x: scroll;
-    height: 1080px;
-}
-
-.attr{
-    border-bottom: 2px solid #DEDDDD;
-    
+    flex: 8;
+    display: flex;
+    flex-direction: column;
 }
 
 
-/* overview part */
+/* overciew Part */
 #over{
-    display: block;
+    /* display: none; */
+}
+#over div{
+    height: 50%;
+    display: flex;
+}
+#over .chart{
+    flex: 7;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     
 }
-#over span{
-    display: block;
+#over  span{
     font: 32px/37px Arial;
-    margin-top: 40px;
-    margin-left: 20%;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
-.chart{
-    width: 688px;
-    height:415px;
+#over svg{
     background-color: white;
-    margin-left: 20%;
-    text-align: center;
 }
-#over .type1{
-    display: inline-block;
-    position: absolute;
-    top: 15%;
-    right: 10%;
+#over .type{
+    flex: 3;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
-#over .type2{
-    display: inline-block;
-    position: absolute;
-    bottom: 20%;
-    right: 10%;
-}
-#over .type1 label, #over .type2 label{
-    display: block;
+#over .type label{
+    margin-bottom: 10px;
     font: 30px/34px Arial;
 }
-#over .type1 .radio input[type="radio"] ,#over .type2 .radio input[type="radio"]{
+#over .type .radio input{
     width: 20px;
     height: 20px;
     margin: 0 20px 0 0;
 }
-.downloadpdf{
-    color:black;
-    font: 30px/40px PingFang SC;
-    font-weight: bold;
-    position: absolute;
-    right: 10%;
-    bottom: 5%;
-}
 
-/* usage part */
+
+/* usage Part */
 #usag{
     display: none;
+    /* display: block; */
+    overflow-y: scroll;
+   
 }
-#usag .device{
-    display: inline-block;
+#usag .device,#addNewDevice .device{
+    display: flex;
+    margin-top: 50px;
+    align-items: center;
+    justify-content: center;
+}
+#usag .device .deviceInf, #addNewDevice .device .deviceInf{
     background-color: white;
-    width: 765px;
+    width: 600px;
     border-radius: 30px;
     font-size: 38px;
     font-family: Arial, Helvetica, sans-serif;
-    line-height: 90px;
+    line-height: 70px;
     padding: 0 30px;
-    margin-left: 125px;
-    margin-top: 100px;
-    overflow: hidden;
+    margin-right: 30px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-#usag .device .btn2{
+#usag .device .btn2,#addNewDevice .device .btn2{
     background-color: #3D5967;
     color: white;
     float: right;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     margin-right: 20px;
     width: 165px;
     height: 56px;
@@ -164,67 +136,58 @@ h1,p,li{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     cursor: pointer;
 }
-
-
-#usag .device input{
-    width: 350px;
+#usag .device input,#addNewDevice .device input{
+    
+    width: 300px;
     height: 40px;
-    float: right;
     margin-top: 25px;
+    margin-left: 20px;
     border: solid 1px #707070;
     border-radius: 5px;
     padding-left: 10px;
     font: 25px/40px Arial;
 }
-#usag .deviceImg{
-    display: inline-block;
-    margin-left: 70px;
-}
-#usag img{
+#usag img, #addNewDevice img{
     width: 387px;
-    height: 616px;
+    height: 500px;
     border-radius: 20px;
 }
 
-/* data part */
+
+/* Data Part */
 #data{
     display: none;
-    
-    
 }
-#data .top{
-    display: inline-block;
-    width: 460px;
+#data .topFilter{
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
     margin-top: 50px;
-    margin-left: 150px;
+    
 }
-
- #data .top span{
-    font-size: 45px;
+#data .topFilter span{
+    font-size: 30px;
     line-height: 60px;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
 }
-#data .top .box{
-    width: 200px;
-    height: 50px;
-    position: relative;
-    top: -7px;
+#data .topFilter .box{
+    height: 30px;
     text-align: center;
     font-size: 20px;
-    margin-left: 30px;
-   
+    margin-left: 20px;
 }
-
 #data a{
-    float: right;
-    position: absolute;
-    top: 60px;
-    right: 100px;
-    font-size: 20px;
-    font-family: Arial, Helvetica, sans-serif;
+    font: 20px/60px Arial;
     color: black;
 }
+#data a:hover{
+    color: blue;
+}
+
 
 /* table */
 #data table{
@@ -259,210 +222,150 @@ h1,p,li{
     background-color: #fff;
     font-weight: bold;
 }
+#data .sort, .sort-desc {
+    background: url(../picture/sorticon.png) no-repeat 4% 26px;
+    background-color: #fff;
+    background-size: 12px 24px;
+}
+#data .sort-asc{
+    background: url(../picture/sorticon-2.jpg) no-repeat 4% 26px;
+    background-size: 12px 24px;
+    background-color: #fff;
+}
 
 
-
-
-
-
-/* profile part */
 
 #prof{
-    
     display: none;
+    align-items: center;
     
 }
-
 #prof #detail{
+    display: flex;
     font: 38px/51px Arial;
     font-weight: bold;
-    position: relative;
-    top: 100px;
-    left: 110px;
-    
-
+    align-items: center;
+    margin-top: 30px;
 }
-#prof .person {
-    width: 1265px;
-    height: 750px;
+#prof .person{
+    width: 90%;
+    height: 80%;
     background-color: #fff;
     border-radius: 58px;
-    position: relative;
-    top: 192px;
-    margin: 0 auto;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1) inset;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-top: 40px;
+   
 }
-#prof .person span{
-    font: 32px/125px Arial;
-    font-weight: bold;
-}
-
 #prof .person .attr{
+    display: flex;
     padding-left: 66px;
 }
-#prof .person .name div{
-    padding: 0;
-    display: inline-block;
-    width: 48%;
-}
-#prof .person .name input{
-    margin-left: 80px;
-    width: 200px;
-    font: 32px/39px Arial;
-    border: none;
-    
-}
-#prof .person .name img{
-    position: relative;
-    top: 8px;
-    right: 40px;
-    display: inline;
-    
-}
 
-.dropBox::before{
-    content: '';
-    position: absolute;
-    right: 735px;
-    top: 181px;
-    z-index: 10000;
-    width: 8px;
-    height: 8px;
-    border: 2px solid #333;
-    border-top: 2px solid #fff;
-    border-right: 2px solid #fff;
-    transform: rotate(-45deg);
-    transition: 0.5s;
-    pointer-events: none;
-    
-}
-.dropBox.active::before{
-    top: 188px;
-    transform: rotate(-225deg);
-}
-
-
-.dropBox input{
-    margin-left: 150px;
-    /* cursor: pointer; */
-    width: 200px;
-    height: 40px;
-    outline: none;
-    border: none;
-    text-align: center;
-    font-size: 30px;
-    font-family: Arial, Helvetica, sans-serif;
-}
-.dropBox .option{
-    position: absolute;
-    top: 215px;
-    left: 330px;
-    width: 200px;
-    box-shadow: 0 20px 20px rgba(0, 0, 0, 0.1);
-    border-radius: 10%;
-    overflow: hidden;
-    display: none;
-}
-.dropBox.active .option{
-    display: block;
-}
-.dropBox .option div{
-    padding:12px 20px;
-    /* cursor: pointer; */
-    text-align: center;
-    background-color: #fff;
-    
-}
-.dropBox .option div:hover{
-    background-color: #62baea;
-}
-.text{
-    font: 32px/37px Arial;
-}
-.text1{
-    margin-left: 275px;
-}
-.text2{
-    margin-left: 305px;
-}
-.text3{
-    margin-left: 145px;
-    border: none;
-    font-size: 32px;
+#prof .person span{
+    font: 30px/80px Arial;
     font-weight: bold;
 }
-.text4{
-    margin-left: 240px;
+#last{
+    margin-left: 30px;
 }
-.text4 a{
-    color: black;
+#prof .person .name input{
+    width:150px;
+    height: 35px;
+    margin-left: 1rem;
+    font-size: 25px;
+    border-radius: 10px;
+    text-align: center;
 }
-.contact img{
-    /* display: inline-block; */
-    float: right;
-    margin-top: 47px;
-    margin-right: 142px;
+#prof .person .name input:hover{
+    background-color: rgb(233, 233, 233);
 }
-.password{
+#prof .person .name img{
+    height: 25px;
+    position: relative;
+    top: 3px;
+}
+.genderBox{
+    margin-left: 140px;
+    font-size: 30px;
     border: none;
+    background-color: rgb(233, 233, 233);
+    border-radius: 20px;
+    text-align: center;
+
+}
+.text1{
+    margin-left: 150px;
+}
+.text2{
+    margin-left: 180px;
+}
+.contact{
+    align-items: center;
+}
+.text3{
+    margin-left: 30px;
+    height: 40px;
+    font-size: 26px;
+    margin-right: 10px;
+}
+.text4{
+    margin-left: 130px;
 }
 
-
-
+/* changePassword */
 #changePassword{
-    /* display: inline-block; */
     display: none;
 }
-
-#changePassword #title, #changeSucc #title{
+#changeContent #title, #changeSucc #title{
     margin-left: 57px;
-    margin-bottom: 50px;
 }
-#changePassword span, #changeSucc span{
+#changeContent span, #changeSucc span{
     color: #AFAFAF;
     font: 32px/127px Arial;
+    margin-top: 30px;
 }
-#changePassword #part2,#changeSucc #part2{
+#changeContent #part2,#changeSucc #part2{
     color: black;
 }
-
-#changePassword p{
+#changeContent{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+#changeContent p{
     font: 32px/40px Arial;
     color: black;
     font-weight: bold;
-    margin-left: 110px;
+    margin-left: 8%;
 }
-#changePassword input{
-    width: 1155px;
-    height: 91px;
+#changeContent input{
+    width: 60%;
+    height: 90px;
     padding: 10px 20px;
     border-radius: 15px;
-    margin-left: 110px;
-    margin-bottom: 50px;
+    margin-left: 8%;
+    margin-bottom: 40px;
     margin-top: 15px;
     font-size: 30px
     
 }
-
-#changePassword #newPassword{
-    margin-bottom: 0;
-}
-#changePassword svg{
+#changeContent svg{
     position: absolute;
     margin-left: 20px;
-    margin-top: 15px;
+    margin-top: 25px;
     
 }
-#changePassword button{
-    margin-left:450px;
-    width: 433px;
+#btn{
+    margin-left:20%;
+    margin-bottom: 10px;
+    width: 35%;
     height: 93px;
     border-radius: 30px;
     font-size: 38px;
-}
-#changePassword .pass, #changePassword .fail{
-    position: absolute;
-    margin-top: 30px;
 }
 #changePassword .pass{
     display: none;
@@ -471,27 +374,30 @@ h1,p,li{
     display: inline-block;
 } 
 #changePassword .validation{
-    margin-top: 5px;
-    margin-left: 110px;
-    width: 1155px;
+    
+    margin-left: 8%;
+    width: 54%;
     background-color: #fff;
     padding: 30px 50px;
     border-radius: 10px;
     transition: all 0.3s ease-in-out;
 }
-#changePassword .validation ul{
-   position: relative;
-   display: flex;
-   flex-direction: column;
-   gap: 10px;
+#changePassword #newPassword{
+    margin-bottom: 10px;
 }
-#changePassword .validation ul li{
+#changePassword .validation ul{
+    
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+ }
+ #changePassword .validation ul li{
     position: relative;
     list-style: none;
     color: black;
     font-size: 20px;
     transition: 0.5s;
-}
+ }
 #changePassword .validation ul li.valid{
     color: green;
 }
@@ -510,6 +416,7 @@ h1,p,li{
     display: none;
 }
 
+
 #changeSucc{
     display: none;
 }
@@ -518,7 +425,7 @@ h1,p,li{
     font-size: 70px;
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
-    margin-bottom: 110px;
+    margin-bottom: 10%;
 }
 #changeSucc svg{
 
@@ -528,11 +435,9 @@ h1,p,li{
     
 }
 #changeSucc a{
-    
-    position: relative;
-    top: 200px;
-    left: 140px;
-    
+    text-align: center;
+    margin-top: 10%;
     font: 38px/51px Arial;
     color: black;
 }
+

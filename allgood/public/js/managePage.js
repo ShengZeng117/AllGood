@@ -2,13 +2,10 @@
 
 
 
-function show(anything){
+function show(anything) {
     document.querySelector('.textBox').value = anything;
 }
-let dropdown = document.querySelector('.dropBox');
-dropdown.onclick = function(){
-    dropdown.classList.toggle('active')
-}
+
 
 
 let changePassword = document.getElementById("changePassword");
@@ -26,12 +23,14 @@ let failCon = document.getElementById('failCon');
 let newPassword = document.getElementById('newPassword');
 let pwd;
 
-let  overview = document.getElementById("overview");
-let  creatNew = document.getElementById("creatNew");
-let  datas = document.getElementById("datas");
-let  profile = document.getElementById("profile");
-let  staff = document.getElementById("staff");
+let overview = document.getElementById("overview");
+let creatNew = document.getElementById("creatNew");
+let datas = document.getElementById("datas");
+let profile = document.getElementById("profile");
+let staff = document.getElementById("staff");
+let department = document.getElementById("department");
 let changePass = document.getElementById("changePass");
+
 
 let over = document.getElementById("over");
 let crea = document.getElementById("crea");
@@ -40,12 +39,13 @@ let prof = document.getElementById("prof");
 let changeSucc = document.getElementById("changeSucc");
 let backToProf = document.getElementById("backToProf");
 let staf = document.getElementById("staf");
-
+let depa = document.getElementById("depa");
+let addDevicePage = document.getElementById('addNewDevice');
 let btn = document.getElementById('btn');
 
 
 
-function removeAllLeft(){
+function removeAllLeft() {
     overview.style.backgroundColor = "#3D5967";
     overview.style.color = "white";
     creatNew.style.backgroundColor = "#3D5967";
@@ -56,25 +56,31 @@ function removeAllLeft(){
     profile.style.color = "white";
     staff.style.backgroundColor = "#3D5967";
     staff.style.color = "white";
+    department.style.backgroundColor = "#3D5967";
+    department.style.color = "white";
 }
-overview.onclick = function(){
-    over.style.display = "block";
+overview.onclick = function () {
+    over.style.display = "flex";
     prof.style.display = "none";
     data.style.display = "none";
     crea.style.display = "none";
     staf.style.display = "none";
+    depa.style.display = "none";
+    addDevicePage.style.display = "none";
     changeSucc.style.display = "none";
     changePassword.style.display = "none";
     removeAllLeft();
     overview.style.backgroundColor = "#F4F2F2";
     overview.style.color = "black";
 }
-creatNew.onclick = function(){
-    crea.style.display = "block";
+creatNew.onclick = function () {
+    crea.style.display = "flex";
     prof.style.display = "none";
     over.style.display = "none";
     data.style.display = "none";
     staf.style.display = "none";
+    depa.style.display = "none";
+    addDevicePage.style.display = "none";
     changeSucc.style.display = "none";
     changePassword.style.display = "none";
     removeAllLeft();
@@ -82,55 +88,76 @@ creatNew.onclick = function(){
     this.style.color = "black";
 }
 
-datas.onclick = function(){
-    data.style.display = "block";
+datas.onclick = function () {
+    data.style.display = "flex";
     prof.style.display = "none";
     over.style.display = "none";
     crea.style.display = "none";
     staf.style.display = "none";
+    depa.style.display = "none";
+    addDevicePage.style.display = "none";
     changeSucc.style.display = "none";
     changePassword.style.display = "none";
     removeAllLeft();
     this.style.backgroundColor = "#F4F2F2";
     this.style.color = "black";
 }
-profile.onclick = function(){
-    prof.style.display = "block";
+profile.onclick = function () {
+    prof.style.display = "flex";
+    over.style.display = "none";
+    data.style.display = "none";
+    crea.style.display = "none";
+    staf.style.display = "none";
+    depa.style.display = "none";
+    changeSucc.style.display = "none";
+    changePassword.style.display = "none";
+    addDevicePage.style.display = "none";
+    removeAllLeft();
+    this.style.backgroundColor = "#F4F2F2";
+    this.style.color = "black";
+}
+staff.onclick = function () {
+    staf.style.display = "flex";
+    prof.style.display = "none";
+    over.style.display = "none";
+    data.style.display = "none";
+    crea.style.display = "none";
+    depa.style.display = "none";
+    changeSucc.style.display = "none";
+    changePassword.style.display = "none";
+    addDevicePage.style.display = "none";
+    removeAllLeft();
+    this.style.backgroundColor = "#F4F2F2";
+    this.style.color = "black";
+}
+department.onclick = function () {
+    depa.style.display = "flex";
+    prof.style.display = "none";
     over.style.display = "none";
     data.style.display = "none";
     crea.style.display = "none";
     staf.style.display = "none";
     changeSucc.style.display = "none";
     changePassword.style.display = "none";
+    addDevicePage.style.display = "none";
     removeAllLeft();
     this.style.backgroundColor = "#F4F2F2";
     this.style.color = "black";
-}
-staff.onclick = function(){
-    staf.style.display = "block";
-    prof.style.display = "none";
-    over.style.display = "none";
-    data.style.display = "none";
-    crea.style.display = "none";
-    changeSucc.style.display = "none";
-    changePassword.style.display = "none";
-    removeAllLeft();
-    this.style.backgroundColor = "#F4F2F2";
-    this.style.color = "black";
-}
-changePass.onclick = function(){
-    prof.style.display = "none";
-    changePassword.style.display = "inline-block";
 }
 
-btn.onclick = function(){
-    changePassword.style.display = "none";
-    changeSucc.style.display = "inline-block";
+changePass.onclick = function () {
+    prof.style.display = "none";
+    changePassword.style.display = "flex";
 }
-backToProf.onclick = function(){
+
+btn.onclick = function () {
+    changePassword.style.display = "none";
+    changeSucc.style.display = "flex";
+}
+backToProf.onclick = function () {
     changeSucc.style.display = "none";
-    prof.style.display = "inline-block";
-    //记录最后更改的password到数据库中
+    prof.style.display = "flex";
+
 
 }
 
@@ -139,7 +166,7 @@ backToProf.onclick = function(){
 
 const pPattern = /^.*(?=.{8,})(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*? ]).*$/;
 //check password
-function checkPassword(data){
+function checkPassword(data) {
     pwd = data;
     const lower = new RegExp('(?=.*[a-z])')
     const upper = new RegExp('(?=.*[A-Z])')
@@ -178,25 +205,25 @@ function checkPassword(data){
         minLength.classList.remove('valid')
     }
 
-    if (pPattern.test(data)){
+    if (pPattern.test(data)) {
         passNew.style.display = 'inline-block';
         failNew.style.display = 'none';
-    }else{
+    } else {
         failNew.style.display = 'inline-block';
         passNew.style.display = 'none';
     }
     console.log(pwd);
 }
 
-function recheckPassword(data){
-    if(data==pwd){
+function recheckPassword(data) {
+    if (data == pwd) {
         passCon.style.display = ('inline-block');
         failCon.style.display = ('none');
-    }else{
+    } else {
         failCon.style.display = ('inline-block');
         passCon.style.display = ('none');
     }
-    if(passNew.style.display == 'inline-block' && passCon.style.display == 'inline-block'){
+    if (passNew.style.display == 'inline-block' && passCon.style.display == 'inline-block') {
         btn.removeAttribute("disabled");
     }
 }
@@ -205,17 +232,17 @@ let areaFilter = document.getElementById('area');
 let typeFilter = document.getElementById('type');
 
 let resetFilter = document.getElementById('resetFilter');
-resetFilter.onclick = function(){
-   areaFilter.value = 'all';
-   typeFilter.value = 'all';
+resetFilter.onclick = function () {
+    areaFilter.value = 'all';
+    typeFilter.value = 'all';
 }
 
 console.log(areaFilter.value)
 let table = document.getElementById('dataOverview');
 let totalUsage = document.getElementById('totalUsage');
-let totalRow = table.rows.length-1;
+let totalRow = table.rows.length - 1;
 let sum = 0;
-for(var i=1; i<totalRow; i++){
+for (var i = 1; i < totalRow; i++) {
     sum += Number(table.rows[i].cells[4].innerHTML);
     totalUsage.innerHTML = sum;
 }
@@ -223,51 +250,160 @@ for(var i=1; i<totalRow; i++){
 
 let emailPass = document.getElementById('emailPass');
 let emailFail = document.getElementById('emailFail');
+let contactNum = document.getElementById('contactNum');
+let submitBtn = document.getElementById('submit');
 
 const ePattern = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
 let email = document.getElementById('email');
 let emi;
-function checkEmail(emailData){
+function checkEmail(emailData) {
     emi = emailData;
-    if (ePattern.test(emi)){
+    if (ePattern.test(emi)) {
         emailPass.style.display = "inline-block";
         emailFail.style.display = "none";
-    }else{
+        submitBtn.removeAttribute("disabled");
+    } else {
         emailFail.style.display = "inline-block";
         emailPass.style.display = "none";
     }
 }
 
 
-const contactPattern = /^0[1-9]\d{8}$/;
-let submitBtn = document.getElementById('submit');
-let contactNum = document.getElementById('contactNum');
-let conNum;
-//check if the contact number is valid
-function checkContactNum(numInfo){
-    conNum = numInfo;
-    if (contactPattern.test(conNum)){
-        submitBtn.removeAttribute("disabled");
-    }
+
+let position = document.getElementById('positionValue');
+let fstName = document.getElementById('firstNa');
+let lstName = document.getElementById('lastNa');
+
+// email  fstName  lstName  position  contactNum  submitBtn
+
+submitBtn.onclick = function(){
+    console.log(contactNum.value);
 }
+
 
 
 
 // remove staff from table
 let allA = document.getElementsByClassName('delet');
-for(var i = 0; i < allA.length; i++){
-    allA[i].onclick = function(){
+for (var i = 0; i < allA.length; i++) {
+    allA[i].onclick = function () {
         var tr = this.parentNode.parentNode;
         var staffName = tr.getElementsByTagName("td")[0].innerHTML;
-        if(confirm("Do you want to remove "+staffName+" ?")){
+        if (confirm("Do you want to remove " + staffName + " ?")) {
             tr.parentNode.removeChild(tr);
         };
     };
 };
 
-//submit a staff's information, add this staff to the table
 
-// submitBtn.onclick = func(){
+// go to the Device's addition page
+let addDevice = document.getElementById('addDevice');
 
-// }
+addDevice.onclick = function(){
+    data.style.display = "none";
+    addDevicePage.style.display = "flex";
+}
+//finish adding device, turn back to data page
+let saveNewDevice = document.getElementById('saveNewDevice');
+saveNewDevice.onclick = function(){
+    var deviceName = document.getElementById("deviceName");
+    var deviceID = document.getElementById("deviceID");
+    var energyType = document.getElementById("energyType");
+    var device_area = document.getElementById("device_area");
+    var editedUsage = document.getElementById("editedUsage");
+    var tr_dev = document.createElement("tr");
+    var del_btn = document.createElement("button");
+    del_btn.className = "delet_device";
+    var text_del = document.createTextNode("delet");
+    del_btn.appendChild(text_del);
+    var td_del = document.createElement("td");
+    td_del.appendChild(del_btn);
+    tr_dev.innerHTML = `<td >${deviceName.value}</td>
+                        <td>${deviceID.value}</td>
+                        <td>${energyType.value}</td>
+                        <td>${device_area.value}</td>
+                        <td>${editedUsage.value}</td>
+                        <td></td>`
+
+
+    tr_dev.appendChild(td_del);
+    table.appendChild(tr_dev);
+
+    sum += Number(editedUsage.value);
+    totalUsage.innerHTML = sum;
+    
+    del_btn.onclick = function(){
+        this.parentElement.parentElement.remove();
+    }
+
+    deviceName.value = '';
+    deviceID.value = '';
+    energyType.value = '';
+    device_area.value = '';
+    editedUsage.value = '';
+    addDevicePage.style.display = "none";
+    data.style.display = "flex";
+}
+
+
+    var deleBtn = document.getElementsByClassName('delet_device');
+    
+    for (var i = 0; i < deleBtn.length; i++) {
+        deleBtn[i].onclick = function () {
+            this.parentElement.parentElement.remove();
+        }
+    }
+
+
+
+
+let mask = document.getElementById('j_mask');
+let formAdd = document.getElementById('j_formAdd');
+document.getElementById('addDepa').onclick = function(){
+    formAdd.style.display = "block";
+}
+document.getElementById("j_hideFormAdd").onclick=function(){
+    formAdd.style.display="none";
+}
+document.getElementById('j_btnAdd').onclick = function(){
+    var one = document.getElementById("j_txtLesson");
+    var departmentset = document.getElementById("departmentset");
+    var new_depar = document.createElement('div');
+    var new_a = document.createElement('a');
+    var text = document.createTextNode(one.value);
+    var text_a = document.createTextNode("Delet");
+    new_a.href = "#"
+    new_a.className = "delDepar";
+    new_a.appendChild(text_a);
+    new_depar.className = "departmentEle";
+    new_depar.appendChild(text);
+    new_depar.appendChild(new_a);
+    departmentset.appendChild(new_depar);
+
+    new_a.onclick=function(){
+        if (confirm("Do you want to remove this department?")) {
+            this.parentNode.parentNode.removeChild(this.parentNode);
+        };
+        
+    }
+
+    one.value = '';
+    formAdd.style.display="none";
+}
+
+let all_a_delDepa = document.getElementsByClassName("delDepar");
+
+for (var i = 0; i < all_a_delDepa.length; i++) {
+    all_a_delDepa[i].onclick = function () {
+        var depa_set = this.parentNode.parentNode;
+        depa_name = this.parentNode.innerHTML;
+        
+        
+        if (confirm("Do you want to remove this department?")) {
+            depa_set.removeChild(this.parentNode);
+        };
+    };
+};
+
+
 
