@@ -112,34 +112,46 @@ const inputUsage = async (req, res, next) => {
         const AvailabledevicesArray = staff.AvailableDevices
         const editUsage = Number(req.body.editU)
         const confirmU =  Number(req.body.confU)
-        for (let i = 0; i < AvailabledevicesArray.length; i++){
-            var onedeviceData = await Device.findById(AvailabledevicesArray[i]).lean()
-            if(onedeviceData.Device_name == req.body.confN){
-                break
+        if(editUsage != confirmU){
+            console.log("two input usages are different")
+        }else{
+            for (let i = 0; i < AvailabledevicesArray.length; i++){
+                var onedeviceData = await Device.findById(AvailabledevicesArray[i]).lean()
+                if(onedeviceData.Device_name == req.body.confN){
+                    break
+                }
             }
+    
+            var date = new Date()
+            var Day = moment(date).format('dddd')
+            if(Day == "Monday"){
+                onedeviceData.Daily_Energy_Usage[0] = editUsage
+            }else if(Day == "Tuesday"){
+                onedeviceData.Daily_Energy_Usage[1] = editUsage
+            }else if(Day == "Wendesday"){
+                onedeviceData.Daily_Energy_Usage[2] = editUsage
+                //dailyU[2] = editUsage
+            }else if(Day == "Thursday"){
+                onedeviceData.Daily_Energy_Usage[3] = editUsage
+                //oneDevice.Daily_Energy_Usage[3] = editUsage
+            }else if(Day == "Friday"){
+                onedeviceData.Daily_Energy_Usage[4] = editUsage
+            }else if(Day == "Saturday"){
+                onedeviceData.Daily_Energy_Usage[5] = editUsage
+            }else if (Day == "Sunday"){
+                onedeviceData.Daily_Energy_Usage[6] = editUsage
+            }
+    
+            let weeklyU = 0
+            for (i = 0; i < 7; i++){
+                weeklyU += onedeviceData.Daily_Energy_Usage[i]
+                console.log(weeklyU)
+            }
+    
+            onedeviceData.Week_Energy_Usage = weeklyU
+    
+            await Device.replaceOne({_id: onedeviceData._id}, onedeviceData).catch((err) => res.send(err))
         }
-
-        var date = new Date()
-        var Day = moment(date).format('dddd')
-        if(Day == "Monday"){
-            onedeviceData.Daily_Energy_Usage[0] = editUsage
-        }else if(Day == "Tuesday"){
-            onedeviceData.Daily_Energy_Usage[1] = editUsage
-        }else if(Day == "Wendesday"){
-            onedeviceData.Daily_Energy_Usage[2] = editUsage
-            //dailyU[2] = editUsage
-        }else if(Day == "Thursday"){
-            onedeviceData.Daily_Energy_Usage[3] = editUsage
-            //oneDevice.Daily_Energy_Usage[3] = editUsage
-        }else if(Day == "Friday"){
-            onedeviceData.Daily_Energy_Usage[4] = editUsage
-        }else if(Day == "Saturday"){
-            onedeviceData.Daily_Energy_Usage[5] = editUsage
-        }else if (Day == "Sunday"){
-            onedeviceData.Daily_Energy_Usage[6] = editUsage
-        }
-
-        await Device.replaceOne({_id: onedeviceData._id}, onedeviceData).catch((err) => res.send(err))
         return res.redirect('/staff/' + staff._id + '/personalpage')
 
 
@@ -149,11 +161,16 @@ const inputUsage = async (req, res, next) => {
     }
 }
 
+const DeviceFilter = async (req, res, next) => {
+    console.log(req.query)
+    return res.redirect('/staff/' + staff._id + '/personalpage')
+}
 
 
 module.exports = {
     stafflogIn,
     staffoverview,
     getstaffID,
-    inputUsage
+    inputUsage,
+    DeviceFilter
 }

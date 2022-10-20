@@ -37,4 +37,15 @@ staffRouter.post(
     staffController.inputUsage
 )
 
+staffRouter.post(
+    '/:staff_id/personalpage', 
+    function staffLogin(req, res, next) {
+        if (req){
+            return next()
+        }
+        res.redirect('/staff')
+    },
+    staffController.DeviceFilter
+)
+
 module.exports = staffRouter;
