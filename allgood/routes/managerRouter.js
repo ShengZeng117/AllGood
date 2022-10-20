@@ -27,7 +27,7 @@ managerRouter.get(
     managerController.managerOverview
 )
 
-/*managerRouter.post(
+managerRouter.post(
     '/:manager_id/personalpage', 
     function managerLogin(req, res, next) {
         if (req){
@@ -36,6 +36,6 @@ managerRouter.get(
         res.redirect('/manager')
     },
     managerController.createAccount
-)*/
+)
 
 module.exports = managerRouter;

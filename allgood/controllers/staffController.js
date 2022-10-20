@@ -145,7 +145,6 @@ const inputUsage = async (req, res, next) => {
             let weeklyU = 0
             for (i = 0; i < 7; i++){
                 weeklyU += onedeviceData.Daily_Energy_Usage[i]
-                console.log(weeklyU)
             }
     
             onedeviceData.Week_Energy_Usage = weeklyU
@@ -161,7 +160,7 @@ const inputUsage = async (req, res, next) => {
     }
 }
 
-const DeviceFilter = async (req, res, next) => {
+const updatePersonalDetail = async (req, res, next) => {
     console.log(req.query)
     return res.redirect('/staff/' + staff._id + '/personalpage')
 }
@@ -172,5 +171,5 @@ module.exports = {
     staffoverview,
     getstaffID,
     inputUsage,
-    DeviceFilter
+    updatePersonalDetail
 }

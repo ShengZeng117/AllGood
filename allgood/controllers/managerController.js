@@ -2,6 +2,7 @@ const Manager = require('../models/Manager')
 const Device = require('../models/Devices')
 const Department = require('../models/Department')
 const User = require('../models/User')
+const ObjectId = require('mongoose').Types.ObjectId
 
 const managerLogin = (req, res) => {
     res.render('manager_loginD.hbs', { layout: 'manager_login'})
@@ -68,14 +69,15 @@ const managerOverview = async (req, res, next) => {
     }
 }
 
-/*const createAccount = async (req, res, next) => {
+const createAccount = async (req, res, next) => {
     try {
         const manager = await Manager.findById(req.params.manager_id).lean()
         const department = await Department.findById(manager.DepartmentId).lean()
         if (!manager) {
             return res.sendStatus(404)
         }
-        var info = {
+
+        const info = {
             FirstName: req.body.firstName,
             LastName: req.body.lastName,
             Gender: req.body.genderbox,
@@ -85,25 +87,24 @@ const managerOverview = async (req, res, next) => {
             ContactNumber: req.body.contactNum,
             StaffId: '1174109',
             Age: 22,
-            Password: '1226WA',
+            Password: '123456789',
             Permission: "Department Manager",
             AvailiableDevices: department.Devices,
             Department: "IT",
-            DepartmentId: department._id
+            DepartmentId: ObjectId(manager.DepartmentId.str)
         }
-        var user = new User(info)
-        console.log(department._id)
-        user.save()
-        return res.redirect('/manager/' + manager._id + '/personalpage').catch((err) => res.send(err))
+        const oneuser = new User(info)
+        await User.create(oneuser).catch((err) => res.send(err))
+        return res.redirect('/manager/' + manager._id + '/personalpage')
     }
-    catch(err){
-    return next(err)
+        catch(err){
+        return next(err)
     }
-}*/
+}
 
 module.exports = {
     managerLogin,
     managerOverview,
     getmanagerID,
-    /*createAccount*/
+    createAccount
 }

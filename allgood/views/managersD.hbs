@@ -90,7 +90,6 @@
         <span>Position</span>
         <select name="position" id="position">
             <option value="staff">Staff</option>
-            <option value="areaManager">Area manager</option>
         </select><br>
         <span id="spanEmail">Email</span>
         <input type="text" name = "email" id="email" onkeyup="checkEmail(this.value)">
@@ -259,8 +258,8 @@
             <span class="text2 text">{{this.Email}}</span>
         </div>
         <div class="attr contact">
-            <span class="info">{{this.ContactNumber}}</span>
-            <input type="text" class="text3 text" value="923829999">
+            <span class="info">Contact Number</span>
+            <input type="text" class="text3 text" value={{this.ContactNumber}}>
             <img src="/picture/pencil-solid.png" class="changes">
         </div>
         <div class="attr password">

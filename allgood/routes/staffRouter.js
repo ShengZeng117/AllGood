@@ -45,7 +45,7 @@ staffRouter.post(
         }
         res.redirect('/staff')
     },
-    staffController.DeviceFilter
+    staffController.updatePersonalDetail
 )
 
 module.exports = staffRouter;

@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const Device = require('./Devices')
 
 const schema = new mongoose.Schema({
-    DepartmentName: { type: String, required: true },
+    DepartmentName: { type: String },
     Devices: [Device.schema],
     Cocal: [Device.schema],
     Electricity: [Device.schema],
