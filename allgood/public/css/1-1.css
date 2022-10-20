@@ -1,0 +1,72 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    width: 1920px;
+    height: 1080px;
+    background-image: url("../picture/homebac.jpeg");
+    background-size: 100%;
+   
+}
+
+.logo {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.container{
+    width: 1354px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    
+   
+}
+
+.container .block{
+    display: inline-block;
+    border: solid 1px black;
+    width: 675px;
+    height: 675px;
+    background-color: white;
+    opacity: 77%;
+}
+
+h1{
+    text-align: center;
+    font-size: 48px;
+    margin-top: 56px;
+    margin-bottom: 0;
+}
+
+p{
+    margin: 0 auto;
+    text-align: center;
+    width: 552px;
+    font-family: Arial;
+    font-size: 36px;
+    line-height: 42px;
+    margin-top: 161px;
+}
+
+button{
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 115px;
+    margin-bottom: 66px;
+    width: 328px;
+    height: 89px;
+    background-color: #538E9F;
+    border: none;
+    border-radius: 33px;
+    font: 42px/56px Luminari ;
+    color: #FFFFFF;
+}
+button:hover{
+    background-color: #376E7E;
+}
