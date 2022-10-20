@@ -76,24 +76,24 @@
     <a href="#" class="downloadpdf">Download Pdf</a>
 </div>
 <div class="content" id="crea">
-    <form action="">
+    <form action="", method = "post">
         <span>First name</span>
-        <input type="text" class="creatName" id="firstNa">
+        <input type="text" class="creatName" name= "firstName" id="firstNa">
         <span>Last name</span>
-        <input type="text" class="creatName" id="lastNa"><br>
+        <input type="text" class="creatName" name= "lastName" id="lastNa"><br>
         <span>Gender</span>
         <select name="genderbox" id="genderbox">
             <option value="male">Male</option>
             <option value="female">Female</option>\
             <option value="other">Other</option>
-        </select><br>
+        </select>
         <span>Position</span>
         <select name="position" id="position">
             <option value="staff">Staff</option>
             <option value="areaManager">Area manager</option>
         </select><br>
         <span id="spanEmail">Email</span>
-        <input type="text" id="email" onkeyup="checkEmail(this.value)">
+        <input type="text" name = "email" id="email" onkeyup="checkEmail(this.value)">
         <svg class="checkPass" id="emailPass" xmlns="http://www.w3.org/2000/svg" width="53.047" height="58" viewBox="0 0 53.047 58">
             <g id="shield-check" transform="translate(-1.348 0.375)">
                 <path id="路径_17" data-name="路径 17" d="M18.365,6.592q-5.1,1.352-10.132,2.94a1.673,1.673,0,0,0-1.172,1.343C5.08,25.164,9.653,35.592,15.108,42.459a37.674,37.674,0,0,0,8.169,7.674,22.4,22.4,0,0,0,3.186,1.833,8.127,8.127,0,0,0,1.048.4,2.747,2.747,0,0,0,.362.09,2.16,2.16,0,0,0,.36-.085,8.817,8.817,0,0,0,1.048-.407,22.308,22.308,0,0,0,3.186-1.833,37.694,37.694,0,0,0,8.169-7.674c5.457-6.867,10.031-17.3,8.048-31.584a1.673,1.673,0,0,0-1.172-1.343C45.182,8.8,41.258,7.6,37.379,6.592a48.386,48.386,0,0,0-9.507-1.8A48.327,48.327,0,0,0,18.365,6.592Zm-.952-3.541c3.879-1.014,7.993-1.926,10.459-1.926s6.58.913,10.459,1.925Q43.52,4.424,48.638,6.038a5.356,5.356,0,0,1,3.73,4.341c2.13,15.389-2.811,26.793-8.8,34.338a41.37,41.37,0,0,1-8.992,8.433A25.9,25.9,0,0,1,30.83,55.3a7.808,7.808,0,0,1-2.96.825,7.808,7.808,0,0,1-2.96-.825,25.774,25.774,0,0,1-3.745-2.149,41.373,41.373,0,0,1-8.987-8.433c-6-7.545-10.933-18.949-8.8-34.338a5.354,5.354,0,0,1,3.73-4.341Q12.223,4.424,17.413,3.05Z" transform="translate(0)" fill="#52b981" stroke="#52b981" stroke-width="3" fill-rule="evenodd"/>
@@ -111,7 +111,7 @@
         <br>
         <span>Contact number</span>
         <input type="text" name="contactNum" id="contactNum" onkeyup="checkContactNum(this.value)"><br>
-        <input type="submit" value="Submit" id="submit" disabled>
+        <input type="submit" value="Submit" id="submit">
     </form>
 </div>
 <div class="content" id="data">
@@ -375,7 +375,7 @@
                 <td>{{this.StaffId}}</td>
                 <td>{{this.Email}}</td>
                 <td>{{this.ContactNumber}}</td>
-                <td><a href="#" class="delet">delet</a></td>
+                <td><a href="#" class="delet">delete</a></td>
             </tr>
             {{/each}}
         </tbody>

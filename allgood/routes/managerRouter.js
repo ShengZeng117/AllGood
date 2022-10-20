@@ -27,4 +27,15 @@ managerRouter.get(
     managerController.managerOverview
 )
 
+/*managerRouter.post(
+    '/:manager_id/personalpage', 
+    function managerLogin(req, res, next) {
+        if (req){
+            return next()
+        }
+        res.redirect('/manager')
+    },
+    managerController.createAccount
+)*/
+
 module.exports = managerRouter;
