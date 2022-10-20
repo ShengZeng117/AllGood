@@ -21,10 +21,10 @@
 
 - All HTML documents must use two spaces for indentation and there should be no trailing whitespace. 
 - HTML5 syntax must be used and all attributes must use double quotes around attributes.
-- All documents must be using the HTML5 doctype and the <html> element should have a "lang" attribute. 
-- The <head> should also at a minimum include "viewport" and "charset" meta tags.
-- Form fields must always include a <label> element with a "for" attribute matching the "id" on the input.
-- Each <input> should have an "id" that is unique to the page. It does not have to match the "name" attribute.
+- All documents must be using the HTML5 doctype and the html element should have a "lang" attribute. 
+- The head should also at a minimum include "viewport" and "charset" meta tags.
+- Form fields must always include a label element with a "for" attribute matching the "id" on the input.
+- Each input should have an "id" that is unique to the page. It does not have to match the "name" attribute.
 - Classes should ideally only be used as styling hooks.
 
 #####JavaScript
