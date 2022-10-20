@@ -240,3 +240,39 @@
     width: 150px;
     height: 30px;
 } 
+
+#prof .saveAll{
+    width:100%;
+}
+#prof .savebtn{
+    width: 25%;
+    font: 28px/50px Arial;
+    margin: 0 auto;
+    border-radius: 20px;
+    background-color: #67c4f3;
+    border: none;
+}
+#prof .savebtn:hover{
+    background-color: #3fbcfa;
+}
+
+#prof .person{
+    width: 90%;
+    height: 80%;
+    background-color: #fff;
+    border-radius: 58px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1) ;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-top: 40px;
+   
+}
+#prof .person .attr{
+    display: flex;
+    padding-left: 66px;
+    border-top: 3px solid #a9a9a9;
+}
+#prof .person .attr:last-child,#prof .person .attr:first-child{
+    border-top: none;
+}

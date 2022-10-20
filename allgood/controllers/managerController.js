@@ -1,4 +1,5 @@
 const Manager = require('../models/Manager')
+const GeneralManager = require('../models/generalManager')
 const Device = require('../models/Devices')
 const Department = require('../models/Department')
 const User = require('../models/User')
@@ -15,10 +16,23 @@ const getmanagerID =  (req, res) => {
         if (err) {
             return done(err)
         }else if (!manager){
-            return done(
-                null,
-                false
-            )
+            GeneralManager.findOne({Email: email}, async (err, generalManager) => {
+                if (err) {
+                    return done(err)
+                }else if (!generalManager){
+                    return done(
+                        null,
+                        false
+                    )
+                }else if (password != generalManager.Password){
+                    return done(
+                        null,
+                        false
+                    )
+                }else{
+                    return res.redirect('/generalManager/' + generalManager._id + '/personalpage')
+                }
+            })
         }else if (password != manager.Password){
             return done(
                 null,

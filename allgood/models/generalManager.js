@@ -14,5 +14,5 @@ const schema = new mongoose.Schema({
 
 }, {versionKey: false})
 
-const generalManager = mongoose.model('generalManager', schema)
-module.exports = generalManager
+const GeneralManager = mongoose.model('GeneralManager', schema)
+module.exports = GeneralManager

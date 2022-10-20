@@ -3,11 +3,11 @@ const Device = require('../models/Devices')
 const Department = require('../models/Department')
 const User = require('../models/User')
 
-const managerLogin = (req, res) => {
+const generalmanagerLogin = (req, res) => {
     res.render('manager_loginD.hbs', { layout: 'manager_login'})
 }
 
-const getmanagerID =  (req, res) => {
+/*const getgeneralmanagerID =  (req, res) => {
     const password = req.body.password
     const email = req.body.email
     GeneralManager.findOne({Email: email}, async (err, generalManager) => {
@@ -24,12 +24,12 @@ const getmanagerID =  (req, res) => {
                 false
             )
         }else{
-            return res.redirect('/generalManager/' + GeneralManager._id + '/personalpage')
+            return res.redirect('/generalManager/' + generalManager._id + '/personalpage')
         }
     })
-}
+}*/
 
-const managerOverview = async (req, res, next) => {
+const generalmanagerOverview = async (req, res, next) => {
     try{
         const generalManager = await GeneralManager.findById(req.params.generalManager_id).lean()
         if (!generalManager){
@@ -66,7 +66,7 @@ const managerOverview = async (req, res, next) => {
 }
 
 module.exports = {
-    managerLogin,
-    managerOverview,
-    getmanagerID,
+    generalmanagerLogin,
+    generalmanagerOverview,
+    //getgeneralmanagerID,
 }

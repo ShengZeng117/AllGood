@@ -6,15 +6,15 @@ const generalManagerRouter = express.Router()
 // require our controller
 const generalManagerController = require('../controllers/generalManagerController')
 
-generalManagerRouter.get('/', generalManagerController.managerLogin)
+generalManagerRouter.get('/', generalManagerController.generalmanagerLogin)
 
-generalManagerRouter.post(
+/*generalManagerRouter.post(
     '/',
     /*function (req, res) {
         res.redirect('/manager/' + req.user._id + '/dashboard')
     }*/
-    generalManagerController.getmanagerID
-)
+    //generalManagerController.getgeneralmanagerID
+//)
 
 generalManagerRouter.get(
     '/:generalManager_id/personalpage', 
@@ -24,7 +24,7 @@ generalManagerRouter.get(
         }
         res.redirect('/generalManager')
     },
-    generalManagerController.managerOverview
+    generalManagerController.generalmanagerOverview
 )
 
 module.exports = generalManagerRouter;
