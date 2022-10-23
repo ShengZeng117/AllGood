@@ -1,94 +1,84 @@
 *{
-	margin: 0;
+    margin: 0;
     padding: 0;
 }
-
-input{
-	margin: 0;
-	padding: 0;
-}
-
-
 body{
-    width: 1920px;
-    height: 1080px;
-    background-image: url("../picture/Staff.jpg");
-    background-size: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    
 }
-
-.logo{
-    position: absolute;
-    right: 0;
-    top: 0;
- }
-
-body .container{
-    overflow: hidden;
-    width: 35%;
+header,footer{
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+header img{
+    width: 125px;
+    height: 125px;
+    margin-top: 10px;
+    margin-right: 20px;
+}
+main{
+    flex: 8;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+main div{
+    height: 800px;
+    width: 800px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     background-color: #FAFAFA;
     box-shadow: 0 0 17px #333;
     border-radius: 25px;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    
-    
+    opacity: 0.8;
 }
-
-
-.header{
+main div h1{
+    flex:3;
+    display: flex;
+    align-items: center;
+}
+main div form{
+    flex: 7;
     text-align: center;
 }
-
-.header h1{
-    font-size: 48px;
-    line-height: 170px;
-}
-
-.main{
-    text-align: center;
-}
-.main p{
+main div form p{
     font-size: 26px;
     line-height: 97px;
-   
 }
-.main input{
+
+main div img{
+    position: relative;
+    left: 50px;
+    vertical-align: middle;
+}
+main div form span input{
     width: 450px;
     height: 65px;
-    border-radius: 25px;
+    border-radius: 15px;
     border: 1px solid #707070;
     font-size: 20px;
-    text-align: center;
+    padding-left: 12%;
+    font-size: 20px;
 }
-.main input:hover{
+main div form input:hover{
     box-shadow: 2px 2px 5px #555;
 }
-.main span{
-    position: relative;
-}
-
-.main img{
-    position: absolute;
-    font-size: 20px;
-    left: 20px;
-    top: -3px;
-}
 
 
-
-.container .main input[type = "submit"]:hover{
-    background-color: #376E7E;
-} 
-.container .main input[type = "submit"]{
+main input[type = "submit"]{
     background-color: #538E9F;
     margin-top: 100px;
-    width: 328px;
-    height: 89px;
+    width: 300px;
+    height: 70px;
     border: none;
     border-radius: 33px;
-    font: 42px/56px Luminari ;
+    font: 38px/56px Luminari ;
     color: #FFFFFF;
     margin-bottom: 50px;
     opacity:1;

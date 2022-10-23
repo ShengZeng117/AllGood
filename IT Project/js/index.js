@@ -5,10 +5,7 @@
 function show(anything){
     document.querySelector('.textBox').value = anything;
 }
-let dropdown = document.querySelector('.dropBox');
-dropdown.onclick = function(){
-    dropdown.classList.toggle('active')
-}
+
 
 
 let changePassword = document.getElementById("changePassword");
@@ -54,8 +51,9 @@ function removeAllLeft(){
     profile.style.backgroundColor = "#3D5967";
     profile.style.color = "white";
 }
+
 overview.onclick = function(){
-    over.style.display = "block";
+    over.style.display = "flex";
     prof.style.display = "none";
     data.style.display = "none";
     usag.style.display = "none";
@@ -78,7 +76,7 @@ usage.onclick = function(){
     this.style.color = "black";
 }
 datas.onclick = function(){
-    data.style.display = "block";
+    data.style.display = "flex";
     prof.style.display = "none";
     over.style.display = "none";
     usag.style.display = "none";
@@ -89,7 +87,7 @@ datas.onclick = function(){
     this.style.color = "black";
 }
 profile.onclick = function(){
-    prof.style.display = "block";
+    prof.style.display = "flex";
     over.style.display = "none";
     data.style.display = "none";
     usag.style.display = "none";
@@ -102,18 +100,16 @@ profile.onclick = function(){
 
 changePass.onclick = function(){
     prof.style.display = "none";
-    changePassword.style.display = "inline-block";
+    changePassword.style.display = "flex";
 }
 
 btn.onclick = function(){
     changePassword.style.display = "none";
-    changeSucc.style.display = "inline-block";
+    changeSucc.style.display = "flex";
 }
 backToProf.onclick = function(){
     changeSucc.style.display = "none";
-    prof.style.display = "inline-block";
-    //记录最后更改的password到数据库中
-
+    prof.style.display = "flex";
 }
 
 
@@ -183,16 +179,15 @@ function recheckPassword(data){
     }
 }
 
-let areaFilter = document.getElementById('area');
+
 let typeFilter = document.getElementById('type');
 
 let resetFilter = document.getElementById('resetFilter');
 resetFilter.onclick = function(){
-   areaFilter.value = 'all';
    typeFilter.value = 'all';
 }
 
-console.log(areaFilter.value)
+
 let table = document.getElementById('dataOverview');
 let totalUsage = document.getElementById('totalUsage');
 let totalRow = table.rows.length-1;
