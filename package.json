@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jests",
-    "start": "node app.js",
+    "start": "nodemon app.js",
     "prettier": "prettier --single-quote --no-semi --tab-width 4 --write **/*.js *.js"
   },
   "author": "",
