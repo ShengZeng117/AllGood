@@ -229,13 +229,24 @@
             <div class="dropBox">
                 <span class="info">Gender</span>
                 {{#with gender}}
-                <input type="text" class="textBox" {{#if this.Male}}placeholder="Male" {{else}}{{#if this.Female}}placeholder="Female" {{else}}placeholder="Other"{{/if}}{{/if}}readonly>
+                <select name="Gender" class="genderBox" id="gender">
+                    {{#if this.Male}}
+                        <option value="male" selected>Male</option>
+                        <option value="female">Female</option>
+                        <option value="Other">Other</option>
+                    {{else}}
+                    {{#if this.Female}}
+                        <option value="male">Male</option>
+                        <option value="female" selected>Female</option>
+                        <option value="Other">Other</option>
+                    {{else}}
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="Other" selected>Other</option>
+                    {{/if}}
+                    {{/if}}
+                </select>
                 {{/with}}
-                <div class="option">
-                    <div onclick="show('Male')">Male</div>
-                    <div onclick="show('Female')">Female</div>
-                    <div onclick="show('Other')">Other</div>
-                </div>
             </div>
         </div>
         
