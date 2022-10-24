@@ -1,0 +1,248 @@
+
+#crea{
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+#crea form{
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+}
+#crea form span{
+    font: 32px/130px Arial;
+}
+#crea form input, #crea form #firstNa,#crea form #genderbox,#crea form #departmentBox, #crea form #positionValue{
+    width: 20%;
+    height: 45px;
+    font-size: 28px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-left: 3%;
+    border-radius: 8px;
+    border: 1px solid black;
+    
+}
+#crea form #firstNa{
+    margin-right: 10%;
+}
+#crea form #genderbox{
+    margin-left: 6%;
+}
+#crea form #positionValue{
+    margin-left: 5.5%;
+}
+#crea form #email{
+    width: 40%;
+    margin-left: 7.8%;
+}
+#crea form .checkPass,#crea form .checkFail{
+    position: absolute;
+    margin-top: 36px;
+    margin-left: 60px;
+}
+#crea form .checkPass{
+    display: none;
+}
+#crea form .checkFail{
+    display: inline-block;
+}
+#crea form #contactNum{
+    width: 40%;
+}
+#crea form #submit{
+    width: 200px;
+    background-color: rgb(167, 205, 255);
+    border: none;
+    box-shadow: 3px 3px 3px gray;
+    font: 30px/60px Arial bold;
+    color: black;
+    margin-top: 6%;
+    margin-left: auto;
+}
+#crea form #submit:hover{
+    background-color: rgb(226, 240, 248);
+}
+
+#crea #thrline{
+    display: flex;
+}
+
+
+
+#data #addDevice{
+    width: 85%;
+    background-color: #fff;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 10px;
+    font: 28px/46px Arial bold;
+}
+
+#staf{
+    display: none;
+}
+#staf table{
+    width: 85%;
+    margin: 0 auto;
+    margin-top: 60px;
+    text-align: center;
+    border-collapse: collapse;
+    background-color: #fff;
+}
+#staf table th{
+    font: 25px/52px Arial;
+    font-weight: bold;
+}
+#staf table td{
+    height: 60px;
+}
+
+#depa{
+    display: none;
+    /* display: inline-block; */
+    overflow-x: scroll;
+    
+}
+.departmentEle, .addDepa{
+    width: 80%;  
+    margin: 0 auto;
+    border: 1px solid black;
+    text-align: center;
+    background-color: #fff;
+    margin-bottom: 1%;
+}
+.departmentEle{
+    font: 26px/80px Arial ;
+}
+#headDepa{
+    font-weight: bold;
+    font-size: 35px;
+    line-height: 100px;
+    margin-top: 20px;
+}
+#depa a{
+    position: absolute;
+    right: 10%;
+    color: rgb(93, 115, 238);
+    text-decoration: none;
+}
+#depa a:hover{
+    color: rgb(238, 48, 48);
+}
+.addDepa{
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.addDepa:hover{
+    background-color: rgb(121, 241, 147);
+}
+
+#addNewDevice{
+    display: none;
+}
+#addNewDevice .title{
+    margin-left: 3%;
+}
+#addNewDevice .title span{
+    color: #AFAFAF;
+    font: 32px/127px Arial;
+}
+#addNewDevice .title #secd{
+    color: black;
+}
+#addNewDevice input{
+    float: right;
+}
+#addNewDevice button{
+    margin-top: 3%;
+}
+#addNewDevice .device{
+    height: 80%;
+}
+#addNewDevice .deviceInf{
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+#addNewDevice .device img{
+    height: 80%;
+}
+
+.mask {
+    display: none;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    opacity: 0.15;
+    
+  }
+  
+  .form-add {
+    position: fixed;
+    top: 30%;
+    left: 50%;
+    padding-bottom: 20px;
+    background: #fff;
+    display: none;
+    width: 20%;
+    height: 20%;
+    text-align: center;
+  }
+  
+  .form-add-title {
+    background-color: #f7f7f7;
+    border-width: 1px 1px 0 1px;
+    border-bottom: 0;
+    margin-bottom: 15px;
+    position: relative;
+  }
+  
+  .form-add-title span {
+    font-size: 16px;
+    font-weight: bold;
+    color: rgb(102, 102, 102);
+    text-indent: 12px;
+    padding: 8px 0px 10px;
+    margin-right: 10px;
+    display: block;
+    overflow: hidden;
+    text-align: left;
+  }
+  
+  .form-add-title div {
+    width: 16px;
+    height: 20px;
+    position: absolute;
+    right: 10px;
+    top: 6px;
+    font-size: 30px;
+    line-height: 16px;
+    cursor: pointer;
+  }
+  
+  .form-submit {
+    text-align: center;
+  }
+  
+.lb{
+    font: 28px/52px Arial;
+}
+.txt{
+    font: 26px/52px Arial;
+    text-align: center;
+}
+.form-submit{
+    margin-top: 2%;
+}
+.form-submit input{
+    width: 150px;
+    height: 30px;
+} 
