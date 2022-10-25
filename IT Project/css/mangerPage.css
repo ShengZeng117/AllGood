@@ -21,7 +21,12 @@
     margin-left: 3%;
     border-radius: 8px;
     border: 1px solid black;
-    
+}
+#crea form #thrline #departmentselect,#crea form #thrline #positionselect{
+    width: 50%;
+}
+#crea form #departmentBox, #crea form #positionValue{
+    width: 50%;
 }
 #crea form #firstNa{
     margin-right: 10%;
@@ -29,9 +34,9 @@
 #crea form #genderbox{
     margin-left: 6%;
 }
-#crea form #positionValue{
+/* #crea form #positionValue{
     margin-left: 5.5%;
-}
+} */
 #crea form #email{
     width: 40%;
     margin-left: 7.8%;
@@ -246,3 +251,94 @@
     width: 150px;
     height: 30px;
 } 
+
+/* 查看staff的detail */
+#staffDetailPage{
+    display:none;
+    
+}
+#staffDetailPage #headPart{
+    margin-left:2%;
+}
+#staffDetailPage #fstPart,#staffDetailPage #secdPart{
+    color: #AFAFAF;
+    font: 32px/80px Arial;
+}
+#staffDetailPage #secdPart{
+    color:black;
+}
+#staffDetailPage #staffDetails{
+    width: 90%;
+    margin: 0 auto;
+    font-size:34px;
+    font-weight: bold;
+    
+}
+#staffDetailPage .person{
+    margin: 0 auto;
+    width: 90%;
+    height: 80%;
+    background-color: #fff;
+    border-radius: 58px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1) ;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 1%;
+    
+}
+#staffDetailPage .person .attr{
+    height:14%;
+    width: 90%;
+    display:flex;
+    align-items: center;
+    border-top: 1px solid gray;
+}
+#staffDetailPage .person .attr:first-child{
+    border-top: none;
+}
+#staffDetailPage .person .attr .info{
+    font: 30px/80px Arial;
+    font-weight: bold;
+}
+#staffDetailPage .person .name div{
+    width:50%;
+}
+#staffNameFst{
+    border-right: 1px solid gray;
+}
+#staffNameSecd{
+    margin-left: 4%;
+}
+#staffFName,#staffLName,#staffGender,#staffID,#staffEmail,#staffNumber,#staffPosition,#staffDevice,#newDeviceAdd{
+    font-size: 30px;
+    margin-left: 4%;
+    font-style:italic
+}
+#bottom{
+    display:flex;
+    justify-content: center;
+}
+#staffDetailPage #saveChanges{
+    width: 20rem;
+    font: 28px/50px Arial;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-radius: 15px;
+    background-color: #317da3;
+    border: none;
+    color: white;
+}
+#staffDetailPage #saveChanges:hover{
+    background-color: #114864;
+}
+#addToStaff{
+    width: 2rem;
+    margin-left: 5px;
+    margin-top: 5px;
+}
+#newDeviceAdd{
+    margin-left:0;
+    display:none;
+}

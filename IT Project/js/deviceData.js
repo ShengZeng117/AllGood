@@ -46,14 +46,14 @@ let deviceData = [
         area: "Sales",
         usage: 344,
         status: "on"
-    },
-    {
-        name: "Air conditioner",
-        id: "01",
-        energytype: "Electricity",
-        area: "Sales",
-        usage: 777,
-        status: "on"
     }
+    // {
+    //     name: "Air conditioner",
+    //     id: "01",
+    //     energytype: "Electricity",
+    //     area: "Sales",
+    //     usage: 777,
+    //     status: "on"
+    // }
 ]
 

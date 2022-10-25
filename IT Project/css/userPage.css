@@ -268,15 +268,20 @@ body{
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    align-items: center;
+    
     margin-top: 40px;
    
 }
 #prof .person .attr{
     display: flex;
-    padding-left: 66px;
-    border-top: 3px solid #a9a9a9;
+    align-items: center;
+    height: 16%;
+    width: 90%;
+    
+    border-top: 1px solid gray;
 }
-#prof .person .attr:last-child,#prof .person .attr:first-child{
+#prof .person .attr:first-child{
     border-top: none;
 }
 
@@ -305,27 +310,27 @@ body{
 }
 .genderBox{
     margin-left: 140px;
-    font-size: 30px;
+    font-size: 33px;
     border: none;
-    background-color: rgb(233, 233, 233);
+    background-color: rgb(255, 253, 253);
     border-radius: 20px;
     text-align: center;
 
 }
 
-#prof .saveAll{
-    width:100%;
-}
+
 #prof .savebtn{
-    width: 25%;
+    width:20rem;
     font: 28px/50px Arial;
     margin: 0 auto;
-    border-radius: 20px;
-    background-color: #67c4f3;
+    margin-top: 20px;
+    border-radius: 15px;
+    background-color: #317da3;
     border: none;
+    color: white;
 }
 #prof .savebtn:hover{
-    background-color: #3fbcfa;
+    background-color: #114864;
 }
 
 .text1{
