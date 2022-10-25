@@ -31,7 +31,9 @@ body{
 #main{
     width: 100%;
 }
-
+#main li{
+    list-style-type: none;
+}
 #main div{
     font: 38px/77px Arial;
     font-weight: bold;
@@ -269,7 +271,6 @@ body{
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    
     margin-top: 40px;
    
 }
