@@ -174,7 +174,7 @@
     flex-direction: column;
     justify-content: space-evenly;
 }
-#addNewDevice .device img{
+#addNewDevice .device #preview{
     height: 80%;
 }
 
@@ -320,7 +320,7 @@
     display:flex;
     justify-content: center;
 }
-#staffDetailPage #saveChanges{
+#staffDetailPage #saveChanges,#staffDetailPage #firestaff{
     width: 20rem;
     font: 28px/50px Arial;
     margin-top: 20px;
@@ -330,7 +330,10 @@
     border: none;
     color: white;
 }
-#staffDetailPage #saveChanges:hover{
+#staffDetailPage #saveChanges{
+    margin-right: 100px;
+}
+#staffDetailPage #saveChanges:hover,#staffDetailPage #firestaff:hover{
     background-color: #114864;
 }
 #addToStaff{
@@ -342,3 +345,4 @@
     margin-left:0;
     display:none;
 }
+

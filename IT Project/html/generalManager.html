@@ -15,7 +15,9 @@
     <script src="https://cdn.highcharts.com.cn/highcharts/modules/series-label.js"></script>
     <script src="https://cdn.highcharts.com.cn/highcharts/modules/oldie.js"></script>
     <script src="https://code.highcharts.com.cn/highcharts-plugins/highcharts-zh_CN.js"></script>
-    
+    <style>
+
+    </style>
 </head>
 
 <body>
@@ -432,8 +434,9 @@
 
                 <button class="btn2" id="saveNewDevice">Save</button>
             </div>
-            <div>
-                <img src="../picture/homebac.jpeg" alt="">
+            <div id="preview">
+                <input type="file" name="" id="file" value="uploadImage">
+                <div id="pseudo-style">Upload Image</div>
             </div>
         </div>
 
@@ -483,9 +486,28 @@
                 <input type="text" id="newDeviceAdd">
             </div>
         </div>
-        <div id="bottom"><button id="saveChanges" disabled>Save</button></div>
+        <div id="bottom">
+            <button id="saveChanges" disabled>Save</button>
+            <button id="firestaff" >Delete</button>
+        </div>
     </div>
-    <script src="../js/getElement.js"></script>
+    <script>
+        var preview = document.getElementById("preview");
+        var img = document.createElement("img"); 
+        var file = document.getElementById("file");
+     
+        file.onchange = function() {
+        
+            var fileReader = new FileReader();
+            fileReader.readAsDataURL(this.files[0]);
+            fileReader.onload = function() {
+            img.src = fileReader.result;
+            img.style.width = "100%";
+            img.style.height = "91%";
+            preview.appendChild(img);
+        };
+      };
+    </script>
     <script src="../js/PieCharts.js"></script>
     <script src="../js/barChart.js"></script>
     <script src="../js/deviceData.js"></script>
@@ -493,6 +515,15 @@
     <script src="../js/staffinfo.js"></script>
     <script src="../js/changestaffTable.js"></script>
     <script src="../js/managePage.js"></script>
+    <script>
+        let firestaff = document.getElementById("firestaff");
+        firestaff.onclick = function(){
+            if(confirm("Are you sure?")){
+                console.log("111");
+            }
+        }
+        
+    </script>
 </body>
 
 </html>

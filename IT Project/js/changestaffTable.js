@@ -12,7 +12,6 @@ function initStaffTable(){
         <td class="TstaffEmail">${staff.email}</td>
         <td class="TstaffNumber">${staff.number}</td>
         <td><a href="#" class="staffDetail">Detail</a></td>
-        <td><a href="#" class="staffDelet">Delet</a></td>
     </tr>
         `;
     }
