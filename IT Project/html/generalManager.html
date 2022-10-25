@@ -15,6 +15,7 @@
     <script src="https://cdn.highcharts.com.cn/highcharts/modules/series-label.js"></script>
     <script src="https://cdn.highcharts.com.cn/highcharts/modules/oldie.js"></script>
     <script src="https://code.highcharts.com.cn/highcharts-plugins/highcharts-zh_CN.js"></script>
+    
 </head>
 
 <body>
@@ -73,7 +74,7 @@
                         <option value="humanResources">Human Resources</option>
                     </select>
                 </div>
-                <div id="departmentselect">
+                <div id="positionselect">
                     <span>Position:</span>
                 <select name="position" id="positionValue">
                     <option value="Staff">Staff</option>
@@ -159,9 +160,10 @@
                 <th class="sort" data-key="area">Area</th>
                 <th class="sort" data-key="usage">Usage</th>
                 <th class="sort" data-key="status">Status</th>
+                
             </thead>
             <tbody>
-
+                
             </tbody>
             
             
@@ -197,7 +199,7 @@
                 <div class="dropBox">
                     <span class="info">Gender:</span>
                     <select name="Gender" class="genderBox" id="gender">
-                        <option value="male" selected>male</option>
+                        <option value="male" selected>Male</option>
                         <option value="female">Female</option>
                         <option value="Other">Other</option>
                     </select>
@@ -223,9 +225,12 @@
             </div>
 
         </div>
+        <div class="saveProfile">
+            <button class="savebtn">Save Changes</button>
+        </div>
     </div>
     <div class="content" id="staf">
-        <table border="1" id="table">
+        <table border="1" id="staffTable">
             <thead>
                 <th>First name</th>
                 <th>Last name</th>
@@ -236,33 +241,6 @@
                 <th></th>
             </thead>
             <tbody class="staffTbody">
-                <tr>
-                    <td>Jason</td>
-                    <td>Lu</td>
-                    <td>Staff</td>
-                    <td>1231231231</td>
-                    <td>1231231231@qq.com</td>
-                    <td>056123321</td>
-                    <td><a href="#" class="delet">delet</a></td>
-                </tr>
-                <tr>
-                    <td>Jason</td>
-                    <td>Lu</td>
-                    <td>Staff</td>
-                    <td>1231231231</td>
-                    <td>1231231231@qq.com</td>
-                    <td>056123321</td>
-                    <td><a href="#" class="delet">delet</a></td>
-                </tr>
-                <tr>
-                    <td>Jason</td>
-                    <td>Lu</td>
-                    <td>Staff</td>
-                    <td>1231231231</td>
-                    <td>1231231231@qq.com</td>
-                    <td>056123321</td>
-                    <td><a href="#" class="delet">delet</a></td>
-                </tr>
             </tbody>
         </table>
     </div>
@@ -460,10 +438,60 @@
         </div>
 
     </div>
+    <div class="content" id="staffDetailPage">
+        <div id="headPart"><span id="fstPart">Staff</span><span id="secdPart">/Staff Detail</span></div>
+        <div id="staffDetails"> <span id="staffName">Jason's</span> Personal Detail</div>
+        <div class="person">
+            <div class="attr name">
+                <div id="staffNameFst">
+                    <span class="info">First name:</span>
+                    <span id="staffFName">Jason</span>
+                </div>
+                <div id="staffNameSecd">
+                    <span class="info">Last name:</span>
+                    <span id="staffLName">Lu</span>
+                </div>
+
+            </div>
+            <div class="attr gender">
+                <span class="info">Gender:</span>
+                <span id="staffGender"> Male</span>
+            </div>
+
+            <div class="attr id">
+                <span class="info">Stuff ID:</span>
+                <span id="staffID"> 1232938320</span>
+            </div>
+            <div class="attr">
+                <span class="info">Email:</span>
+                <span id="staffEmail">skdjjfhksj@gmeil.com</span>
+            </div>
+            <div class="attr contact">
+                <span class="info">Contact number:</span>
+                <span id="staffNumber">0415630051</span>
+                
+            </div>
+            <div class="attr staffPosition">
+                <span class="info">Position:</span>
+                <span id="staffPosition">Staff</span>
+                
+            </div>
+            <div class="attr staffDevice">
+                <span class="info">Devices:</span>
+                <span id="staffDevice">Fans, Lights</span>
+                <img src="../picture/add.png" alt="" id="addToStaff">
+                <input type="text" id="newDeviceAdd">
+            </div>
+        </div>
+        <div id="bottom"><button id="saveChanges" disabled>Save</button></div>
+    </div>
+    <script src="../js/getElement.js"></script>
     <script src="../js/PieCharts.js"></script>
     <script src="../js/barChart.js"></script>
     <script src="../js/deviceData.js"></script>
     <script src="../js/changeTable.js"></script>
+    <script src="../js/staffinfo.js"></script>
+    <script src="../js/changestaffTable.js"></script>
     <script src="../js/managePage.js"></script>
 </body>
 

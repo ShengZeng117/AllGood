@@ -1,4 +1,4 @@
-let deviceTitles = document.querySelectorAll("th");
+let deviceTitles = document.querySelectorAll("#dataOverview th");
 for (let deviceTitle of deviceTitles){
     deviceTitle.onclick = function(){
         
@@ -49,6 +49,7 @@ function inittable(){
         <td>${device.area}</td>
         <td>${device.usage}</td>
         <td class="${device.status}"></td>
+        <td><img src="../picture/delet.png" alt="" class="deletDevice"></td>
     </tr>
         `;
     }

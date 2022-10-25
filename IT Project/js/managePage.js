@@ -8,42 +8,6 @@ function show(anything) {
 
 
 
-let changePassword = document.getElementById("changePassword");
-let lowerCase = document.getElementById('lower');
-let upperCase = document.getElementById('upper');
-let numberCase = document.getElementById('number');
-let minLength = document.getElementById('length');
-let specialCase = document.getElementById('special');
-let passOld = document.getElementById('passOld');
-let failOld = document.getElementById('failOld');
-let passNew = document.getElementById('passNew');
-let failNew = document.getElementById('failNew');
-let passCon = document.getElementById('passCon');
-let failCon = document.getElementById('failCon');
-let newPassword = document.getElementById('newPassword');
-let pwd;
-
-let overview = document.getElementById("overview");
-let creatNew = document.getElementById("creatNew");
-let datas = document.getElementById("datas");
-let profile = document.getElementById("profile");
-let staff = document.getElementById("staff");
-let department = document.getElementById("department");
-let changePass = document.getElementById("changePass");
-
-
-let over = document.getElementById("over");
-let crea = document.getElementById("crea");
-let data = document.getElementById("data");
-let prof = document.getElementById("prof");
-let changeSucc = document.getElementById("changeSucc");
-let backToProf = document.getElementById("backToProf");
-let staf = document.getElementById("staf");
-let depa = document.getElementById("depa");
-let addDevicePage = document.getElementById('addNewDevice');
-let btn = document.getElementById('btn');
-
-
 
 function removeAllLeft() {
     overview.style.backgroundColor = "#3D5967";
@@ -66,6 +30,7 @@ overview.onclick = function () {
     crea.style.display = "none";
     staf.style.display = "none";
     depa.style.display = "none";
+    staffDetailPage.style.display = "none";
     addDevicePage.style.display = "none";
     changeSucc.style.display = "none";
     changePassword.style.display = "none";
@@ -80,6 +45,7 @@ creatNew.onclick = function () {
     data.style.display = "none";
     staf.style.display = "none";
     depa.style.display = "none";
+    staffDetailPage.style.display = "none";
     addDevicePage.style.display = "none";
     changeSucc.style.display = "none";
     changePassword.style.display = "none";
@@ -95,6 +61,7 @@ datas.onclick = function () {
     crea.style.display = "none";
     staf.style.display = "none";
     depa.style.display = "none";
+    staffDetailPage.style.display = "none";
     addDevicePage.style.display = "none";
     changeSucc.style.display = "none";
     changePassword.style.display = "none";
@@ -109,6 +76,7 @@ profile.onclick = function () {
     crea.style.display = "none";
     staf.style.display = "none";
     depa.style.display = "none";
+    staffDetailPage.style.display = "none";
     changeSucc.style.display = "none";
     changePassword.style.display = "none";
     addDevicePage.style.display = "none";
@@ -123,6 +91,7 @@ staff.onclick = function () {
     data.style.display = "none";
     crea.style.display = "none";
     depa.style.display = "none";
+    staffDetailPage.style.display = "none";
     changeSucc.style.display = "none";
     changePassword.style.display = "none";
     addDevicePage.style.display = "none";
@@ -137,6 +106,7 @@ department.onclick = function () {
     data.style.display = "none";
     crea.style.display = "none";
     staf.style.display = "none";
+    staffDetailPage.style.display = "none";
     changeSucc.style.display = "none";
     changePassword.style.display = "none";
     addDevicePage.style.display = "none";
@@ -284,7 +254,7 @@ submitBtn.onclick = function(){
 
 
 // remove staff from table
-let allA = document.getElementsByClassName('delet');
+let allA = document.getElementsByClassName('staffDelet');
 for (var i = 0; i < allA.length; i++) {
     allA[i].onclick = function () {
         var tr = this.parentNode.parentNode;
@@ -312,10 +282,9 @@ saveNewDevice.onclick = function(){
     var device_area = document.getElementById("device_area");
     var editedUsage = document.getElementById("editedUsage");
     var tr_dev = document.createElement("tr");
-    var del_btn = document.createElement("button");
-    del_btn.className = "delet_device";
-    var text_del = document.createTextNode("delet");
-    del_btn.appendChild(text_del);
+    var del_btn = document.createElement("img");
+    del_btn.className = "deletDevice";
+    del_btn.src = "../picture/delet.png";
     var td_del = document.createElement("td");
     td_del.appendChild(del_btn);
     tr_dev.innerHTML = `<td >${deviceName.value}</td>
@@ -333,7 +302,10 @@ saveNewDevice.onclick = function(){
     totalUsage.innerHTML = sum;
     
     del_btn.onclick = function(){
-        this.parentElement.parentElement.remove();
+        if(confirm("Do you want to remove this device?")){
+            this.parentElement.parentElement.remove();
+        }
+        
     }
 
     deviceName.value = '';
@@ -346,11 +318,14 @@ saveNewDevice.onclick = function(){
 }
 
 
-    var deleBtn = document.getElementsByClassName('delet_device');
+    var deleBtn = document.getElementsByClassName('deletDevice');
     
     for (var i = 0; i < deleBtn.length; i++) {
         deleBtn[i].onclick = function () {
-            this.parentElement.parentElement.remove();
+            if(confirm("Do you want to remove this device?")){
+                this.parentElement.parentElement.remove();
+            }
+            
         }
     }
 
@@ -404,6 +379,41 @@ for (var i = 0; i < all_a_delDepa.length; i++) {
         };
     };
 };
+
+
+// check staff's detail
+// let staffFName = document.getElementById("staffFName");
+// let staffLName = document.getElementById("staffLName");
+// let staffGender = document.getElementById("staffGender");
+// let staffID = document.getElementById("staffID");
+// let staffEmail = document.getElementById("staffEmail");
+// let staffNumber = document.getElementById("staffNumber");
+// let staffPosition = document.getElementById("staffPosition");
+let staffDetail=document.getElementsByClassName("staffDetail");
+for (var i=0; i<staffDetail.length;i++){
+    staffDetail[i].onclick = function(){
+        staf.style.display = "none";
+        staffDetailPage.style.display = "flex";
+        // staffFName.textContent = staffData[i].firstname;
+    }
+}
+let staffDevice = document.getElementById("staffDevice");
+let saveChanges = document.getElementById("saveChanges");
+let addToStaff = document.getElementById("addToStaff");
+let newDeviceAdd = document.getElementById("newDeviceAdd");
+addToStaff.onclick = function(){
+    newDeviceAdd.style.display = "inline-block";
+    saveChanges.removeAttribute('disabled');
+    saveChanges.onclick = function(){
+        staffDevice.textContent += ", ";
+        staffDevice.textContent += newDeviceAdd.value;
+        newDeviceAdd.style.display = "none";
+        newDeviceAdd.value = "";
+        
+    }
+    
+    
+}
 
 
 
