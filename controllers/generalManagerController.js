@@ -7,28 +7,6 @@ const generalmanagerLogin = (req, res) => {
     res.render('manager_loginD.hbs', { layout: 'manager_login'})
 }
 
-/*const getgeneralmanagerID =  (req, res) => {
-    const password = req.body.password
-    const email = req.body.email
-    GeneralManager.findOne({Email: email}, async (err, generalManager) => {
-        if (err) {
-            return done(err)
-        }else if (!generalManager){
-            return done(
-                null,
-                false
-            )
-        }else if (password != generalManager.Password){
-            return done(
-                null,
-                false
-            )
-        }else{
-            return res.redirect('/generalManager/' + generalManager._id + '/personalpage')
-        }
-    })
-}*/
-
 const generalmanagerOverview = async (req, res, next) => {
     try{
         const generalManager = await GeneralManager.findById(req.params.generalManager_id).lean()

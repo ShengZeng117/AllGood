@@ -109,6 +109,7 @@ const inputUsage = async (req, res, next) => {
         if(!staff){
             return res.sendStatus(404)
         }
+
         const AvailabledevicesArray = staff.AvailableDevices
         const editUsage = Number(req.body.editU)
         const confirmU =  Number(req.body.confU)
@@ -166,13 +167,43 @@ const updatePersonalDetail = async (req, res, next) => {
         if(!staff){
             return res.sendStatus(404)
         }
-        const firstN = req.body.firstName
-        const lastN = req.body.lastName
-        const conatctN = req.body.Cnumber
-        console.log(firstN)
-        console.log(lastN)
-        console.log(conatctN)
-        return res.redirect('/staff/' + staff._id + '/personalpage')
+        if(req.body.newPassword){
+            return next()
+        }else{
+            console.log("personal")
+            const firstN = req.body.firstName
+            const lastN = req.body.lastName
+            const conatctN = req.body.Cnumber
+            const gen = req.body.gender
+            staff.FirstName = firstN
+            staff.LastName = lastN
+            staff.ContactNumber = conatctN
+            staff.Gender = gen
+
+            await User.replaceOne({_id: staff._id}, staff).catch((err) => res.send(err))
+
+            return res.redirect('/staff/' + staff._id + '/personalpage')
+        }
+    }catch(err){
+        return next(err)
+    }
+}
+
+const changePassword = async (req, res, next) => {
+    try{
+        const staff = await User.findById(req.params.staff_id).lean()
+        if(!staff){
+            return res.sendStatus(404)
+        }
+
+        if(req.body.editU){
+            return next()
+        }else{
+            const newP = req.body.newPassword
+            staff.Password = newP
+            await User.replaceOne({_id: staff._id}, staff).catch((err) => res.send(err))
+            return res.redirect('/staff/' + staff._id + '/personalpage')
+        }
     }catch(err){
         return next(err)
     }
@@ -184,5 +215,6 @@ module.exports = {
     staffoverview,
     getstaffID,
     inputUsage,
-    updatePersonalDetail
+    updatePersonalDetail,
+    changePassword
 }

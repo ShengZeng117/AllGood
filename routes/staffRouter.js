@@ -34,18 +34,10 @@ staffRouter.post(
         }
         res.redirect('/staff')
     },
+    staffController.updatePersonalDetail,
+    staffController.changePassword,
     staffController.inputUsage
 )
 
-staffRouter.post(
-    '/:staff_id/personalpage', 
-    function staffLogin(req, res, next) {
-        if (req){
-            return next()
-        }
-        res.redirect('/staff')
-    },
-    staffController.updatePersonalDetail
-)
 
 module.exports = staffRouter;

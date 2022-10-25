@@ -12,7 +12,7 @@
 #crea form span{
     font: 32px/130px Arial;
 }
-#crea form input, #crea form #firstNa,#crea form #genderbox, #crea form #positionValue{
+#crea form input, #crea form #firstNa,#crea form #genderbox,#crea form #departmentBox, #crea form #positionValue{
     width: 20%;
     height: 45px;
     font-size: 28px;
@@ -21,7 +21,12 @@
     margin-left: 3%;
     border-radius: 8px;
     border: 1px solid black;
-    
+}
+#crea form #thrline #departmentselect,#crea form #thrline #positionselect{
+    width: 50%;
+}
+#crea form #departmentBox, #crea form #positionValue{
+    width: 50%;
 }
 #crea form #firstNa{
     margin-right: 10%;
@@ -29,9 +34,9 @@
 #crea form #genderbox{
     margin-left: 6%;
 }
-#crea form #positionValue{
+/* #crea form #positionValue{
     margin-left: 5.5%;
-}
+} */
 #crea form #email{
     width: 40%;
     margin-left: 7.8%;
@@ -63,6 +68,12 @@
 #crea form #submit:hover{
     background-color: rgb(226, 240, 248);
 }
+
+#crea #thrline{
+    display: flex;
+}
+
+
 
 #data #addDevice{
     width: 85%;
@@ -163,7 +174,7 @@
     flex-direction: column;
     justify-content: space-evenly;
 }
-#addNewDevice .device img{
+#addNewDevice .device #preview{
     height: 80%;
 }
 
@@ -241,22 +252,30 @@
     height: 30px;
 } 
 
-#prof .saveAll{
-    width:100%;
+/* 查看staff的detail */
+#staffDetailPage{
+    display:none;
+    
 }
-#prof .savebtn{
-    width: 25%;
-    font: 28px/50px Arial;
+#staffDetailPage #headPart{
+    margin-left:2%;
+}
+#staffDetailPage #fstPart,#staffDetailPage #secdPart{
+    color: #AFAFAF;
+    font: 32px/80px Arial;
+}
+#staffDetailPage #secdPart{
+    color:black;
+}
+#staffDetailPage #staffDetails{
+    width: 90%;
     margin: 0 auto;
-    border-radius: 20px;
-    background-color: #67c4f3;
-    border: none;
+    font-size:34px;
+    font-weight: bold;
+    
 }
-#prof .savebtn:hover{
-    background-color: #3fbcfa;
-}
-
-#prof .person{
+#staffDetailPage .person{
+    margin: 0 auto;
     width: 90%;
     height: 80%;
     background-color: #fff;
@@ -265,14 +284,64 @@
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    margin-top: 40px;
-   
+    align-items: center;
+    margin-top: 1%;
+    
 }
-#prof .person .attr{
-    display: flex;
-    padding-left: 66px;
-    border-top: 3px solid #a9a9a9;
+#staffDetailPage .person .attr{
+    height:14%;
+    width: 90%;
+    display:flex;
+    align-items: center;
+    border-top: 1px solid gray;
 }
-#prof .person .attr:first-child{
+#staffDetailPage .person .attr:first-child{
     border-top: none;
+}
+#staffDetailPage .person .attr .info{
+    font: 30px/80px Arial;
+    font-weight: bold;
+}
+#staffDetailPage .person .name div{
+    width:50%;
+}
+#staffNameFst{
+    border-right: 1px solid gray;
+}
+#staffNameSecd{
+    margin-left: 4%;
+}
+#staffFName,#staffLName,#staffGender,#staffID,#staffEmail,#staffNumber,#staffPosition,#staffDevice,#newDeviceAdd{
+    font-size: 30px;
+    margin-left: 4%;
+    font-style:italic
+}
+#bottom{
+    display:flex;
+    justify-content: center;
+}
+#staffDetailPage #saveChanges,#staffDetailPage #firestaff{
+    width: 20rem;
+    font: 28px/50px Arial;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-radius: 15px;
+    background-color: #317da3;
+    border: none;
+    color: white;
+}
+#staffDetailPage #saveChanges{
+    margin-right: 100px;
+}
+#staffDetailPage #saveChanges:hover,#staffDetailPage #firestaff:hover{
+    background-color: #114864;
+}
+#addToStaff{
+    width: 2rem;
+    margin-left: 5px;
+    margin-top: 5px;
+}
+#newDeviceAdd{
+    margin-left:0;
+    display:none;
 }

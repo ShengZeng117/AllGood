@@ -1,13 +1,5 @@
 
 
-
-
-function show(anything) {
-    document.querySelector('.textBox').value = anything;
-}
-
-
-
 let changePassword = document.getElementById("changePassword");
 let lowerCase = document.getElementById('lower');
 let upperCase = document.getElementById('upper');
@@ -38,10 +30,19 @@ let data = document.getElementById("data");
 let prof = document.getElementById("prof");
 let changeSucc = document.getElementById("changeSucc");
 let backToProf = document.getElementById("backToProf");
+let staffDetailPage = document.getElementById("staffDetailPage");
 let staf = document.getElementById("staf");
 let depa = document.getElementById("depa");
 let addDevicePage = document.getElementById('addNewDevice');
 let btn = document.getElementById('btn');
+
+
+
+
+function show(anything) {
+    document.querySelector('.textBox').value = anything;
+}
+
 
 
 
@@ -66,6 +67,7 @@ overview.onclick = function () {
     crea.style.display = "none";
     staf.style.display = "none";
     depa.style.display = "none";
+    staffDetailPage.style.display = "none";
     addDevicePage.style.display = "none";
     changeSucc.style.display = "none";
     changePassword.style.display = "none";
@@ -80,6 +82,7 @@ creatNew.onclick = function () {
     data.style.display = "none";
     staf.style.display = "none";
     depa.style.display = "none";
+    staffDetailPage.style.display = "none";
     addDevicePage.style.display = "none";
     changeSucc.style.display = "none";
     changePassword.style.display = "none";
@@ -95,6 +98,7 @@ datas.onclick = function () {
     crea.style.display = "none";
     staf.style.display = "none";
     depa.style.display = "none";
+    staffDetailPage.style.display = "none";
     addDevicePage.style.display = "none";
     changeSucc.style.display = "none";
     changePassword.style.display = "none";
@@ -109,6 +113,7 @@ profile.onclick = function () {
     crea.style.display = "none";
     staf.style.display = "none";
     depa.style.display = "none";
+    staffDetailPage.style.display = "none";
     changeSucc.style.display = "none";
     changePassword.style.display = "none";
     addDevicePage.style.display = "none";
@@ -123,6 +128,7 @@ staff.onclick = function () {
     data.style.display = "none";
     crea.style.display = "none";
     depa.style.display = "none";
+    staffDetailPage.style.display = "none";
     changeSucc.style.display = "none";
     changePassword.style.display = "none";
     addDevicePage.style.display = "none";
@@ -137,6 +143,7 @@ department.onclick = function () {
     data.style.display = "none";
     crea.style.display = "none";
     staf.style.display = "none";
+    staffDetailPage.style.display = "none";
     changeSucc.style.display = "none";
     changePassword.style.display = "none";
     addDevicePage.style.display = "none";
@@ -250,6 +257,8 @@ for (var i = 1; i < totalRow; i++) {
 
 let emailPass = document.getElementById('emailPass');
 let emailFail = document.getElementById('emailFail');
+let contactNum = document.getElementById('contactNum');
+let submitBtn = document.getElementById('submit');
 
 const ePattern = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
 let email = document.getElementById('email');
@@ -259,6 +268,7 @@ function checkEmail(emailData) {
     if (ePattern.test(emi)) {
         emailPass.style.display = "inline-block";
         emailFail.style.display = "none";
+        submitBtn.removeAttribute("disabled");
     } else {
         emailFail.style.display = "inline-block";
         emailPass.style.display = "none";
@@ -266,8 +276,7 @@ function checkEmail(emailData) {
 }
 
 
-let submitBtn = document.getElementById('submit');
-let contactNum = document.getElementById('contactNum');
+
 let position = document.getElementById('positionValue');
 let fstName = document.getElementById('firstNa');
 let lstName = document.getElementById('lastNa');
@@ -277,35 +286,12 @@ let lstName = document.getElementById('lastNa');
 submitBtn.onclick = function(){
     console.log(contactNum.value);
 }
-// submitBtn.onclick = function () {
-//     var oTable = document.getElementsById('table');
-//     var oTr = document.createElement('tr');
-//     var oTd1 = document.createElement('td');
-//     var oTd2 = document.createElement('td');
-//     var oTd3 = document.createElement('td');
-//     var oTd4 = document.createElement('td');
-//     var oTd5 = document.createElement('td');
-//     var oTd6 = document.createElement('td');
-//     // var btn1 = document.createElement('button');
-//     oTd1.innerHTML = fstName.value;
-//     oTd2.innerHTML = lstName.value;
-//     oTd3.innerHTML = position.value;
-//     oTd4.innerHTML = "11223344";
-//     oTd5.innerHTML = email.value;
-//     oTd6.innerHTML = fstNcontactNumme.value;
-//     oTr.appendChild(oTd1);
-//     oTr.appendChild(oTd2);
-//     oTr.appendChild(oTd3);
-//     oTr.appendChild(oTd4);
-//     oTr.appendChild(oTd5);
-//     oTr.appendChild(oTd6);
-//     oTable.appendChild(oTr);
-// };
+
 
 
 
 // remove staff from table
-let allA = document.getElementsByClassName('delet');
+let allA = document.getElementsByClassName('staffDelet');
 for (var i = 0; i < allA.length; i++) {
     allA[i].onclick = function () {
         var tr = this.parentNode.parentNode;
@@ -333,10 +319,9 @@ saveNewDevice.onclick = function(){
     var device_area = document.getElementById("device_area");
     var editedUsage = document.getElementById("editedUsage");
     var tr_dev = document.createElement("tr");
-    var del_btn = document.createElement("button");
-    del_btn.className = "delet_device";
-    var text_del = document.createTextNode("delet");
-    del_btn.appendChild(text_del);
+    var del_btn = document.createElement("img");
+    del_btn.className = "deletDevice";
+    del_btn.src = "../picture/delet.png";
     var td_del = document.createElement("td");
     td_del.appendChild(del_btn);
     tr_dev.innerHTML = `<td >${deviceName.value}</td>
@@ -354,7 +339,10 @@ saveNewDevice.onclick = function(){
     totalUsage.innerHTML = sum;
     
     del_btn.onclick = function(){
-        this.parentElement.parentElement.remove();
+        if(confirm("Do you want to remove this device?")){
+            this.parentElement.parentElement.remove();
+        }
+        
     }
 
     deviceName.value = '';
@@ -367,11 +355,14 @@ saveNewDevice.onclick = function(){
 }
 
 
-    var deleBtn = document.getElementsByClassName('delet_device');
+    var deleBtn = document.getElementsByClassName('deletDevice');
     
     for (var i = 0; i < deleBtn.length; i++) {
         deleBtn[i].onclick = function () {
-            this.parentElement.parentElement.remove();
+            if(confirm("Do you want to remove this device?")){
+                this.parentElement.parentElement.remove();
+            }
+            
         }
     }
 
@@ -425,6 +416,44 @@ for (var i = 0; i < all_a_delDepa.length; i++) {
         };
     };
 };
+
+
+// check staff's detail
+// let staffFName = document.getElementById("staffFName");
+// let staffLName = document.getElementById("staffLName");
+// let staffGender = document.getElementById("staffGender");
+// let staffID = document.getElementById("staffID");
+// let staffEmail = document.getElementById("staffEmail");
+// let staffNumber = document.getElementById("staffNumber");
+// let staffPosition = document.getElementById("staffPosition");
+let staffDetail=document.getElementsByClassName("staffDetail");
+
+for (link of staffDetail){
+    link.onclick = function(){
+
+        staf.style.display = "none";
+        staffDetailPage.style.display = "flex";
+        
+    }
+}
+
+let staffDevice = document.getElementById("staffDevice");
+let saveChanges = document.getElementById("saveChanges");
+let addToStaff = document.getElementById("addToStaff");
+let newDeviceAdd = document.getElementById("newDeviceAdd");
+addToStaff.onclick = function(){
+    newDeviceAdd.style.display = "inline-block";
+    saveChanges.removeAttribute('disabled');
+    saveChanges.onclick = function(){
+        staffDevice.textContent += ", ";
+        staffDevice.textContent += newDeviceAdd.value;
+        newDeviceAdd.style.display = "none";
+        newDeviceAdd.value = "";
+        
+    }
+    
+    
+}
 
 
 

@@ -103,9 +103,9 @@ const createAccount = async (req, res, next) => {
             Age: 22,
             Password: '123456789',
             Permission: "Department Manager",
-            AvailiableDevices: department.Devices,
+            AvailiableDevices: [],
             Department: "IT",
-            DepartmentId: ObjectId(manager.DepartmentId.str)
+            DepartmentId: manager.DepartmentId
         }
         const oneuser = new User(info)
         await User.create(oneuser).catch((err) => res.send(err))
