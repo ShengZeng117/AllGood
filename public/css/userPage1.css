@@ -18,13 +18,13 @@ body{
     justify-content: space-between;
     align-items: center;
 }
-.left #name{
+.left .name{
     font: 62px/71px Arial;
     font-weight: bold;
     margin-top: 70px;
     margin-bottom: 10pxpx;
 }
-.left #position{
+.left .position{
     text-align: center;
     font: 27px/31px Arial;
 }
