@@ -11,7 +11,6 @@
         <li><div class="sub" id="datas">Data</div></li>
         <li><div class="sub" id="profile">Profile</div></li>
     </div>
-
     <div id="foot">
             <img src="/picture/logo.png" alt="">
     </div>
@@ -104,96 +103,96 @@
 </div>
 
 
-     <div class="content" id="data">
-        <div class="topFilter">
-            <div>
-                <span>Area:</span>
-                <select name="area" class="box" id="area" >
-                <option value="all" selected>All</option>
-                <option value="it">IT</option>
-                <option value="sales">Sales</option>
-                <option value="design">Design</option>
-                <option value="administration">Administration</option>
-                <option value="humanResources">Human Resources</option>
-            </select>
-            </div>
-            <div>
-                <span>Type:</span>
-                <select name="type" class="box" id="type">
-                <option value="all" selected>All</option>
-                <option value="coal">Coal</option>
-                <option value="hydrogen">Hydrogen</option>
-                <option value="electricity">Electricity</option>
-                <option value="naturalGas">Natural Gas</option>
-                <option value="other">Other</option>
-            </select>
-            </div>
-            <a href="#" id="resetFilter">RESET FILTERS</a>
+<div class="content" id="data">
+    <div class="topFilter">
+        <div>
+            <span>Area:</span>
+            <select name="area" class="box" id="area" >
+            <option value="all" selected>All</option>
+            <option value="it">IT</option>
+            <option value="sales">Sales</option>
+            <option value="design">Design</option>
+            <option value="administration">Administration</option>
+            <option value="humanResources">Human Resources</option>
+        </select>
         </div>
+        <div>
+            <span>Type:</span>
+            <select name="type" class="box" id="type">
+            <option value="all" selected>All</option>
+            <option value="coal">Coal</option>
+            <option value="hydrogen">Hydrogen</option>
+            <option value="electricity">Electricity</option>
+            <option value="naturalGas">Natural Gas</option>
+            <option value="other">Other</option>
+        </select>
+        </div>
+        <a href="#" id="resetFilter">RESET FILTERS</a>
+    </div>
         
-        <table border="1" id="dataOverview">
-           <thead>
-            <th>Device</th>
-            <th>ID</th>
-            <th>Energy</th>
-            <th>Area</th>
-            <th>Usage</th>
-            <th>Status</th>
-           </thead>
-           {{#each AllDeviceList}}
-            <tr>
-                <td>{{this.Device_name}}</td>
-                <td>{{this._id}}</td>
-                <td>{{this.Energy_type}}</td>
-                <td>{{this.Department}}</td>
-                <td>{{this.Week_Energy_Usage}}</td>
-                {{#if this.Status}}
-                <td class="on"></td>
-                {{else}}
-                <td class="off"></td>
-                {{/if}}
-            </tr>
-            {{/each}}
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td> </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td> </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td> </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td> </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
+    <table border="1" id="dataOverview">
+        <thead>
+        <th>Device</th>
+        <th>ID</th>
+        <th>Energy</th>
+        <th>Area</th>
+        <th>Usage</th>
+        <th>Status</th>
+        </thead>
+        {{#each AllDeviceList}}
+        <tr>
+            <td>{{this.Device_name}}</td>
+            <td>{{this._id}}</td>
+            <td>{{this.Energy_type}}</td>
+            <td>{{this.Department}}</td>
+            <td>{{this.Week_Energy_Usage}}</td>
+            {{#if this.Status}}
+            <td class="on"></td>
+            {{else}}
+            <td class="off"></td>
+            {{/if}}
+        </tr>
+        {{/each}}
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td> </td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td> </td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td> </td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td> </td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
             
             
 
@@ -208,6 +207,7 @@
 
 <div class="content" id="prof">
     <p id="detail"> Personal Detail</p>
+    <form action="" method="post">
     <div class="person">
         {{#with staff}}
         <div class=" attr name">
@@ -261,7 +261,7 @@
         </div>
         <div class="attr contact">
             <span class="info">Contact number</span>
-            <input type="text" class="text3" value={{this.ContactNumber}}>
+            <input type="text" class="text3" id="Cnumber" name="Cnumber" value={{this.ContactNumber}}>
             <img src="/picture/pencil-solid.png" class="changes">
         </div>
         <div class="attr password">
@@ -269,9 +269,11 @@
             <span class="text4"><a href="#" id="changePass">Change Password</a></span>
         </div>
         {{/with}}
-        
+        <input type="submit" value="Save">
     </div>
+    </form>
 </div>
+
 <div class="content" id="changePassword">
     <div id="changeContent">
         <div id="title"><span>Profile</span><span id="part2">/Change Password</span></div>

@@ -161,8 +161,21 @@ const inputUsage = async (req, res, next) => {
 }
 
 const updatePersonalDetail = async (req, res, next) => {
-    console.log(req.query)
-    return res.redirect('/staff/' + staff._id + '/personalpage')
+    try{
+        const staff = await User.findById(req.params.staff_id).lean()
+        if(!staff){
+            return res.sendStatus(404)
+        }
+        const firstN = req.body.firstName
+        const lastN = req.body.lastName
+        const conatctN = req.body.Cnumber
+        console.log(firstN)
+        console.log(lastN)
+        console.log(conatctN)
+        return res.redirect('/staff/' + staff._id + '/personalpage')
+    }catch(err){
+        return next(err)
+    }
 }
 
 
