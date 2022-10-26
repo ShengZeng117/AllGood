@@ -54,7 +54,7 @@ function removeAllLeft(){
     profile.style.color = "white";
 }
 overview.onclick = function(){
-    over.style.display = "block";
+    over.style.display = "flex";
     prof.style.display = "none";
     data.style.display = "none";
     usag.style.display = "none";
@@ -77,7 +77,7 @@ usage.onclick = function(){
     this.style.color = "black";
 }
 datas.onclick = function(){
-    data.style.display = "block";
+    data.style.display = "flex";
     prof.style.display = "none";
     over.style.display = "none";
     usag.style.display = "none";
@@ -88,7 +88,7 @@ datas.onclick = function(){
     this.style.color = "black";
 }
 profile.onclick = function(){
-    prof.style.display = "block";
+    prof.style.display = "flex";
     over.style.display = "none";
     data.style.display = "none";
     usag.style.display = "none";
@@ -100,7 +100,7 @@ profile.onclick = function(){
 }
 
 typeS.onclick = function(){
-    data.style.display = "block";
+    data.style.display = "flex";
     prof.style.display = "none";
     over.style.display = "none";
     usag.style.display = "none";

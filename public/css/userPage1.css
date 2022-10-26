@@ -59,22 +59,18 @@ body{
 /* overciew Part */
 #over{
     /* display: none; */
-    justify-content: space-between;
+    align-items: center;
 }
-#over div{
-    height: 47%;
+#upper, #lower{
+    height: 50vh;
+    width:60%;
     display: flex;
-    
+    justify-content: center;
+}
+.type1{
+    margin-left: 5vw;
+}
 
-}
-#over #fst{
-    width:50%;
-    margin: 0 auto;
-    margin-top: 30px;
-}
-#over #sec{
-    margin: 0 auto;
-}
 /* #over .chart{
     flex: 7;
     height: 100%;
@@ -91,23 +87,23 @@ body{
 }
 #over svg{
     background-color: white;
-}
-#over .type{
-    flex: 3;
+}*/
+#over .type1{
+    
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
-#over .type label{
+#over .type1 label{
     margin-bottom: 10px;
     font: 30px/34px Arial;
 }
-#over .type .radio input{
+#over .type1 .radio input{
     width: 20px;
     height: 20px;
     margin: 0 20px 0 0;
-} */
+} 
 
 
 /* usage Part */
@@ -252,15 +248,9 @@ body{
 #prof{
     display: none;
     align-items: center;
-    
-}
-
-#prof .detail form {
-    display: flex;
-    height: 100%;
     justify-content: center;
 }
-
+   
 #prof #detail{
     display: flex;
     font: 38px/51px Arial;
@@ -269,8 +259,8 @@ body{
     margin-top: 30px;
 }
 #prof .person{
-    width: 90%;
-    height: 80%;
+    width: 70vw;
+    height: 80vh;
     background-color: #fff;
     border-radius: 58px;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1) ;
@@ -336,6 +326,7 @@ body{
     background-color: #317da3;
     border: none;
     color: white;
+    margin-bottom: 15px;
 }
 #prof .savebtn:hover{
     background-color: #114864;

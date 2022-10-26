@@ -28,7 +28,6 @@ const generalmanagerOverview = async (req, res, next) => {
             var onedeviceData = await Device.findById(allDevicesArray[i]).lean()
             allDevicesList.push(onedeviceData)
         }
-        console.log(allDevicesList)
 
         const staffList = await User.find({})
 

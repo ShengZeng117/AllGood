@@ -17,10 +17,28 @@
 </div>
 
 <div class="content" id="over">
-        <div id="fst">
+        <div id="upper">
+            <div id="fst">
+            </div>
+            <div class="type1">
+                <label class="radio"><input type="radio" name="energy" value="electricity" checked="checked"><i></i>Electricity</label>
+                <label class="radio"><input type="radio" name="energy" value="water"><i></i>Water</label>
+                <label class="radio"><input type="radio" name="energy" value="naturalGas"><i></i>Natural Gas</label>
+                <label class="radio"><input type="radio" name="energy" value="hydrogen"><i></i>Hydrogen</label>
+                <label class="radio"><input type="radio" name="energy" value="other"><i></i>other</label>
+            </div>
         </div>
+        <div id="lower">
+            <div id="sec">
+            </div>
+            <div class="type1">
+                <label class="radio"><input type="radio" name="energy1" value="electricity" checked="checked"><i></i>Electricity</label>
+                <label class="radio"><input type="radio" name="energy1" value="water"><i></i>Water</label>
+                <label class="radio"><input type="radio" name="energy1" value="naturalGas"><i></i>Natural Gas</label>
+                <label class="radio"><input type="radio" name="energy1" value="hydrogen"><i></i>Hydrogen</label>
+                <label class="radio"><input type="radio" name="energy1" value="other"><i></i>other</label>
         
-        <div id="sec">
+            </div>
         </div>
 </div>
 
@@ -166,10 +184,8 @@
             <span class="info">Password</span>
             <span class="text4"><a href="#" id="changePass">Change Password</a></span>
         </div>
+        <button class="savebtn">Save Changes</button>
         {{/with}}
-        <div class="saveProfile">
-            <button class="savebtn">Save Changes</button>
-        </div>
     </div>
     </form>
 </div>
@@ -262,6 +278,33 @@
 </div>
 
 <script src="/js/PieCharts.js"></script>
+<script>
+    var usage_array = new Array();
+    var deviceDataList = new Array();
+</script>
+
+{{#each AllDeviceList}}
+<script>
+    var oneD = {
+        name: '{{this.Device_name}}',
+        id: '{{this._id}}',
+        energytype: '{{this.Energy_type}}',
+        area: '{{this.Department}}',
+        usage: {{this.Week_Energy_Usage}},
+        status: {{this.Status}}
+    };
+
+    deviceDataList.push(oneD);
+</script>
+{{/each}}
+
+{{#each AllDeviceList}}
+<script>
+    usage_array.push({{this.Week_Energy_Usage}});
+</script>
+{{/each}}
+
 <script src="/js/barChart.js"></script>
+<script src="/js/changeTable.js"></script>
 <script src="/js/index.js"></script>
 

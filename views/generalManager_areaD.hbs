@@ -18,11 +18,29 @@
     </div>
 </div>
 <div class="content" id="over">
-    <div id="fst">
-    </div>
-    
-    <div id="sec">
-    </div>
+    <div id="upper">
+            <div id="fst">
+            </div>
+            <div class="type1">
+                <label class="radio"><input type="radio" name="energy" value="electricity" checked="checked"><i></i>Electricity</label>
+                <label class="radio"><input type="radio" name="energy" value="water"><i></i>Water</label>
+                <label class="radio"><input type="radio" name="energy" value="naturalGas"><i></i>Natural Gas</label>
+                <label class="radio"><input type="radio" name="energy" value="hydrogen"><i></i>Hydrogen</label>
+                <label class="radio"><input type="radio" name="energy" value="other"><i></i>other</label>
+            </div>
+        </div>
+        <div id="lower">
+            <div id="sec">
+            </div>
+            <div class="type1">
+                <label class="radio"><input type="radio" name="energy1" value="electricity" checked="checked"><i></i>Electricity</label>
+                <label class="radio"><input type="radio" name="energy1" value="water"><i></i>Water</label>
+                <label class="radio"><input type="radio" name="energy1" value="naturalGas"><i></i>Natural Gas</label>
+                <label class="radio"><input type="radio" name="energy1" value="hydrogen"><i></i>Hydrogen</label>
+                <label class="radio"><input type="radio" name="energy1" value="other"><i></i>other</label>
+        
+            </div>
+        </div>
 </div>
 
 <div class="content" id="crea">
@@ -495,14 +513,22 @@
             img.style.height = "91%";
             preview.appendChild(img);
         };
-      };
+    };
     </script>
-    <script src="/js/PieCharts.js"></script>
-    <script src="/js/barChart.js"></script>
-    <script src="/js/changeTable.js"></script>
-    <script src="/js/staffinfo.js"></script>
-    <script src="/js/changestaffTable.js"></script>
-    <script src="/js/managePage1.js"></script>
+
+<script src="/js/PieCharts.js"></script>
+
+<script>var usage_array = new Array();</script>
+
+{{#each AllDeviceList}}
+<script>
+    usage_array.push({{this.Week_Energy_Usage}});
+</script>
+{{/each}}
+
+<script src="/js/barChart.js"></script>
+<script src="/js/managePage1.js"></script>
+
     <script>
         let firestaff = document.getElementById("firestaff");
         firestaff.onclick = function(){
