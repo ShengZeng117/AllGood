@@ -518,7 +518,25 @@
 
 <script src="/js/PieCharts.js"></script>
 
-<script>var usage_array = new Array();</script>
+<script>
+    var usage_array = new Array();
+    var deviceDataList = new Array();
+</script>
+
+{{#each AllDeviceList}}
+<script>
+    var oneD = {
+        name: '{{this.Device_name}}',
+        id: '{{this._id}}',
+        energytype: '{{this.Energy_type}}',
+        area: '{{this.Department}}',
+        usage: {{this.Week_Energy_Usage}},
+        status: {{this.Status}}
+    };
+
+    deviceDataList.push(oneD);
+</script>
+{{/each}}
 
 {{#each AllDeviceList}}
 <script>
@@ -527,6 +545,7 @@
 {{/each}}
 
 <script src="/js/barChart.js"></script>
+<script src="/js/changeTable.js"></script>
 <script src="/js/managePage1.js"></script>
 
     <script>
