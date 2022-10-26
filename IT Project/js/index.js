@@ -197,5 +197,17 @@ for(var i=1; i<totalRow; i++){
     totalUsage.innerHTML = sum;
 }
 
+let all_a_delDepa = document.getElementsByClassName("delDepar");
 
+for (var i = 0; i < all_a_delDepa.length; i++) {
+    all_a_delDepa[i].onclick = function () {
+        var depa_set = this.parentNode.parentNode;
+        depa_name = this.parentNode.innerHTML;
+        
+        
+        if (confirm("Do you want to remove this department?")) {
+            depa_set.removeChild(this.parentNode);
+        };
+    };
+};
 

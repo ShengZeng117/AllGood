@@ -30,11 +30,30 @@
     </div>
 
     <div class="content" id="over">
-        <div id="fst">
+        <div id="upper">
+            <div id="fst">
+            </div>
+            <div class="type1">
+                <label class="radio"><input type="radio" name="energy" value="electricity" checked="checked"><i></i>Electricity</label>
+                <label class="radio"><input type="radio" name="energy" value="water"><i></i>Water</label>
+                <label class="radio"><input type="radio" name="energy" value="naturalGas"><i></i>Natural Gas</label>
+                <label class="radio"><input type="radio" name="energy" value="hydrogen"><i></i>Hydrogen</label>
+                <label class="radio"><input type="radio" name="energy" value="other"><i></i>other</label>
+            </div>
+        </div>
+        <div id="lower">
+            <div id="sec">
+            </div>
+            <div class="type1">
+                <label class="radio"><input type="radio" name="energy1" value="electricity" checked="checked"><i></i>Electricity</label>
+                <label class="radio"><input type="radio" name="energy1" value="water"><i></i>Water</label>
+                <label class="radio"><input type="radio" name="energy1" value="naturalGas"><i></i>Natural Gas</label>
+                <label class="radio"><input type="radio" name="energy1" value="hydrogen"><i></i>Hydrogen</label>
+                <label class="radio"><input type="radio" name="energy1" value="other"><i></i>other</label>
+        
+            </div>
         </div>
         
-        <div id="sec">
-        </div>
     </div>
 
     <div class="content" id="usag">
@@ -103,10 +122,11 @@
                 <span>Type:</span>
                 <select name="type" class="box" id="type" onclick="showvalue()">
                 <option value="all">All</option>
-                <option value="coal">Coal</option>
-                <option value="hydrogen">Hydrogen</option>
                 <option value="electricity">Electricity</option>
+                <option value="Water">Water</option>
                 <option value="naturalGas">Natural Gas</option>
+                <option value="hydrogen">Hydrogen</option>
+                <option value="other">other</option>
                 
             </select>
             </div>
@@ -123,15 +143,7 @@
                 <th class="sort" data-key="status">Status</th>
            </thead>
             <tbody>
-                <tr>
-                    <td>Air conditioner</td>
-                    <td>01</td>
-                    <td>Electricity</td>
-                    <td>Sales</td>
-                    <td>123</td>
-                    <td class="on"></td>
-                    <td><button class="delet_device">delet</button></td>
-                </tr>
+                
             </tbody>
         </table>
         <table >
@@ -287,7 +299,10 @@
     <script src="../js/PieCharts.js"></script>
     <script src="../js/barChart.js"></script>
     <script src="../js/deviceData.js"></script>
-    <script src="../js/changeTable.js"></script>
+    <script src="../js/initStaffDevicetable.js"></script>
     <script src="../js/index.js"></script>
+    <script>
+
+    </script>
 </body>
 </html>

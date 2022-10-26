@@ -59,22 +59,18 @@ body{
 /* overciew Part */
 #over{
     /* display: none; */
-    justify-content: space-between;
+    align-items: center;
 }
-#over div{
-    height: 47%;
+#upper, #lower{
+    height: 50vh;
+    width:60%;
     display: flex;
-    
+    justify-content: center;
+}
+.type1{
+    margin-left: 5vw;
+}
 
-}
-#over #fst{
-    width:80%;
-    margin: 0 auto;
-    margin-top: 30px;
-}
-#over #sec{
-    margin: 0 auto;
-}
 /* #over .chart{
     flex: 7;
     height: 100%;
@@ -91,23 +87,23 @@ body{
 }
 #over svg{
     background-color: white;
-}
-#over .type{
-    flex: 3;
+}*/
+#over .type1{
+    
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
-#over .type label{
+#over .type1 label{
     margin-bottom: 10px;
     font: 30px/34px Arial;
 }
-#over .type .radio input{
+#over .type1 .radio input{
     width: 20px;
     height: 20px;
     margin: 0 20px 0 0;
-} */
+} 
 
 
 /* usage Part */
