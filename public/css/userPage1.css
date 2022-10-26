@@ -254,6 +254,13 @@ body{
     align-items: center;
     
 }
+
+#prof .detail form {
+    display: flex;
+    height: 100%;
+    justify-content: center;
+}
+
 #prof #detail{
     display: flex;
     font: 38px/51px Arial;

@@ -52,26 +52,26 @@
         <div>
             <span>Type:</span>
             <select name="type" class="box" id="type">
-            <option value="all" selected>All</option>
-            <option value="coal">Coal</option>
-            <option value="hydrogen">Hydrogen</option>
-            <option value="electricity">Electricity</option>
-            <option value="naturalGas">Natural Gas</option>
-            <option value="other">Other</option>
-        </select>
+                <option value="all" selected>All</option>
+                <option value="coal">Coal</option>
+                <option value="hydrogen">Hydrogen</option>
+                <option value="electricity">Electricity</option>
+                <option value="naturalGas">Natural Gas</option>
+                <option value="other">Other</option>
+            </select>
         </div>
         <a href="#" id="resetFilter">RESET FILTERS</a>
     </div>
         
     <table border="1" id="dataOverview">
-        <thead>
-        <th>Device</th>
-        <th>ID</th>
-        <th>Energy</th>
-        <th>Area</th>
-        <th>Usage</th>
-        <th>Status</th>
-        </thead>
+           <thead>
+            <th class="sort" data-key="name">Device</th>
+                <th class="sort" data-key="id">ID</th>
+                <th class="sort" data-key="energytype">Energy</th>
+                <th class="sort" data-key="area">Area</th>
+                <th class="sort" data-key="usage">Usage</th>
+                <th class="sort" data-key="status">Status</th>
+           </thead>
         {{#each AllDeviceList}}
         <tr>
             <td>{{this.Device_name}}</td>
@@ -84,52 +84,20 @@
             {{else}}
             <td class="off"></td>
             {{/if}}
+            <td><button class="delet_device">delet</button></td>
         </tr>
         {{/each}}
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td> </td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td> </td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td> </td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td> </td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
         <tr class="lastRow">
                 <td></td>
                 <td colspan="3">Total</td>
                 <td colspan="2" id="totalUsage">246</td>
+        </tr>
+    </table>
+    <table >
+        <tr class="lastRow">
+            <td></td>
+            <td colspan="3">Total</td>
+            <td colspan="2" id="totalUsage"></td>
         </tr>
     </table>
     
@@ -293,16 +261,9 @@
     <a href="#" id="backToProf">Return to profile page</a>
 </div>
 
-<script>
-    function showvalue(){
-        let mySelect = document.getElementById("type");
-        let index=mySelect.selectedIndex ;
-        console.log(mySelect.options[index].value);
-    }
-        
-</script>
 <script src="/js/PieCharts.js"></script>
 <script src="/js/barChart.js"></script>
 <script src="/js/deviceData.js"></script>
 <script src="/js/changeTable.js"></script>
 <script src="/js/index.js"></script>
+

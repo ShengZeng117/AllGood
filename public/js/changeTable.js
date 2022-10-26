@@ -49,7 +49,7 @@ function inittable(){
         <td>${device.area}</td>
         <td>${device.usage}</td>
         <td class="${device.status}"></td>
-        <td><img src="../picture/delet.png" alt="" class="deletDevice"></td>
+        <td><img src="/picture/delet.png" alt="" class="deletDevice"></td>
     </tr>
         `;
     }

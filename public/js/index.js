@@ -38,10 +38,9 @@ let data = document.getElementById("data");
 let prof = document.getElementById("prof");
 let changeSucc = document.getElementById("changeSucc");
 let backToProf = document.getElementById("backToProf");
-
+let typeS = document.getElementById("type");
 
 let btn = document.getElementById('btn');
-
 
 
 function removeAllLeft(){
@@ -98,6 +97,19 @@ profile.onclick = function(){
     removeAllLeft();
     this.style.backgroundColor = "#F4F2F2";
     this.style.color = "black";
+}
+
+typeS.onclick = function(){
+    data.style.display = "block";
+    prof.style.display = "none";
+    over.style.display = "none";
+    usag.style.display = "none";
+    changeSucc.style.display = "none";
+    changePassword.style.display = "none";
+    removeAllLeft();
+    this.style.backgroundColor = "#F4F2F2";
+    this.style.color = "black";
+    getvalue();
 }
 
 changePass.onclick = function(){
@@ -198,7 +210,6 @@ let typeFilter = document.getElementById('type');
 
 let resetFilter = document.getElementById('resetFilter');
 resetFilter.onclick = function(){
-   areaFilter.value = 'all';
    typeFilter.value = 'all';
 }
 
@@ -211,5 +222,9 @@ for(var i=1; i<totalRow; i++){
     totalUsage.innerHTML = sum;
 }
 
-
+function getvalue(){
+    const index = typeS.selectedIndex
+    console.log(typeS.options[index].value)
+    return typeS.options[index].value
+}
 

@@ -1,84 +1,84 @@
 <div class="left">
-        <div id="head">
-            <h1 id="name">Alex Lu</h1>
-            <p id="position">General Department</p>
-        </div>
-        <div id="main">
-            <div class="sub" id="overview">Overview</div>
-            <div class="sub" id="creatNew">Creat Account</div>
-            <div class="sub" id="datas">Data</div>
-            <div class="sub" id="profile">Profile</div>
-            <div class="sub" id="staff">Staff</div>
-            <div class="sub" id="department">Department</div>
-        </div>
-        <div id="foot">
-            <img src="/picture/logo.png" alt="">
-        </div>
+    <div id="head">
+        {{#with gm}}
+        <h1 id="name">{{this.FirstName}} {{this.LastName}}</h1>
+        <p id="position">General Department</p>
+        {{/with}}
     </div>
-    <div class="content" id="over">
-        <div id="fst">
-        </div>
-        
-        <div id="sec">
-        </div>
+    <div id="main">
+        <div class="sub" id="overview">Overview</div>
+        <div class="sub" id="creatNew">Create Account</div>
+        <div class="sub" id="datas">Data</div>
+        <div class="sub" id="profile">Profile</div>
+        <div class="sub" id="staff">Staff</div>
+        <div class="sub" id="department">Department</div>
     </div>
-    <div class="content" id="crea">
-        <form action="">
-            <div id="fstline">
-                <span>First name:</span>
-                <input type="text" class="creatName" id="firstNa">
-                <span>Last name:</span>
-                <input type="text" class="creatName" id="lastNa"><br>
-            </div>
-            <div id="secline">
-                <div>
-                    <span>Gender:</span>
-                    <select name="genderbox" id="genderbox">
-                        <option value="Male">Male</option>
-                        <option value="Female">Female</option>\
-                        <option value="Other">Other</option>
-                    </select>
-                </div>
-                
+    <div id="foot">
+        <img src="/picture/logo.png" alt="">
+    </div>
+</div>
+<div class="content" id="over">
+    <div id="fst">
+    </div>
+    
+    <div id="sec">
+    </div>
+</div>
 
-            </div>
-            <div id="thrline">
-                <div id="departmentselect">
-                    <span>Department:</span>
-                    <select name="departmentBox" class="box" id="departmentBox" >
-                        <option value="it">IT</option>
-                        <option value="sales">Sales</option>
-                        <option value="design">Design</option>
-                        <option value="administration">Administration</option>
-                        <option value="humanResources">Human Resources</option>
-                    </select>
-                </div>
-                <div id="positionselect">
-                    <span>Position:</span>
-                <select name="position" id="positionValue">
-                    <option value="Staff">Staff</option>
-                    <option value="Area manager">Area manager</option>
+<div class="content" id="crea">
+    <form action="">
+        <div id="fstline">
+            <span>First name:</span>
+            <input type="text" class="creatName" id="firstNa">
+            <span>Last name:</span>
+            <input type="text" class="creatName" id="lastNa"><br>
+        </div>
+        <div id="secline">
+            <div>
+                <span>Gender:</span>
+                <select name="genderbox" id="genderbox">
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>\
+                    <option value="Other">Other</option>
                 </select>
-                </div>
-                
-                
             </div>
-            <div id="fourline">
-                <span id="spanEmail">Email:</span>
-                <input type="text" id="email" onkeyup="checkEmail(this.value)">
-                <svg class="checkPass" id="emailPass" xmlns="http://www.w3.org/2000/svg" width="53.047" height="58"
-                    viewBox="0 0 53.047 58">
-                    <g id="shield-check" transform="translate(-1.348 0.375)">
-                        <path id="路径_17" data-name="路径 17"
-                            d="M18.365,6.592q-5.1,1.352-10.132,2.94a1.673,1.673,0,0,0-1.172,1.343C5.08,25.164,9.653,35.592,15.108,42.459a37.674,37.674,0,0,0,8.169,7.674,22.4,22.4,0,0,0,3.186,1.833,8.127,8.127,0,0,0,1.048.4,2.747,2.747,0,0,0,.362.09,2.16,2.16,0,0,0,.36-.085,8.817,8.817,0,0,0,1.048-.407,22.308,22.308,0,0,0,3.186-1.833,37.694,37.694,0,0,0,8.169-7.674c5.457-6.867,10.031-17.3,8.048-31.584a1.673,1.673,0,0,0-1.172-1.343C45.182,8.8,41.258,7.6,37.379,6.592a48.386,48.386,0,0,0-9.507-1.8A48.327,48.327,0,0,0,18.365,6.592Zm-.952-3.541c3.879-1.014,7.993-1.926,10.459-1.926s6.58.913,10.459,1.925Q43.52,4.424,48.638,6.038a5.356,5.356,0,0,1,3.73,4.341c2.13,15.389-2.811,26.793-8.8,34.338a41.37,41.37,0,0,1-8.992,8.433A25.9,25.9,0,0,1,30.83,55.3a7.808,7.808,0,0,1-2.96.825,7.808,7.808,0,0,1-2.96-.825,25.774,25.774,0,0,1-3.745-2.149,41.373,41.373,0,0,1-8.987-8.433c-6-7.545-10.933-18.949-8.8-34.338a5.354,5.354,0,0,1,3.73-4.341Q12.223,4.424,17.413,3.05Z"
-                            transform="translate(0)" fill="#52b981" stroke="#52b981" stroke-width="3"
-                            fill-rule="evenodd" />
-                        <path id="路径_18" data-name="路径 18"
-                            d="M31.99,14.037a1.832,1.832,0,0,1,0,2.594L21,27.622a1.832,1.832,0,0,1-2.594,0l-5.5-5.5A1.834,1.834,0,0,1,15.5,19.533l4.2,4.2,9.695-9.7a1.832,1.832,0,0,1,2.594,0Z"
-                            transform="translate(6.36 7.796)" fill="#52b981" stroke="#52b981" stroke-width="3"
-                            fill-rule="evenodd" />
-                    </g>
-                </svg>
+        </div>
+        <div id="thrline">
+            <div id="departmentselect">
+                <span>Department:</span>
+                <select name="departmentBox" class="box" id="departmentBox" >
+                    <option value="it">IT</option>
+                    <option value="sales">Sales</option>
+                    <option value="design">Design</option>
+                    <option value="administration">Administration</option>
+                    <option value="humanResources">Human Resources</option>
+                </select>
+            </div>
+            <div id="positionselect">
+                <span>Position:</span>
+            <select name="position" id="positionValue">
+                <option value="Staff">Staff</option>
+                <option value="Area manager">Area manager</option>
+            </select>
+            </div>
+        </div>
+
+        <div id="fourline">
+            <span id="spanEmail">Email:</span>
+            <input type="text" id="email" onkeyup="checkEmail(this.value)">
+            <svg class="checkPass" id="emailPass" xmlns="http://www.w3.org/2000/svg" width="53.047" height="58"
+                viewBox="0 0 53.047 58">
+                <g id="shield-check" transform="translate(-1.348 0.375)">
+                    <path id="路径_17" data-name="路径 17"
+                        d="M18.365,6.592q-5.1,1.352-10.132,2.94a1.673,1.673,0,0,0-1.172,1.343C5.08,25.164,9.653,35.592,15.108,42.459a37.674,37.674,0,0,0,8.169,7.674,22.4,22.4,0,0,0,3.186,1.833,8.127,8.127,0,0,0,1.048.4,2.747,2.747,0,0,0,.362.09,2.16,2.16,0,0,0,.36-.085,8.817,8.817,0,0,0,1.048-.407,22.308,22.308,0,0,0,3.186-1.833,37.694,37.694,0,0,0,8.169-7.674c5.457-6.867,10.031-17.3,8.048-31.584a1.673,1.673,0,0,0-1.172-1.343C45.182,8.8,41.258,7.6,37.379,6.592a48.386,48.386,0,0,0-9.507-1.8A48.327,48.327,0,0,0,18.365,6.592Zm-.952-3.541c3.879-1.014,7.993-1.926,10.459-1.926s6.58.913,10.459,1.925Q43.52,4.424,48.638,6.038a5.356,5.356,0,0,1,3.73,4.341c2.13,15.389-2.811,26.793-8.8,34.338a41.37,41.37,0,0,1-8.992,8.433A25.9,25.9,0,0,1,30.83,55.3a7.808,7.808,0,0,1-2.96.825,7.808,7.808,0,0,1-2.96-.825,25.774,25.774,0,0,1-3.745-2.149,41.373,41.373,0,0,1-8.987-8.433c-6-7.545-10.933-18.949-8.8-34.338a5.354,5.354,0,0,1,3.73-4.341Q12.223,4.424,17.413,3.05Z"
+                        transform="translate(0)" fill="#52b981" stroke="#52b981" stroke-width="3"
+                        fill-rule="evenodd" />
+                    <path id="路径_18" data-name="路径 18"
+                        d="M31.99,14.037a1.832,1.832,0,0,1,0,2.594L21,27.622a1.832,1.832,0,0,1-2.594,0l-5.5-5.5A1.834,1.834,0,0,1,15.5,19.533l4.2,4.2,9.695-9.7a1.832,1.832,0,0,1,2.594,0Z"
+                        transform="translate(6.36 7.796)" fill="#52b981" stroke="#52b981" stroke-width="3"
+                        fill-rule="evenodd" />
+                </g>
+            </svg>
                 <svg class="checkFail" id="emailFail" xmlns="http://www.w3.org/2000/svg" width="53.047" height="58"
                     viewBox="0 0 53.047 58">
                     <g id="shield-plus" transform="translate(-1.348 0.375)">
@@ -141,9 +141,21 @@
                 <th class="sort" data-key="status">Status</th>
                 
             </thead>
-            <tbody>
-                
-            </tbody>
+            {{#each AllDeviceList}}
+            <tr>
+                <td>{{this.Device_name}}</td>
+                <td>{{this._id}}</td>
+                <td>{{this.Energy_type}}</td>
+                <td>{{this.Department}}</td>
+                <td>{{this.Week_Energy_Usage}}</td>
+                {{#if this.Status}}
+                <td class="on"></td>
+                {{else}}
+                <td class="off"></td>
+                {{/if}}
+                <td><button class="delet_device">delet</button></td>
+            </tr>
+            {{/each}}
             
             
         </table>
@@ -487,7 +499,6 @@
     </script>
     <script src="/js/PieCharts.js"></script>
     <script src="/js/barChart.js"></script>
-    <script src="/js/deviceData.js"></script>
     <script src="/js/changeTable.js"></script>
     <script src="/js/staffinfo.js"></script>
     <script src="/js/changestaffTable.js"></script>

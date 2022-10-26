@@ -8,14 +8,6 @@ const generalManagerController = require('../controllers/generalManagerControlle
 
 generalManagerRouter.get('/', generalManagerController.generalmanagerLogin)
 
-/*generalManagerRouter.post(
-    '/',
-    /*function (req, res) {
-        res.redirect('/manager/' + req.user._id + '/dashboard')
-    }*/
-    //generalManagerController.getgeneralmanagerID
-//)
-
 generalManagerRouter.get(
     '/:generalManager_id/personalpage', 
     function managerLogin(req, res, next) {

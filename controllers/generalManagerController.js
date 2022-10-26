@@ -28,12 +28,13 @@ const generalmanagerOverview = async (req, res, next) => {
             var onedeviceData = await Device.findById(allDevicesArray[i]).lean()
             allDevicesList.push(onedeviceData)
         }
+        console.log(allDevicesList)
 
         const staffList = await User.find({})
 
         res.render('generalManager_areaD.hbs', {
             layout: 'generalManager_area',
-            manager: generalManager,
+            gm: generalManager,
             AllDeviceList: allDevicesList,
             gender: genderList,
             StaffList: staffList

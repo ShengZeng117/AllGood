@@ -29,19 +29,6 @@ const getstaffID =  (req, res) => {
     })
 }
 
-function calculateUsage(energy, list){
-    for (let i = 0; i < energy.length; i++){
-        var onedeviceData = Device.findById(energy[i]).lean()
-        list.mon += onedeviceData.Daily_Energy_Usage[0]
-        list.tue += onedeviceData.Daily_Energy_Usage[1]
-        list.wed += onedeviceData.Daily_Energy_Usage[2]
-        list.thu += onedeviceData.Daily_Energy_Usage[3]
-        list.fri += onedeviceData.Daily_Energy_Usage[4]
-        list.sta += onedeviceData.Daily_Energy_Usage[5]
-        list.sun += onedeviceData.Daily_Energy_Usage[6]
-    }
-    return list
-}
 const staffoverview = async (req, res, next) => {
     try{
         const staff = await User.findById(req.params.staff_id).lean()
@@ -75,19 +62,6 @@ const staffoverview = async (req, res, next) => {
             allDevicesList.push(onedeviceData)
         }
 
-        //Calculate the daily usage of different department according to different energy types
-        const cocal = department.Cocal
-        var cocalL = {mon: 0, tue: 0, wed: 0, thu: 0, fri: 0, sta: 0, sun: 0}
-        cocalL = calculateUsage(cocal, cocalL)
-        const elec = department.Electricity
-        var elecL = {mon: 0, tue: 0, wed: 0, thu: 0, fri: 0, sta: 0, sun: 0}
-        const NG = department.Natural_Gas
-        var NGL = {mon: 0, tue: 0, wed: 0, thu: 0, fri: 0, sta: 0, sun: 0}
-        const hydrogen = department.Hydrogen
-        var hydrogenL = {mon: 0, tue: 0, wed: 0, thu: 0, fri: 0, sta: 0, sun: 0}
-        const other = department.other
-        var otherL = {mon: 0, tue: 0, wed: 0, thu: 0, fri: 0, sta: 0, sun: 0}
-
 
         res.render('staff_areaD.hbs', { 
             layout: 'staff_area',
@@ -95,7 +69,6 @@ const staffoverview = async (req, res, next) => {
             DeviceList: availableDevicesList,
             AllDeviceList: allDevicesList,
             gender: genderList,
-            cocal: cocalL
         })
     }catch(err){
         return next(err)
@@ -167,22 +140,23 @@ const updatePersonalDetail = async (req, res, next) => {
         if(!staff){
             return res.sendStatus(404)
         }
-        if(req.body.newPassword){
-            return next()
-        }else{
+        console.log(req.body.type)
+        const firstN = req.body.firstName
+        const lastN = req.body.lastName
+        const contactN = req.body.Cnumber
+        const gen = req.body.gender
+
+        if(firstN != staff.FirstName || lastN != staff.LastName || contactN != staff.ContactNumber || gen != staff.Gender){
             console.log("personal")
-            const firstN = req.body.firstName
-            const lastN = req.body.lastName
-            const conatctN = req.body.Cnumber
-            const gen = req.body.gender
             staff.FirstName = firstN
             staff.LastName = lastN
-            staff.ContactNumber = conatctN
+            staff.ContactNumber = contactN
             staff.Gender = gen
-
             await User.replaceOne({_id: staff._id}, staff).catch((err) => res.send(err))
 
             return res.redirect('/staff/' + staff._id + '/personalpage')
+        }else{
+            return next()
         }
     }catch(err){
         return next(err)
@@ -191,15 +165,15 @@ const updatePersonalDetail = async (req, res, next) => {
 
 const changePassword = async (req, res, next) => {
     try{
-        const staff = await User.findById(req.params.staff_id).lean()
-        if(!staff){
-            return res.sendStatus(404)
-        }
-
-        if(req.body.editU){
+        if(!req.body.newPassword){
             return next()
         }else{
+            const staff = await User.findById(req.params.staff_id).lean()
+            if(!staff){
+                return res.sendStatus(404)
+            }
             const newP = req.body.newPassword
+            console.log(newP)
             staff.Password = newP
             await User.replaceOne({_id: staff._id}, staff).catch((err) => res.send(err))
             return res.redirect('/staff/' + staff._id + '/personalpage')
@@ -210,11 +184,12 @@ const changePassword = async (req, res, next) => {
 }
 
 
+
 module.exports = {
     stafflogIn,
     staffoverview,
     getstaffID,
     inputUsage,
     updatePersonalDetail,
-    changePassword
+    changePassword,
 }
