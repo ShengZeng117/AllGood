@@ -3,7 +3,7 @@ const GeneralManager = require('../models/generalManager')
 const Device = require('../models/Devices')
 const Department = require('../models/Department')
 const User = require('../models/User')
-const ObjectId = require('mongoose').Types.ObjectId
+var uuid = require('node-uuid');
 
 const managerLogin = (req, res) => {
     res.render('manager_loginD.hbs', { layout: 'manager_login'})
@@ -91,6 +91,8 @@ const createAccount = async (req, res, next) => {
             return res.sendStatus(404)
         }
 
+        var userid1 = uuid.v1();
+
         const info = {
             FirstName: req.body.firstName,
             LastName: req.body.lastName,
@@ -99,10 +101,9 @@ const createAccount = async (req, res, next) => {
             Email: req.body.email,
             EntryTime: new Date(),
             ContactNumber: req.body.contactNum,
-            StaffId: '1174109',
+            StaffId: userid1,
             Age: 22,
             Password: '123456789',
-            Permission: "Department Manager",
             AvailiableDevices: [],
             Department: "IT",
             DepartmentId: manager.DepartmentId

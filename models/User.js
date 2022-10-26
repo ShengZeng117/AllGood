@@ -14,7 +14,6 @@ const schema = new mongoose.Schema({
     DepartmentId: {type: mongoose.Schema.Types.ObjectId, ref: 'Department'},
     Email: { type: String, required: true, unique: true },
     Password: { type: String, required: true },
-    Permission: { type: String, required: true },
     AvailableDevices: [mongoose.Schema.Types.ObjectId]
 
 },{versionKey: false})

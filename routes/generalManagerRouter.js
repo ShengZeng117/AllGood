@@ -19,4 +19,17 @@ generalManagerRouter.get(
     generalManagerController.generalmanagerOverview
 )
 
+generalManagerRouter.post(
+    '/:generalManager_id/personalpage', 
+    function managerLogin(req, res, next) {
+        if (req){
+            return next()
+        }
+        res.redirect('/manager')
+    },
+    generalManagerController.updatePersonalDetail,
+    generalManagerController.changePassword,
+    generalManagerController.createAccount,
+)
+
 module.exports = generalManagerRouter;

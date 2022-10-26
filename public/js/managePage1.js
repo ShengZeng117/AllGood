@@ -235,6 +235,16 @@ function recheckPassword(data) {
     }
 }
 
+function checkOldPassword(dbP,InputP){
+    if(dbP == InputP){
+        passOld.style.display = ('inline-block');
+        failOld.style.display = ('none');
+    }else{
+        failOld.style.display = ('inline-block');
+        passOld.style.display = ('none');
+    }
+}
+
 let areaFilter = document.getElementById('area');
 let typeFilter = document.getElementById('type');
 

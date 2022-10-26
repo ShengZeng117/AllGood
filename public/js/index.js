@@ -114,16 +114,16 @@ typeS.onclick = function(){
 
 changePass.onclick = function(){
     prof.style.display = "none";
-    changePassword.style.display = "inline-block";
+    changePassword.style.display = "flex";
 }
 
 btn.onclick = function(){
     changePassword.style.display = "none";
-    changeSucc.style.display = "inline-block";
+    changeSucc.style.display = "flex";
 }
 backToProf.onclick = function(){
     changeSucc.style.display = "none";
-    prof.style.display = "inline-block";
+    prof.style.display = "flex";
     //记录最后更改的password到数据库中
 
 }

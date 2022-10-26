@@ -3,7 +3,7 @@ const Department = require('./Department')
 const ObjectId = require('mongoose').ObjectId
 
 const schema = new mongoose.Schema({
-    Id: { type: String, required: true },
+    StaffId: { type: String, required: true },
     FirstName: { type: String, required: true },
     LastName: { type: String, required: true },
     Age: Number,
@@ -14,7 +14,6 @@ const schema = new mongoose.Schema({
     DepartmentId: {type: mongoose.Types.ObjectId},
     Email: { type: String, required: true, unique: true },
     Password: { type: String, required: true },
-    Permission: { type: String, required: true },
 
 }, {versionKey: false})
 const Manager = mongoose.model('Manager', schema)

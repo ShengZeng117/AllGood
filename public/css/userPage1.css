@@ -62,7 +62,7 @@ body{
     align-items: center;
     justify-content: space-around;
 }
-#upper, #lower{
+#upperC, #lowerC{
     height: 45vh;
     width:70%;
     display: flex;
