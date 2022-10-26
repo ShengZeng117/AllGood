@@ -60,10 +60,11 @@ body{
 #over{
     /* display: none; */
     align-items: center;
+    justify-content: space-around;
 }
 #upper, #lower{
-    height: 50vh;
-    width:60%;
+    height: 45vh;
+    width:70%;
     display: flex;
     justify-content: center;
 }
