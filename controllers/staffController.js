@@ -78,6 +78,7 @@ const staffoverview = async (req, res, next) => {
 
 const inputUsage = async (req, res, next) => {
     try{
+
         const staff = await User.findById(req.params.staff_id).lean()
         if(!staff){
             return res.sendStatus(404)
@@ -86,28 +87,27 @@ const inputUsage = async (req, res, next) => {
         const AvailabledevicesArray = staff.AvailableDevices
         const editUsage = Number(req.body.editU)
         const confirmU =  Number(req.body.confU)
+        let onedeviceData
         if(editUsage != confirmU){
             console.log("two input usages are different")
         }else{
             for (let i = 0; i < AvailabledevicesArray.length; i++){
-                var onedeviceData = await Device.findById(AvailabledevicesArray[i]).lean()
+                onedeviceData = await Device.findById(AvailabledevicesArray[i]).lean()
                 if(onedeviceData.Device_name == req.body.confN){
                     break
                 }
             }
-    
-            var date = new Date()
-            var Day = moment(date).format('dddd')
+
+            let date = new Date()
+            let Day = moment(date).format('dddd')
             if(Day == "Monday"){
-                onedeviceData.Daily_Energy_Usage[0] = editUsage
+                onedeviceData.Daily_Energy_Usage.splice(0,1,editUsage)
             }else if(Day == "Tuesday"){
                 onedeviceData.Daily_Energy_Usage[1] = editUsage
-            }else if(Day == "Wendesday"){
-                onedeviceData.Daily_Energy_Usage[2] = editUsage
-                //dailyU[2] = editUsage
+            }else if(Day == "Wednesday"){
+                onedeviceData.Daily_Energy_Usage.splice(2,1,editUsage)
             }else if(Day == "Thursday"){
                 onedeviceData.Daily_Energy_Usage[3] = editUsage
-                //oneDevice.Daily_Energy_Usage[3] = editUsage
             }else if(Day == "Friday"){
                 onedeviceData.Daily_Energy_Usage[4] = editUsage
             }else if(Day == "Saturday"){
@@ -140,13 +140,14 @@ const updatePersonalDetail = async (req, res, next) => {
         if(!staff){
             return res.sendStatus(404)
         }
-        console.log(req.body.type)
         const firstN = req.body.firstName
         const lastN = req.body.lastName
         const contactN = req.body.Cnumber
         const gen = req.body.gender
 
-        if(firstN != staff.FirstName || lastN != staff.LastName || contactN != staff.ContactNumber || gen != staff.Gender){
+        if(!req.body.firstName){
+            return next()
+        }else if(firstN != staff.FirstName || lastN != staff.LastName || contactN != staff.ContactNumber || gen != staff.Gender){
             console.log("personal")
             staff.FirstName = firstN
             staff.LastName = lastN
@@ -173,7 +174,6 @@ const changePassword = async (req, res, next) => {
                 return res.sendStatus(404)
             }
             const newP = req.body.newPassword
-            console.log(newP)
             staff.Password = newP
             await User.replaceOne({_id: staff._id}, staff).catch((err) => res.send(err))
             return res.redirect('/staff/' + staff._id + '/personalpage')
