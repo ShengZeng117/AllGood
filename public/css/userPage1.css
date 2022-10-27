@@ -42,7 +42,10 @@ body{
     border-top-left-radius: 25px;
     border-bottom-left-radius: 25px;
 }
-
+#main a{
+    text-decoration: none;
+    color: white;
+}
 
 #overview{
     background-color: #fff;

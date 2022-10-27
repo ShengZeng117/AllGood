@@ -1,0 +1,218 @@
+<div class="left">
+    <div id="head">
+        {{#with gm}}
+        <h1 id="name">{{this.FirstName}} {{this.LastName}}</h1>
+        <p id="position">General Department</p>
+        {{/with}}
+    </div>
+    {{#with gm}}
+    <div id="main">
+        <a href="/generalmanager/{{this._id}}/personalpage">
+        <div class="sub" id="overview">Overview</div>
+        </a>
+        <a href="/generalmanager/{{this._id}}/createAccount">
+            <div class="sub" id="creatNew">Create Account</div>
+        </a>
+        <a href="/generalmanager/{{this._id}}/devices">
+        <div class="sub" id="datas">Data</div>
+        </a>
+        <a href="/generalmanager/{{this._id}}/profile">
+        <div class="sub" id="profile">Profile</div>
+        </a>
+        <a href="/generalmanager/{{this._id}}/staff">
+        <div class="sub" id="staff">Staff</div>
+        </a>
+        <a href="/generalmanager/{{this._id}}/department">
+        <div class="sub" id="department">Department</div>
+        </a>
+    </div>
+    {{/with}}
+    <div id="foot">
+        <img src="/picture/logo.png" alt="">
+    </div>
+</div>
+
+<div class="content" id="data">
+    <div class="topFilter">
+        <div>
+            <span>Area:</span>
+            <select name="area" class="box" id="area">
+                <option value="all" selected>All</option>
+                <option value="it">IT</option>
+                <option value="sales">Sales</option>
+                <option value="design">Design</option>
+                <option value="administration">Administration</option>
+                <option value="humanResources">Human Resources</option>
+            </select>
+        </div>
+        <div>
+            <span>Type:</span>
+            <select name="type" class="box" id="type">
+                <option value="all" selected>All</option>
+                <option value="coal">Coal</option>
+                <option value="hydrogen">Hydrogen</option>
+                <option value="electricity">Electricity</option>
+                <option value="naturalGas">Natural Gas</option>
+                <option value="other">Other</option>
+            </select>
+        </div>
+        <a href="#" id="resetFilter">RESET FILTERS</a>
+    </div>
+
+    <table border="1" id="dataOverview">
+        <thead>
+            <th class="sort" data-key="name">Device</th>
+            <th class="sort" data-key="id">ID</th>
+            <th class="sort" data-key="energytype">Energy</th>
+            <th class="sort" data-key="area">Area</th>
+            <th class="sort" data-key="usage">Usage</th>
+            <th class="sort" data-key="status">Status</th>
+                
+        </thead>
+        {{#each AllDeviceList}}
+        <tr>
+            <td>{{this.Device_name}}</td>
+            <td>{{this._id}}</td>
+            <td>{{this.Energy_type}}</td>
+            <td>{{this.Department}}</td>
+            <td>{{this.Week_Energy_Usage}}</td>
+            {{#if this.Status}}
+            <td class="on"></td>
+            {{else}}
+            <td class="off"></td>
+            {{/if}}
+            <td><img class="delet_device" src="/picture/delet.png"></img></td>
+        </tr>
+        {{/each}}
+            
+    </table>
+        <table >
+            <tr class="lastRow">
+                <td></td>
+                <td colspan="3">Total</td>
+                <td colspan="2" id="totalUsage"></td>
+            </tr>
+        </table>
+        <button id="addDevice">
+            Add New Device
+        </button>
+</div>
+
+<div class="content" id="addNewDevice">
+        <div class="title"><span id="fst">Data</span><span id="secd">/Device's Addition</span></div>
+
+        <div class="device">
+            <div class="deviceInf">
+                <div>Device Name: <input type="text" id="deviceName"></div>
+                <div>Device ID: <input type="text" id="deviceID"></div>
+                <div>Energy Type: <input type="text" id="energyType"></div>
+                <div>Area: <input type="text" id="device_area"></div>
+                <div>Usage: <input type="text"  id="editedUsage" placeholder=""></div>
+
+                <button class="btn2" id="saveNewDevice">Save</button>
+            </div>
+            <div id="preview">
+                <input type="file" name="" id="file" value="uploadImage">
+                <div id="pseudo-style">Upload Image</div>
+            </div>
+        </div>
+
+    </div>
+<script>
+        var preview = document.getElementById("preview");
+        var img = document.createElement("img"); 
+        var file = document.getElementById("file");
+     
+        file.onchange = function() {
+        
+            var fileReader = new FileReader();
+            fileReader.readAsDataURL(this.files[0]);
+            fileReader.onload = function() {
+            img.src = fileReader.result;
+            img.style.width = "100%";
+            img.style.height = "91%";
+            preview.appendChild(img);
+        };
+    };
+</script>
+<script>
+    let addDevicePage = document.getElementById('addNewDevice');
+    let addDevice = document.getElementById('addDevice');
+
+addDevice.onclick = function(){
+    data.style.display = "none";
+    addDevicePage.style.display = "flex";
+}
+//finish adding device, turn back to data page
+let saveNewDevice = document.getElementById('saveNewDevice');
+saveNewDevice.onclick = function(){
+    var deviceName = document.getElementById("deviceName");
+    var deviceID = document.getElementById("deviceID");
+    var energyType = document.getElementById("energyType");
+    var device_area = document.getElementById("device_area");
+    var editedUsage = document.getElementById("editedUsage");
+    var tr_dev = document.createElement("tr");
+    var del_btn = document.createElement("img");
+    del_btn.className = "deletDevice";
+    del_btn.src = "../picture/delet.png";
+    var td_del = document.createElement("td");
+    td_del.appendChild(del_btn);
+    tr_dev.innerHTML = `<td >${deviceName.value}</td>
+                        <td>${deviceID.value}</td>
+                        <td>${energyType.value}</td>
+                        <td>${device_area.value}</td>
+                        <td>${editedUsage.value}</td>
+                        <td></td>`
+
+
+    tr_dev.appendChild(td_del);
+    table.appendChild(tr_dev);
+
+    sum += Number(editedUsage.value);
+    totalUsage.innerHTML = sum;
+    
+    del_btn.onclick = function(){
+        if(confirm("Do you want to remove this device?")){
+            this.parentElement.parentElement.remove();
+        }
+        
+    }
+
+    deviceName.value = '';
+    deviceID.value = '';
+    energyType.value = '';
+    device_area.value = '';
+    editedUsage.value = '';
+    addDevicePage.style.display = "none";
+    data.style.display = "flex";
+}
+
+
+    var deleBtn = document.getElementsByClassName('deletDevice');
+    
+    for (var i = 0; i < deleBtn.length; i++) {
+        deleBtn[i].onclick = function () {
+            if(confirm("Do you want to remove this device?")){
+                this.parentElement.parentElement.remove();
+            }
+            
+        }
+    }
+    var deviceDataList = new Array();
+</script>
+
+{{#each AllDeviceList}}
+<script>
+    var oneD = {
+        name: '{{this.Device_name}}',
+        id: '{{this._id}}',
+        energytype: '{{this.Energy_type}}',
+        area: '{{this.Department}}',
+        usage: {{this.Week_Energy_Usage}},
+        status: {{this.Status}}
+    };
+
+    deviceDataList.push(oneD);
+</script>
+{{/each}}
+<script src="/js/changeTable.js"></script>

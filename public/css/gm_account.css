@@ -1,0 +1,136 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    height: 100vh;
+    display: flex;
+    background-color: #F4F2F2; 
+}
+
+.left{
+    color: white;
+    flex: 2;
+    background-color: #3D5967;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+.left #name{
+    font: 62px/71px Arial;
+    font-weight: bold;
+    margin-top: 70px;
+    margin-bottom: 10pxpx;
+}
+.left #position{
+    text-align: center;
+    font: 27px/31px Arial;
+}
+#main{
+    width: 100%;
+}
+#main li{
+    list-style-type: none;
+}
+#main div{
+    font: 38px/77px Arial;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+}
+
+#main a{
+    text-decoration: none;
+    color: white;
+}
+
+#creatNew{
+    background-color: #fff;
+    color: black;
+}
+
+.content{
+    flex: 8;
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+#crea{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#crea form{
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+}
+#crea form span{
+    font: 32px/130px Arial;
+}
+#crea form input, #crea form #firstNa,#crea form #genderbox,#crea form #departmentBox, #crea form #positionValue{
+    width: 20%;
+    height: 45px;
+    font-size: 28px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-left: 3%;
+    border-radius: 8px;
+    border: 1px solid black;
+}
+#crea form #thrline #departmentselect,#crea form #thrline #positionselect{
+    width: 50%;
+}
+#crea form #departmentBox, #crea form #positionValue{
+    width: 50%;
+}
+#crea form #firstNa{
+    margin-right: 10%;
+}
+#crea form #genderbox{
+    margin-left: 6%;
+}
+/* #crea form #positionValue{
+    margin-left: 5.5%;
+} */
+#crea form #email{
+    width: 40%;
+    margin-left: 7.8%;
+}
+#crea form .checkPass,#crea form .checkFail{
+    position: absolute;
+    margin-top: 36px;
+    margin-left: 60px;
+}
+#crea form .checkPass{
+    display: none;
+}
+#crea form .checkFail{
+    display: inline-block;
+}
+#crea form #contactNum{
+    width: 40%;
+}
+#crea form #submit{
+    width: 200px;
+    background-color: rgb(167, 205, 255);
+    border: none;
+    box-shadow: 3px 3px 3px gray;
+    font: 30px/60px Arial bold;
+    color: black;
+    margin-top: 6%;
+    margin-left: auto;
+}
+#crea form #submit:hover{
+    background-color: rgb(226, 240, 248);
+}
+
+#crea #thrline{
+    display: flex;
+}

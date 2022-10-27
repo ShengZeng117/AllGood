@@ -1,0 +1,108 @@
+<div class="left">
+    <div id="head">
+        {{#with gm}}
+        <h1 id="name">{{this.FirstName}} {{this.LastName}}</h1>
+        <p id="position">General Department</p>
+        {{/with}}
+    </div>
+    {{#with gm}}
+    <div id="main">
+        <a href="/generalmanager/{{this._id}}/personalpage">
+            <div class="sub" id="overview">Overview</div>
+        </a>
+        <a href="/generalmanager/{{this._id}}/createAccount">
+            <div class="sub" id="creatNew" href="/generalmanager/{{this._id}}/createAccount">Create Account</div>
+        </a>
+        <a href="/generalmanager/{{this._id}}/devices">
+        <div class="sub" id="datas">Data</div>
+        </a>
+        <a href="/generalmanager/{{this._id}}/profile">
+        <div class="sub" id="profile">Profile</div>
+        </a>
+        <a href="/generalmanager/{{this._id}}/staff">
+        <div class="sub" id="staff">Staff</div>
+        </a>
+        <a href="/generalmanager/{{this._id}}/department">
+        <div class="sub" id="department">Department</div>
+        </a>
+    </div>
+    {{/with}}
+    <div id="foot">
+        <img src="/picture/logo.png" alt="">
+    </div>
+</div>
+
+<div class="content" id="staffDetailPage">
+        <div id="headPart"><span id="fstPart">Staff</span><span id="secdPart">/Staff Detail</span></div>
+        <div id="staffDetails"> <span id="staffName">Jason's</span> Personal Detail</div>
+        {{#with staff}}
+        <div class="person">
+            <div class="attr name">
+                <div id="staffNameFst">
+                    <span class="info">First name:</span>
+                    <span id="staffFName">{{this.FirstName}}</span>
+                </div>
+                <div id="staffNameSecd">
+                    <span class="info">Last name:</span>
+                    <span id="staffLName">{{this.LastName}}</span>
+                </div>
+
+            </div>
+            <div class="attr gender">
+                <span class="info">Gender:</span>
+                <span id="staffGender"> {{this.Gender}}</span>
+            </div>
+
+            <div class="attr id">
+                <span class="info">Staff ID:</span>
+                <span id="staffID"> {{this.StaffId}}</span>
+            </div>
+            <div class="attr">
+                <span class="info">Email:</span>
+                <span id="staffEmail">{{this.Email}}</span>
+            </div>
+            <div class="attr contact">
+                <span class="info">Contact number:</span>
+                <span id="staffNumber">{{this.ContactNumber}}</span>
+                
+            </div>
+            <div class="attr staffPosition">
+                <span class="info">Position:</span>
+                <span id="staffPosition">{{this.Position}}</span>
+                
+            </div>
+            <div class="attr staffDevice">
+                <span class="info">Devices:</span>
+                <span id="staffDevice">Fans, Lights</span>
+                <img src="/picture/add.png" alt="" id="addToStaff">
+                <input type="text" id="newDeviceAdd">
+            </div>
+        </div>
+        {{/with}}
+        <div id="bottom">
+            <button id="saveChanges" disabled>Save</button>
+            <button id="firestaff" >Delete</button>
+        </div>
+    </div>
+
+<script>
+
+let staffDevice = document.getElementById("staffDevice");
+let saveChanges = document.getElementById("saveChanges");
+let addToStaff = document.getElementById("addToStaff");
+let newDeviceAdd = document.getElementById("newDeviceAdd");
+addToStaff.onclick = function(){
+    newDeviceAdd.style.display = "inline-block";
+    saveChanges.removeAttribute('disabled');
+    saveChanges.onclick = function(){
+        staffDevice.textContent += ", ";
+        staffDevice.textContent += newDeviceAdd.value;
+        newDeviceAdd.style.display = "none";
+        newDeviceAdd.value = "";
+        
+    }
+    
+    
+}
+
+</script>

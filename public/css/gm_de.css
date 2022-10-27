@@ -1,0 +1,188 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    height: 100vh;
+    display: flex;
+    background-color: #F4F2F2; 
+}
+
+.left{
+    color: white;
+    flex: 2;
+    background-color: #3D5967;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+.left #name{
+    font: 62px/71px Arial;
+    font-weight: bold;
+    margin-top: 70px;
+    margin-bottom: 10pxpx;
+}
+.left #position{
+    text-align: center;
+    font: 27px/31px Arial;
+}
+#main{
+    width: 100%;
+}
+#main li{
+    list-style-type: none;
+}
+#main div{
+    font: 38px/77px Arial;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+}
+
+#main a{
+    text-decoration: none;
+    color: white;
+}
+
+#department{
+    background-color: #fff;
+    color: black;
+}
+
+.content{
+    flex: 8;
+    display: flex;
+    flex-direction: column;
+}
+
+#crea form input, #crea form #firstNa,#crea form #genderbox,#crea form #departmentBox, #crea form #positionValue{
+    width: 20%;
+    height: 45px;
+    font-size: 28px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-left: 3%;
+    border-radius: 8px;
+    border: 1px solid black;
+}
+#crea form #thrline #departmentselect,#crea form #thrline #positionselect{
+    width: 50%;
+}
+#crea form #departmentBox, #crea form #positionValue{
+    width: 50%;
+}
+
+#depa{
+    display: flex;
+    /* display: inline-block; */
+    overflow-x: scroll;
+    
+}
+.departmentEle, .addDepa{
+    width: 80%;  
+    margin: 0 auto;
+    border: 1px solid black;
+    text-align: center;
+    background-color: #fff;
+    margin-bottom: 1%;
+}
+.departmentEle{
+    font: 26px/80px Arial ;
+}
+#headDepa{
+    font-weight: bold;
+    font-size: 35px;
+    line-height: 100px;
+    margin-top: 20px;
+}
+#depa img{
+    position: absolute;
+    right: 10%;
+}
+.addDepa{
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.addDepa:hover{
+    background-color: rgb(121, 241, 147);
+}
+
+.mask {
+    display: none;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    opacity: 0.15;
+    
+  }
+  
+  .form-add {
+    position: fixed;
+    top: 30%;
+    left: 50%;
+    padding-bottom: 20px;
+    background: #fff;
+    display: none;
+    width: 20%;
+    height: 20%;
+    text-align: center;
+  }
+  
+  .form-add-title {
+    background-color: #f7f7f7;
+    border-width: 1px 1px 0 1px;
+    border-bottom: 0;
+    margin-bottom: 15px;
+    position: relative;
+  }
+  
+  .form-add-title span {
+    font-size: 16px;
+    font-weight: bold;
+    color: rgb(102, 102, 102);
+    text-indent: 12px;
+    padding: 8px 0px 10px;
+    margin-right: 10px;
+    display: block;
+    overflow: hidden;
+    text-align: left;
+  }
+  
+  .form-add-title div {
+    width: 16px;
+    height: 20px;
+    position: absolute;
+    right: 10px;
+    top: 6px;
+    font-size: 30px;
+    line-height: 16px;
+    cursor: pointer;
+  }
+  
+  .form-submit {
+    text-align: center;
+  }
+  
+.lb{
+    font: 28px/52px Arial;
+}
+.txt{
+    font: 26px/52px Arial;
+    text-align: center;
+}
+.form-submit{
+    margin-top: 2%;
+}
+.form-submit input{
+    width: 150px;
+    height: 30px;
+} 

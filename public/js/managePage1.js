@@ -62,20 +62,20 @@ function removeAllLeft() {
 }
 overview.onclick = function () {
     over.style.display = "flex";
-    prof.style.display = "none";
-    data.style.display = "none";
-    crea.style.display = "none";
-    staf.style.display = "none";
-    depa.style.display = "none";
-    staffDetailPage.style.display = "none";
-    addDevicePage.style.display = "none";
-    changeSucc.style.display = "none";
-    changePassword.style.display = "none";
+    //prof.style.display = "none";
+    //data.style.display = "none";
+    //crea.style.display = "none";
+    //staf.style.display = "none";
+    //depa.style.display = "none";
+    //staffDetailPage.style.display = "none";
+    //addDevicePage.style.display = "none";
+    //changeSucc.style.display = "none";
+    //changePassword.style.display = "none";
     removeAllLeft();
     overview.style.backgroundColor = "#F4F2F2";
     overview.style.color = "black";
 }
-creatNew.onclick = function () {
+/*creatNew.onclick = function () {
     crea.style.display = "flex";
     prof.style.display = "none";
     over.style.display = "none";
@@ -89,13 +89,13 @@ creatNew.onclick = function () {
     removeAllLeft();
     this.style.backgroundColor = "#F4F2F2";
     this.style.color = "black";
-}
+}*/
 
-datas.onclick = function () {
+/*datas.onclick = function () {
     data.style.display = "flex";
     prof.style.display = "none";
     over.style.display = "none";
-    crea.style.display = "none";
+    //crea.style.display = "none";
     staf.style.display = "none";
     depa.style.display = "none";
     staffDetailPage.style.display = "none";
@@ -105,12 +105,12 @@ datas.onclick = function () {
     removeAllLeft();
     this.style.backgroundColor = "#F4F2F2";
     this.style.color = "black";
-}
-profile.onclick = function () {
+}*/
+/*profile.onclick = function () {
     prof.style.display = "flex";
     over.style.display = "none";
-    data.style.display = "none";
-    crea.style.display = "none";
+    //data.style.display = "none";
+    //crea.style.display = "none";
     staf.style.display = "none";
     depa.style.display = "none";
     staffDetailPage.style.display = "none";
@@ -120,37 +120,38 @@ profile.onclick = function () {
     removeAllLeft();
     this.style.backgroundColor = "#F4F2F2";
     this.style.color = "black";
-}
-staff.onclick = function () {
+}*/
+/*staff.onclick = function () {
     staf.style.display = "flex";
-    prof.style.display = "none";
+    //prof.style.display = "none";
     over.style.display = "none";
-    data.style.display = "none";
-    crea.style.display = "none";
+    //data.style.display = "none";
+    //crea.style.display = "none";
     depa.style.display = "none";
     staffDetailPage.style.display = "none";
-    changeSucc.style.display = "none";
-    changePassword.style.display = "none";
-    addDevicePage.style.display = "none";
+    //changeSucc.style.display = "none";
+    //changePassword.style.display = "none";
+    //addDevicePage.style.display = "none";
     removeAllLeft();
     this.style.backgroundColor = "#F4F2F2";
     this.style.color = "black";
-}
-department.onclick = function () {
+}*/
+/*department.onclick = function () {
     depa.style.display = "flex";
-    prof.style.display = "none";
+    //prof.style.display = "none";
     over.style.display = "none";
-    data.style.display = "none";
-    crea.style.display = "none";
-    staf.style.display = "none";
-    staffDetailPage.style.display = "none";
-    changeSucc.style.display = "none";
-    changePassword.style.display = "none";
-    addDevicePage.style.display = "none";
+    //data.style.display = "none";
+    //crea.style.display = "none";
+    //staf.style.display = "none";
+    //staffDetailPage.style.display = "none";
+    //changeSucc.style.display = "none";
+    //changePassword.style.display = "none";
+    //addDevicePage.style.display = "none";
     removeAllLeft();
     this.style.backgroundColor = "#F4F2F2";
     this.style.color = "black";
-}
+}*/
+/*
 
 changePass.onclick = function () {
     prof.style.display = "none";
@@ -243,7 +244,7 @@ function checkOldPassword(dbP,InputP){
         failOld.style.display = ('inline-block');
         passOld.style.display = ('none');
     }
-}
+}*/
 
 let areaFilter = document.getElementById('area');
 let typeFilter = document.getElementById('type');
@@ -265,7 +266,7 @@ for (var i = 1; i < totalRow; i++) {
 }
 
 
-let emailPass = document.getElementById('emailPass');
+/*let emailPass = document.getElementById('emailPass');
 let emailFail = document.getElementById('emailFail');
 let contactNum = document.getElementById('contactNum');
 let submitBtn = document.getElementById('submit');
@@ -295,7 +296,7 @@ let lstName = document.getElementById('lastNa');
 
 submitBtn.onclick = function(){
     console.log(contactNum.value);
-}
+}*/
 
 
 
@@ -314,7 +315,7 @@ for (var i = 0; i < allA.length; i++) {
 
 
 // go to the Device's addition page
-let addDevice = document.getElementById('addDevice');
+/*let addDevice = document.getElementById('addDevice');
 
 addDevice.onclick = function(){
     data.style.display = "none";
@@ -376,10 +377,10 @@ saveNewDevice.onclick = function(){
         }
     }
 
+*/
 
 
-
-let mask = document.getElementById('j_mask');
+/*let mask = document.getElementById('j_mask');
 let formAdd = document.getElementById('j_formAdd');
 document.getElementById('addDepa').onclick = function(){
     formAdd.style.display = "block";
@@ -425,7 +426,7 @@ for (var i = 0; i < all_a_delDepa.length; i++) {
             depa_set.removeChild(this.parentNode);
         };
     };
-};
+};*/
 
 
 // check staff's detail
@@ -436,7 +437,7 @@ for (var i = 0; i < all_a_delDepa.length; i++) {
 // let staffEmail = document.getElementById("staffEmail");
 // let staffNumber = document.getElementById("staffNumber");
 // let staffPosition = document.getElementById("staffPosition");
-let staffDetail=document.getElementsByClassName("staffDetail");
+/*let staffDetail=document.getElementsByClassName("staffDetail");
 
 for (link of staffDetail){
     link.onclick = function(){
@@ -463,7 +464,7 @@ addToStaff.onclick = function(){
     }
     
     
-}
+}*/
 
 
 

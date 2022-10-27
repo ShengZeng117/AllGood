@@ -102,7 +102,7 @@ const createAccount = async (req, res, next) => {
             EntryTime: new Date(),
             ContactNumber: req.body.contactNum,
             StaffId: userid1,
-            Age: 22,
+            Age: 0,
             Password: '123456789',
             AvailiableDevices: [],
             Department: "IT",

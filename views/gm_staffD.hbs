@@ -1,0 +1,107 @@
+<div class="left">
+    <div id="head">
+        {{#with gm}}
+        <h1 id="name">{{this.FirstName}} {{this.LastName}}</h1>
+        <p id="position">General Department</p>
+        {{/with}}
+    </div>
+    {{#with gm}}
+    <div id="main">
+        <a href="/generalmanager/{{this._id}}/personalpage">
+            <div class="sub" id="overview">Overview</div>
+        </a>
+        <a href="/generalmanager/{{this._id}}/createAccount">
+            <div class="sub" id="creatNew" href="/generalmanager/{{this._id}}/createAccount">Create Account</div>
+        </a>
+        <a href="/generalmanager/{{this._id}}/devices">
+        <div class="sub" id="datas">Data</div>
+        </a>
+        <a href="/generalmanager/{{this._id}}/profile">
+        <div class="sub" id="profile">Profile</div>
+        </a>
+        <a href="/generalmanager/{{this._id}}/staff">
+        <div class="sub" id="staff">Staff</div>
+        </a>
+        <a href="/generalmanager/{{this._id}}/department">
+        <div class="sub" id="department">Department</div>
+        </a>
+    </div>
+    {{/with}}
+    <div id="foot">
+        <img src="/picture/logo.png" alt="">
+    </div>
+</div>
+
+<div class="content" id="staf">
+        <table border="1" id="staffTable">
+            <thead>
+                <th>First name</th>
+                <th>Last name</th>
+                <th>Department</th>
+                <th>Position</th>
+                <th>ID</th>
+                <th>Email</th>
+                <th>Contact Number</th>
+                <th></th>
+            </thead>
+            <tbody class="staffTbody">
+                {{#each this.StaffList}}
+                <tr onClick="location.href='/generalManager/{{this.gm_id}}/{{this.staff_id}}/staffdetail'">
+                    <td>{{this.FirstName}}</td>
+                    <td>{{this.LastName}}</td>
+                    <td>{{this.Department}}</td>
+                    <td>{{this.Position}}</td>
+                    <td>{{this.StaffId}}</td>
+                    <td>{{this.Email}}</td>
+                    <td>{{this.ContactNumber}}</td>
+                    <td><a href="#" class="staffDetail">Detail</a></td>
+                </tr>
+                {{/each}} 
+
+                {{#each ManagerList}}
+                <tr onClick="location.href='/generalManager/{{this.gm_id}}/{{this.staff_id}}/staffdetail'">
+                    <td>{{this.FirstName}}</td>
+                    <td>{{this.LastName}}</td>
+                    <td>{{this.Department}}</td>
+                    <td>{{this.Position}}</td>
+                    <td>{{this.StaffId}}</td>
+                    <td>{{this.Email}}</td>
+                    <td>{{this.ContactNumber}}</td>
+                    <td><a href="#" class="staffDetail">Detail</a></td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+
+<script>
+    let staffDetail=document.getElementsByClassName("staffDetail");
+
+for (link of staffDetail){
+    link.onclick = function(){
+
+        staf.style.display = "none";
+        staffDetailPage.style.display = "flex";
+        
+    }
+}
+
+let staffDevice = document.getElementById("staffDevice");
+let saveChanges = document.getElementById("saveChanges");
+let addToStaff = document.getElementById("addToStaff");
+let newDeviceAdd = document.getElementById("newDeviceAdd");
+addToStaff.onclick = function(){
+    newDeviceAdd.style.display = "inline-block";
+    saveChanges.removeAttribute('disabled');
+    saveChanges.onclick = function(){
+        staffDevice.textContent += ", ";
+        staffDevice.textContent += newDeviceAdd.value;
+        newDeviceAdd.style.display = "none";
+        newDeviceAdd.value = "";
+        
+    }
+    
+    
+}
+
+</script>

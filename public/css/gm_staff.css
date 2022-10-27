@@ -1,0 +1,174 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    height: 100vh;
+    display: flex;
+    background-color: #F4F2F2; 
+}
+
+.left{
+    color: white;
+    flex: 2;
+    background-color: #3D5967;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+.left #name{
+    font: 62px/71px Arial;
+    font-weight: bold;
+    margin-top: 70px;
+    margin-bottom: 10pxpx;
+}
+.left #position{
+    text-align: center;
+    font: 27px/31px Arial;
+}
+#main{
+    width: 100%;
+}
+#main li{
+    list-style-type: none;
+}
+#main div{
+    font: 38px/77px Arial;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+}
+
+#main a{
+    text-decoration: none;
+    color: white;
+}
+
+#staff{
+    background-color: #fff;
+    color: black;
+}
+
+.content{
+    flex: 8;
+    display: flex;
+    flex-direction: column;
+}
+
+#staf{
+    display: flex;
+}
+#staf table{
+    width: 85%;
+    margin: 0 auto;
+    margin-top: 60px;
+    text-align: center;
+    border-collapse: collapse;
+    background-color: #fff;
+}
+#staf table th{
+    font: 25px/52px Arial;
+    font-weight: bold;
+}
+#staf table td{
+    height: 60px;
+}
+
+/* 查看staff的detail */
+#staffDetailPage{
+    display:none;
+    
+}
+#staffDetailPage #headPart{
+    margin-left:2%;
+}
+#staffDetailPage #fstPart,#staffDetailPage #secdPart{
+    color: #AFAFAF;
+    font: 32px/80px Arial;
+}
+#staffDetailPage #secdPart{
+    color:black;
+}
+#staffDetailPage #staffDetails{
+    width: 90%;
+    margin: 0 auto;
+    font-size:34px;
+    font-weight: bold;
+    
+}
+#staffDetailPage .person{
+    margin: 0 auto;
+    width: 90%;
+    height: 80%;
+    background-color: #fff;
+    border-radius: 58px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1) ;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 1%;
+    
+}
+#staffDetailPage .person .attr{
+    height:14%;
+    width: 90%;
+    display:flex;
+    align-items: center;
+    border-top: 1px solid gray;
+}
+#staffDetailPage .person .attr:first-child{
+    border-top: none;
+}
+#staffDetailPage .person .attr .info{
+    font: 30px/80px Arial;
+    font-weight: bold;
+}
+#staffDetailPage .person .name div{
+    width:50%;
+}
+#staffNameFst{
+    border-right: 1px solid gray;
+}
+#staffNameSecd{
+    margin-left: 4%;
+}
+#staffFName,#staffLName,#staffGender,#staffID,#staffEmail,#staffNumber,#staffPosition,#staffDevice,#newDeviceAdd{
+    font-size: 30px;
+    margin-left: 4%;
+    font-style:italic
+}
+#bottom{
+    display:flex;
+    justify-content: center;
+}
+#staffDetailPage #saveChanges,#staffDetailPage #firestaff{
+    width: 20rem;
+    font: 28px/50px Arial;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-radius: 15px;
+    background-color: #317da3;
+    border: none;
+    color: white;
+}
+#staffDetailPage #saveChanges{
+    margin-right: 100px;
+}
+#staffDetailPage #saveChanges:hover,#staffDetailPage #firestaff:hover{
+    background-color: #114864;
+}
+#addToStaff{
+    width: 2rem;
+    margin-left: 5px;
+    margin-top: 5px;
+}
+
+#newDeviceAdd{
+    margin-left:0;
+    display:none;
+}

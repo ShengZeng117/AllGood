@@ -19,17 +19,93 @@ generalManagerRouter.get(
     generalManagerController.generalmanagerOverview
 )
 
-generalManagerRouter.post(
-    '/:generalManager_id/personalpage', 
+generalManagerRouter.get(
+    '/:generalManager_id/createAccount', 
     function managerLogin(req, res, next) {
         if (req){
             return next()
         }
-        res.redirect('/manager')
+        res.redirect('/generalManager')
+    },
+    generalManagerController.getaccoutPage
+)
+
+generalManagerRouter.get(
+    '/:generalManager_id/devices', 
+    function managerLogin(req, res, next) {
+        if (req){
+            return next()
+        }
+        res.redirect('/generalManager')
+    },
+    generalManagerController.getdevicesdata
+)
+
+generalManagerRouter.get(
+    '/:generalManager_id/profile', 
+    function managerLogin(req, res, next) {
+        if (req){
+            return next()
+        }
+        res.redirect('/generalManager')
+    },
+    generalManagerController.getprofilepage
+)
+
+generalManagerRouter.get(
+    '/:generalManager_id/staff', 
+    function managerLogin(req, res, next) {
+        if (req){
+            return next()
+        }
+        res.redirect('/generalManager')
+    },
+    generalManagerController.getstaffpage
+)
+
+generalManagerRouter.get(
+    '/:generalManager_id/department', 
+    function managerLogin(req, res, next) {
+        if (req){
+            return next()
+        }
+        res.redirect('/generalManager')
+    },
+    generalManagerController.getdepartmentpage
+)
+
+generalManagerRouter.get(
+    '/:generalManager_id/:staff_id/staffdetail', 
+    function managerLogin(req, res, next) {
+        if (req){
+            return next()
+        }
+        res.redirect('/generalManager')
+    },
+    generalManagerController.getstaffdetail
+)
+
+generalManagerRouter.post(
+    '/:generalManager_id/createAccount', 
+    function managerLogin(req, res, next) {
+        if (req){
+            return next()
+        }
+        res.redirect('/generalManager')
+    },
+    generalManagerController.createAccount
+)
+
+generalManagerRouter.post(
+    '/:generalManager_id/profile', 
+    function managerLogin(req, res, next) {
+        if (req){
+            return next()
+        }
+        res.redirect('/generalManager')
     },
     generalManagerController.updatePersonalDetail,
     generalManagerController.changePassword,
-    generalManagerController.createAccount,
 )
 
 module.exports = generalManagerRouter;

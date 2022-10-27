@@ -1,0 +1,295 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    height: 100vh;
+    display: flex;
+    background-color: #F4F2F2; 
+}
+
+.left{
+    color: white;
+    flex: 2;
+    background-color: #3D5967;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+.left #name{
+    font: 62px/71px Arial;
+    font-weight: bold;
+    margin-top: 70px;
+    margin-bottom: 10pxpx;
+}
+.left #position{
+    text-align: center;
+    font: 27px/31px Arial;
+}
+#main{
+    width: 100%;
+}
+#main li{
+    list-style-type: none;
+}
+#main div{
+    font: 38px/77px Arial;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+}
+
+#main a{
+    text-decoration: none;
+    color: white;
+}
+
+#profile{
+    background-color: #fff;
+    color: black;
+}
+
+.content{
+    flex: 8;
+    display: flex;
+    flex-direction: column;
+}
+
+
+#prof{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+   
+#prof #detail{
+    display: flex;
+    font: 38px/51px Arial;
+    font-weight: bold;
+    align-items: center;
+    margin-top: 30px;
+}
+#prof .person{
+    width: 70vw;
+    height: 80vh;
+    background-color: #fff;
+    border-radius: 58px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1) ;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 40px;
+   
+}
+#prof .person .attr{
+    display: flex;
+    align-items: center;
+    height: 16%;
+    width: 90%;
+    
+    border-top: 1px solid gray;
+}
+#prof .person .attr:first-child{
+    border-top: none;
+}
+
+#prof .person span{
+    font: 30px/80px Arial;
+    font-weight: bold;
+}
+#last{
+    margin-left: 30px;
+}
+#prof .person .name input{
+    border:none;
+    width:150px;
+    height: 35px;
+    margin-left: 1rem;
+    font-size: 25px;
+    border-radius: 10px;
+    text-align: center;
+}
+#prof .person .name input:hover{
+    background-color: rgb(233, 233, 233);
+}
+#prof .person .name img{
+    height: 25px;
+    position: relative;
+    top: 3px;
+}
+.genderBox{
+    margin-left: 140px;
+    font-size: 33px;
+    border: none;
+    background-color: rgb(255, 253, 253);
+    border-radius: 20px;
+    text-align: center;
+
+}
+
+
+#prof .savebtn{
+    width:20rem;
+    font: 28px/50px Arial;
+    margin: 0 auto;
+    margin-top: 20px;
+    border-radius: 15px;
+    background-color: #317da3;
+    border: none;
+    color: white;
+    margin-bottom: 15px;
+}
+#prof .savebtn:hover{
+    background-color: #114864;
+}
+
+.text1{
+    margin-left: 150px;
+}
+.text2{
+    margin-left: 180px;
+}
+.contact{
+    align-items: center;
+}
+.text3{
+    border: none;
+    margin-left: 30px;
+    height: 40px;
+    font-size: 26px;
+    margin-right: 10px;
+}
+.text4{
+    margin-left: 130px;
+}
+
+/* changePassword */
+#changePassword{
+    display: none;
+}
+#changeContent #title, #changeSucc #title{
+    margin-left: 57px;
+}
+#changeContent span, #changeSucc span{
+    color: #AFAFAF;
+    font: 32px/127px Arial;
+    margin-top: 30px;
+}
+#changeContent #part2,#changeSucc #part2{
+    color: black;
+}
+#changeContent{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+#changeContent p{
+    font: 32px/40px Arial;
+    color: black;
+    font-weight: bold;
+    margin-left: 8%;
+}
+#changeContent input{
+    width: 60%;
+    height: 90px;
+    padding: 10px 20px;
+    border-radius: 15px;
+    margin-left: 8%;
+    margin-bottom: 40px;
+    margin-top: 15px;
+    font-size: 30px
+    
+}
+#changeContent svg{
+    position: absolute;
+    margin-left: 20px;
+    margin-top: 25px;
+    
+}
+#btn{
+    margin-left:20%;
+    margin-bottom: 10px;
+    width: 35%;
+    height: 93px;
+    border-radius: 30px;
+    font-size: 38px;
+}
+#changePassword .pass{
+    display: none;
+}
+#changePassword .fail{
+    display: inline-block;
+} 
+#changePassword .validation{
+    
+    margin-left: 8%;
+    width: 54%;
+    background-color: #fff;
+    padding: 30px 50px;
+    border-radius: 10px;
+    transition: all 0.3s ease-in-out;
+}
+#changePassword #newPassword{
+    margin-bottom: 10px;
+}
+#changePassword .validation ul{
+    
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+ }
+ #changePassword .validation ul li{
+    position: relative;
+    list-style: none;
+    color: black;
+    font-size: 20px;
+    transition: 0.5s;
+ }
+#changePassword .validation ul li.valid{
+    color: green;
+}
+#changePassword .validation ul li::before{
+    content: "\f192";
+    font-family: fontAwesome;
+    margin-right: 10px;
+}
+#changePassword .validation ul li.valid::before{
+    content: "\f00c";
+}
+#changePassword #passOld{
+    display: inline-block;
+}
+#changePassword #failOld{
+    display: none;
+}
+
+
+#changeSucc{
+    display: none;
+}
+#changeSucc #pswdChangeSucc{
+    color: black;
+    font-size: 70px;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    margin-bottom: 10%;
+}
+#changeSucc svg{
+
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    
+}
+#changeSucc a{
+    text-align: center;
+    margin-top: 10%;
+    font: 38px/51px Arial;
+    color: black;
+}

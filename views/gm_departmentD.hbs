@@ -1,0 +1,115 @@
+<div class="left">
+    <div id="head">
+        {{#with gm}}
+        <h1 id="name">{{this.FirstName}} {{this.LastName}}</h1>
+        <p id="position">General Department</p>
+        {{/with}}
+    </div>
+    {{#with gm}}
+    <div id="main">
+        <a href="/generalmanager/{{this._id}}/personalpage">
+            <div class="sub" id="overview">Overview</div>
+        </a>
+        <a href="/generalmanager/{{this._id}}/createAccount">
+            <div class="sub" id="creatNew" href="/generalmanager/{{this._id}}/createAccount">Create Account</div>
+        </a>
+        <a href="/generalmanager/{{this._id}}/devices">
+            <div class="sub" id="datas">Data</div>
+        </a>
+        <a href="/generalmanager/{{this._id}}/profile">
+            <div class="sub" id="profile">Profile</div>
+        </a>
+        <a href="/generalmanager/{{this._id}}/staff">
+            <div class="sub" id="staff">Staff</div>
+        </a>
+        <a href="/generalmanager/{{this._id}}/department">
+            <div class="sub" id="department">Department</div>
+        </a>
+    </div>
+    {{/with}}
+    <div id="foot">
+        <img src="/picture/logo.png" alt="">
+    </div>
+</div>
+
+<div class="content" id="depa">
+        <div id="departmentset">
+            <div class="departmentEle" id="headDepa">Department Name </div>
+            {{#each DeList}}
+            <div class="departmentEle">{{this.DepartmentName}}<img class="delet_device" src="/picture/delet.png"></img></div>
+            {{/each}}
+        </div>
+        <button class="addDepa" id="addDepa">
+            <svg xmlns="http://www.w3.org/2000/svg" width="41.609" height="35.387" viewBox="0 0 41.609 35.387">
+                <path id="plus" d="M45.109,18.828H28.189V4.5H21.421V18.828H4.5v5.731H21.421V38.887h6.768V24.559H45.109Z"
+                    transform="translate(-4 -4)" fill="#52b981" stroke="#52b981" stroke-width="1" />
+            </svg>
+        </button>
+
+        <div id="a_mask" class="mask"></div>
+        <div id="j_formAdd" class="form-add">
+            <div class="form-add-title">
+                <span>Department Addition</span>
+                <div id="j_hideFormAdd">x</div>
+            </div>
+            <div class="form-item">
+                <label class="lb" for="j_txtLesson">Name: </label>
+                <input class="txt" type="text" id="j_txtLesson" placeholder="Please enter department">
+            </div>
+
+            <div class="form-submit">
+                <input type="button" value="Add" id="j_btnAdd">
+            </div>
+        </div>
+
+    </div>
+
+<script>
+    let mask = document.getElementById('j_mask');
+    let formAdd = document.getElementById('j_formAdd');
+    document.getElementById('addDepa').onclick = function(){
+        formAdd.style.display = "block";
+    }
+    document.getElementById("j_hideFormAdd").onclick=function(){
+        formAdd.style.display="none";
+    }
+    document.getElementById('j_btnAdd').onclick = function(){
+        var one = document.getElementById("j_txtLesson");
+        var departmentset = document.getElementById("departmentset");
+        var new_depar = document.createElement('div');
+        var new_a = document.createElement('a');
+        var text = document.createTextNode(one.value);
+        var text_a = document.createTextNode("Delet");
+        new_a.href = "#"
+        new_a.className = "delDepar";
+        new_a.appendChild(text_a);
+        new_depar.className = "departmentEle";
+        new_depar.appendChild(text);
+        new_depar.appendChild(new_a);
+        departmentset.appendChild(new_depar);
+
+        new_a.onclick=function(){
+            if (confirm("Do you want to remove this department?")) {
+                this.parentNode.parentNode.removeChild(this.parentNode);
+            };
+        
+        }
+
+        one.value = '';
+        formAdd.style.display="none";
+    }
+
+    let all_a_delDepa = document.getElementsByClassName("delDepar");
+
+    for (var i = 0; i < all_a_delDepa.length; i++) {
+        all_a_delDepa[i].onclick = function () {
+            var depa_set = this.parentNode.parentNode;
+            depa_name = this.parentNode.innerHTML;
+        
+        
+            if (confirm("Do you want to remove this department?")) {
+                depa_set.removeChild(this.parentNode);
+            };
+        };
+    };
+</script>
