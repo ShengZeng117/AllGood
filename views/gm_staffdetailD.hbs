@@ -2,16 +2,21 @@
     <div id="head">
         {{#with gm}}
         <h1 id="name">{{this.FirstName}} {{this.LastName}}</h1>
-        <p id="position">General Department</p>
+        {{#if this.check}}
+        <p id="position">General Manager</p>
+        {{else}}
+        <p id="position">{{this.Department}} Department</p>
+        {{/if}}
         {{/with}}
     </div>
-    {{#with gm}}
+   {{#with gm}}
+    {{#if this.check}}
     <div id="main">
         <a href="/generalmanager/{{this._id}}/personalpage">
             <div class="sub" id="overview">Overview</div>
         </a>
         <a href="/generalmanager/{{this._id}}/createAccount">
-            <div class="sub" id="creatNew" href="/generalmanager/{{this._id}}/createAccount">Create Account</div>
+            <div class="sub" id="creatNew">Create Account</div>
         </a>
         <a href="/generalmanager/{{this._id}}/devices">
         <div class="sub" id="datas">Data</div>
@@ -26,6 +31,25 @@
         <div class="sub" id="department">Department</div>
         </a>
     </div>
+    {{else}}
+    <div id="main">
+        <a href="/manager/{{this._id}}/personalpage">
+            <div class="sub" id="overview">Overview</div>
+        </a>
+        <a href="/manager/{{this._id}}/createAccount">
+            <div class="sub" id="creatNew">Create Account</div>
+        </a>
+        <a href="/manager/{{this._id}}/devices">
+        <div class="sub" id="datas">Data</div>
+        </a>
+        <a href="/manager/{{this._id}}/profile">
+        <div class="sub" id="profile">Profile</div>
+        </a>
+        <a href="/manager/{{this._id}}/staff">
+        <div class="sub" id="staff">Staff</div>
+        </a>
+    </div>
+    {{/if}}
     {{/with}}
     <div id="foot">
         <img src="/picture/logo.png" alt="">
@@ -33,10 +57,11 @@
 </div>
 
 <div class="content" id="staffDetailPage">
+    <form method="post">
         <div id="headPart"><span id="fstPart">Staff</span><span id="secdPart">/Staff Detail</span></div>
         <div id="staffDetails"> <span id="staffName">Jason's</span> Personal Detail</div>
-        {{#with staff}}
         <div class="person">
+            {{#with staff}}
             <div class="attr name">
                 <div id="staffNameFst">
                     <span class="info">First name:</span>
@@ -71,19 +96,23 @@
                 <span id="staffPosition">{{this.Position}}</span>
                 
             </div>
+            {{/with}}
             <div class="attr staffDevice">
                 <span class="info">Devices:</span>
-                <span id="staffDevice">Fans, Lights</span>
+                {{#each availableDevices}}
+                <span id="staffDevice">{{this.Device_name}}</span>
+                <button style="border: none" name="deleDe" value="{{this.Device_name}}"><img src="/picture/delet.png"></img></button>
+                {{/each}}
                 <img src="/picture/add.png" alt="" id="addToStaff">
-                <input type="text" id="newDeviceAdd">
+                <input type="text" name="newDeviceAdd" id="newDeviceAdd">
             </div>
         </div>
-        {{/with}}
         <div id="bottom">
             <button id="saveChanges" disabled>Save</button>
-            <button id="firestaff" >Delete</button>
+            <button id="firestaff" name="deleteS" value="1">Delete</button>
         </div>
-    </div>
+    </form>
+</div>
 
 <script>
 
@@ -95,10 +124,8 @@ addToStaff.onclick = function(){
     newDeviceAdd.style.display = "inline-block";
     saveChanges.removeAttribute('disabled');
     saveChanges.onclick = function(){
-        staffDevice.textContent += ", ";
-        staffDevice.textContent += newDeviceAdd.value;
         newDeviceAdd.style.display = "none";
-        newDeviceAdd.value = "";
+        //newDeviceAdd.value = "";
         
     }
     

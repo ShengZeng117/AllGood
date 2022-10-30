@@ -2,28 +2,54 @@
     <div id="head">
         {{#with gm}}
         <h1 id="name">{{this.FirstName}} {{this.LastName}}</h1>
-        <p id="position">General Department</p>
+        {{#if this.check}}
+        <p id="position">General Manager</p>
+        {{else}}
+        <p id="position">{{this.Department}} Department</p>
+        {{/if}}
         {{/with}}
     </div>
     {{#with gm}}
+    {{#if this.check}}
     <div id="main">
         <a href="/generalmanager/{{this._id}}/personalpage">
             <div class="sub" id="overview">Overview</div>
         </a>
-        <div class="sub" id="creatNew">Create Account</div>
+        <a href="/generalmanager/{{this._id}}/createAccount">
+            <div class="sub" id="creatNew">Create Account</div>
+        </a>
         <a href="/generalmanager/{{this._id}}/devices">
-            <div class="sub" id="datas">Data</div>
+        <div class="sub" id="datas">Data</div>
         </a>
         <a href="/generalmanager/{{this._id}}/profile">
-            <div class="sub" id="profile">Profile</div>
+        <div class="sub" id="profile">Profile</div>
         </a>
         <a href="/generalmanager/{{this._id}}/staff">
-            <div class="sub" id="staff">Staff</div>
+        <div class="sub" id="staff">Staff</div>
         </a>
         <a href="/generalmanager/{{this._id}}/department">
-            <div class="sub" id="department">Department</div>
+        <div class="sub" id="department">Department</div>
         </a>
     </div>
+    {{else}}
+    <div id="main">
+        <a href="/manager/{{this._id}}/personalpage">
+            <div class="sub" id="overview">Overview</div>
+        </a>
+        <a href="/manager/{{this._id}}/createAccount">
+            <div class="sub" id="creatNew">Create Account</div>
+        </a>
+        <a href="/manager/{{this._id}}/devices">
+        <div class="sub" id="datas">Data</div>
+        </a>
+        <a href="/manager/{{this._id}}/profile">
+        <div class="sub" id="profile">Profile</div>
+        </a>
+        <a href="/manager/{{this._id}}/staff">
+        <div class="sub" id="staff">Staff</div>
+        </a>
+    </div>
+    {{/if}}
     {{/with}}
     <div id="foot">
         <img src="/picture/logo.png" alt="">

@@ -1,7 +1,8 @@
 const express = require('express')
 // Set your app up as an express app
+const fileUpload = require('express-fileupload');
 const app = express()
-
+app.use(fileUpload());
 // Set up to handle POST requests
 app.use(express.json()) // needed if POST data is in JSON format
 // app.use(express.urlencoded())  // only needed for URL-encoded input

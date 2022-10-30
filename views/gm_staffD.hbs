@@ -2,16 +2,21 @@
     <div id="head">
         {{#with gm}}
         <h1 id="name">{{this.FirstName}} {{this.LastName}}</h1>
-        <p id="position">General Department</p>
+        {{#if this.check}}
+        <p id="position">General Manager</p>
+        {{else}}
+        <p id="position">{{this.Department}} Department</p>
+        {{/if}}
         {{/with}}
     </div>
     {{#with gm}}
+    {{#if this.check}}
     <div id="main">
         <a href="/generalmanager/{{this._id}}/personalpage">
             <div class="sub" id="overview">Overview</div>
         </a>
         <a href="/generalmanager/{{this._id}}/createAccount">
-            <div class="sub" id="creatNew" href="/generalmanager/{{this._id}}/createAccount">Create Account</div>
+            <div class="sub" id="creatNew">Create Account</div>
         </a>
         <a href="/generalmanager/{{this._id}}/devices">
         <div class="sub" id="datas">Data</div>
@@ -26,6 +31,25 @@
         <div class="sub" id="department">Department</div>
         </a>
     </div>
+    {{else}}
+    <div id="main">
+        <a href="/manager/{{this._id}}/personalpage">
+            <div class="sub" id="overview">Overview</div>
+        </a>
+        <a href="/manager/{{this._id}}/createAccount">
+            <div class="sub" id="creatNew">Create Account</div>
+        </a>
+        <a href="/manager/{{this._id}}/devices">
+        <div class="sub" id="datas">Data</div>
+        </a>
+        <a href="/manager/{{this._id}}/profile">
+        <div class="sub" id="profile">Profile</div>
+        </a>
+        <a href="/manager/{{this._id}}/staff">
+        <div class="sub" id="staff">Staff</div>
+        </a>
+    </div>
+    {{/if}}
     {{/with}}
     <div id="foot">
         <img src="/picture/logo.png" alt="">
@@ -45,8 +69,12 @@
                 <th></th>
             </thead>
             <tbody class="staffTbody">
-                {{#each this.StaffList}}
-                <tr onClick="location.href='/generalManager/{{this.gm_id}}/{{this.staff_id}}/staffdetail'">
+                {{#each StaffList}}
+                {{#if this.check}}
+                    <tr onClick="location.href='/generalManager/{{this.gm_id}}/{{this.staff_id}}/staffdetail'">
+                {{else}}
+                    <tr onClick="location.href='/manager/{{this.gm_id}}/{{this.staff_id}}/staffdetail'">
+                {{/if}}
                     <td>{{this.FirstName}}</td>
                     <td>{{this.LastName}}</td>
                     <td>{{this.Department}}</td>
@@ -54,12 +82,15 @@
                     <td>{{this.StaffId}}</td>
                     <td>{{this.Email}}</td>
                     <td>{{this.ContactNumber}}</td>
-                    <td><a href="#" class="staffDetail">Detail</a></td>
                 </tr>
                 {{/each}} 
 
                 {{#each ManagerList}}
-                <tr onClick="location.href='/generalManager/{{this.gm_id}}/{{this.staff_id}}/staffdetail'">
+                {{#if this.check}}
+                    <tr onClick="location.href='/generalManager/{{this.gm_id}}/{{this.staff_id}}/staffdetail'">
+                {{else}}
+                    <tr onClick="location.href='/manager/{{this.gm_id}}/{{this.staff_id}}/staffdetail'">
+                {{/if}}
                     <td>{{this.FirstName}}</td>
                     <td>{{this.LastName}}</td>
                     <td>{{this.Department}}</td>
@@ -67,7 +98,6 @@
                     <td>{{this.StaffId}}</td>
                     <td>{{this.Email}}</td>
                     <td>{{this.ContactNumber}}</td>
-                    <td><a href="#" class="staffDetail">Detail</a></td>
                 </tr>
                 {{/each}}
             </tbody>

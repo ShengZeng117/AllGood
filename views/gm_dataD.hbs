@@ -2,13 +2,18 @@
     <div id="head">
         {{#with gm}}
         <h1 id="name">{{this.FirstName}} {{this.LastName}}</h1>
-        <p id="position">General Department</p>
+        {{#if this.check}}
+        <p id="position">General Manager</p>
+        {{else}}
+        <p id="position">{{this.Department}} Department</p>
+        {{/if}}
         {{/with}}
     </div>
     {{#with gm}}
+    {{#if this.check}}
     <div id="main">
         <a href="/generalmanager/{{this._id}}/personalpage">
-        <div class="sub" id="overview">Overview</div>
+            <div class="sub" id="overview">Overview</div>
         </a>
         <a href="/generalmanager/{{this._id}}/createAccount">
             <div class="sub" id="creatNew">Create Account</div>
@@ -26,6 +31,25 @@
         <div class="sub" id="department">Department</div>
         </a>
     </div>
+    {{else}}
+    <div id="main">
+        <a href="/manager/{{this._id}}/personalpage">
+            <div class="sub" id="overview">Overview</div>
+        </a>
+        <a href="/manager/{{this._id}}/createAccount">
+            <div class="sub" id="creatNew">Create Account</div>
+        </a>
+        <a href="/manager/{{this._id}}/devices">
+        <div class="sub" id="datas">Data</div>
+        </a>
+        <a href="/manager/{{this._id}}/profile">
+        <div class="sub" id="profile">Profile</div>
+        </a>
+        <a href="/manager/{{this._id}}/staff">
+        <div class="sub" id="staff">Staff</div>
+        </a>
+    </div>
+    {{/if}}
     {{/with}}
     <div id="foot">
         <img src="/picture/logo.png" alt="">
@@ -100,40 +124,38 @@
 
 <div class="content" id="addNewDevice">
         <div class="title"><span id="fst">Data</span><span id="secd">/Device's Addition</span></div>
-
+        <form action="" method="post">
         <div class="device">
             <div class="deviceInf">
-                <div>Device Name: <input type="text" id="deviceName"></div>
-                <div>Device ID: <input type="text" id="deviceID"></div>
+                <div>Device Name: <input type="text" name="deviceName" id="deviceName"></div>
                 <div>Energy Type: <input type="text" id="energyType"></div>
-                <div>Area: <input type="text" id="device_area"></div>
-                <div>Usage: <input type="text"  id="editedUsage" placeholder=""></div>
-
+                <div>Department: <input type="text" id="device_area"></div>
+                <input type="file" name="imgfile" id="imgfile" value="uploadImage">
+                <div id="pseudo-style">Upload Image</div>
                 <button class="btn2" id="saveNewDevice">Save</button>
             </div>
-            <div id="preview">
-                <input type="file" name="" id="file" value="uploadImage">
-                <div id="pseudo-style">Upload Image</div>
-            </div>
+            <div id="preview"></div>
         </div>
-
-    </div>
+        </form>
+</div>
 <script>
         var preview = document.getElementById("preview");
         var img = document.createElement("img"); 
-        var file = document.getElementById("file");
-     
+        var file = document.getElementById("imgfile");
+
         file.onchange = function() {
         
             var fileReader = new FileReader();
             fileReader.readAsDataURL(this.files[0]);
             fileReader.onload = function() {
-            img.src = fileReader.result;
-            img.style.width = "100%";
-            img.style.height = "91%";
-            preview.appendChild(img);
+                img.src = fileReader.result;
+                img.name = "upload";
+                img.style.width = "100%";
+                img.style.height = "91%";
+                preview.appendChild(img);
+            };
         };
-    };
+        
 </script>
 <script>
     let addDevicePage = document.getElementById('addNewDevice');
@@ -144,47 +166,12 @@ addDevice.onclick = function(){
     addDevicePage.style.display = "flex";
 }
 //finish adding device, turn back to data page
-let saveNewDevice = document.getElementById('saveNewDevice');
-saveNewDevice.onclick = function(){
-    var deviceName = document.getElementById("deviceName");
-    var deviceID = document.getElementById("deviceID");
-    var energyType = document.getElementById("energyType");
-    var device_area = document.getElementById("device_area");
-    var editedUsage = document.getElementById("editedUsage");
-    var tr_dev = document.createElement("tr");
-    var del_btn = document.createElement("img");
-    del_btn.className = "deletDevice";
-    del_btn.src = "../picture/delet.png";
-    var td_del = document.createElement("td");
-    td_del.appendChild(del_btn);
-    tr_dev.innerHTML = `<td >${deviceName.value}</td>
-                        <td>${deviceID.value}</td>
-                        <td>${energyType.value}</td>
-                        <td>${device_area.value}</td>
-                        <td>${editedUsage.value}</td>
-                        <td></td>`
-
-
-    tr_dev.appendChild(td_del);
-    table.appendChild(tr_dev);
-
-    sum += Number(editedUsage.value);
-    totalUsage.innerHTML = sum;
-    
-    del_btn.onclick = function(){
-        if(confirm("Do you want to remove this device?")){
-            this.parentElement.parentElement.remove();
-        }
-        
+var del_btn = document.createElement("img");
+del_btn.onclick = function(){
+    if(confirm("Do you want to remove this device?")){
+        this.parentElement.parentElement.remove();
     }
-
-    deviceName.value = '';
-    deviceID.value = '';
-    energyType.value = '';
-    device_area.value = '';
-    editedUsage.value = '';
-    addDevicePage.style.display = "none";
-    data.style.display = "flex";
+        
 }
 
 

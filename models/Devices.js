@@ -5,6 +5,7 @@ const schema = new mongoose.Schema({
     Energy_type: { type: String, required: true },
     Month_Energy_Usage: Number,
     Week_Energy_Usage: Number,
+    Weekly_usage: [Number],
     Status: Boolean,
     Department:{ type: String, required: true },
     Location: { type: String, required: true },

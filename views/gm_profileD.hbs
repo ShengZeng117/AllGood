@@ -2,16 +2,21 @@
     <div id="head">
         {{#with gm}}
         <h1 id="name">{{this.FirstName}} {{this.LastName}}</h1>
-        <p id="position">General Department</p>
+        {{#if this.check}}
+        <p id="position">General Manager</p>
+        {{else}}
+        <p id="position">{{this.Department}} Department</p>
+        {{/if}}
         {{/with}}
     </div>
     {{#with gm}}
+    {{#if this.check}}
     <div id="main">
         <a href="/generalmanager/{{this._id}}/personalpage">
             <div class="sub" id="overview">Overview</div>
         </a>
         <a href="/generalmanager/{{this._id}}/createAccount">
-            <div class="sub" id="creatNew" href="/generalmanager/{{this._id}}/createAccount">Create Account</div>
+            <div class="sub" id="creatNew">Create Account</div>
         </a>
         <a href="/generalmanager/{{this._id}}/devices">
         <div class="sub" id="datas">Data</div>
@@ -26,6 +31,25 @@
         <div class="sub" id="department">Department</div>
         </a>
     </div>
+    {{else}}
+    <div id="main">
+        <a href="/manager/{{this._id}}/personalpage">
+            <div class="sub" id="overview">Overview</div>
+        </a>
+        <a href="/manager/{{this._id}}/createAccount">
+            <div class="sub" id="creatNew">Create Account</div>
+        </a>
+        <a href="/manager/{{this._id}}/devices">
+        <div class="sub" id="datas">Data</div>
+        </a>
+        <a href="/manager/{{this._id}}/profile">
+        <div class="sub" id="profile">Profile</div>
+        </a>
+        <a href="/manager/{{this._id}}/staff">
+        <div class="sub" id="staff">Staff</div>
+        </a>
+    </div>
+    {{/if}}
     {{/with}}
     <div id="foot">
         <img src="/picture/logo.png" alt="">
@@ -58,17 +82,17 @@
                 {{#with gender}}
                 <select name="gender" class="genderBox" id="gender">
                     {{#if this.Male}}
-                        <option value="male" selected>Male</option>
-                        <option value="female">Female</option>
+                        <option value="Male" selected>Male</option>
+                        <option value="Female">Female</option>
                         <option value="Other">Other</option>
                     {{else}}
                     {{#if this.Female}}
-                        <option value="male">Male</option>
-                        <option value="female" selected>Female</option>
+                        <option value="Male">Male</option>
+                        <option value="Female" selected>Female</option>
                         <option value="Other">Other</option>
                     {{else}}
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
                         <option value="Other" selected>Other</option>
                     {{/if}}
                     {{/if}}

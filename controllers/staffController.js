@@ -14,15 +14,9 @@ const getstaffID =  (req, res) => {
         if (err) {
             return done(err)
         }else if (!staff){
-            return done(
-                null,
-                false
-            )
+            return res.redirect('/staff/')
         }else if (password != staff.Password){
-            return done(
-                null,
-                false
-            )
+            return res.redirect('/staff/')
         }else{
             return res.redirect('/staff/' + staff._id + '/personalpage')
         }

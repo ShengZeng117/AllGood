@@ -107,5 +107,35 @@ generalManagerRouter.post(
     generalManagerController.updatePersonalDetail,
     generalManagerController.changePassword,
 )
+generalManagerRouter.post(
+    '/:generalManager_id/department', 
+    function managerLogin(req, res, next) {
+        if (req){
+            return next()
+        }
+        res.redirect('/generalManager')
+    },
+    generalManagerController.editdepartment
+)
+generalManagerRouter.post(
+    '/:generalManager_id/:staff_id/staffdetail', 
+    function managerLogin(req, res, next) {
+        if (req){
+            return next()
+        }
+        res.redirect('/generalManager')
+    },
+    generalManagerController.editStaff
+)
+generalManagerRouter.post(
+    '/:generalManager_id/devices', 
+    function managerLogin(req, res, next) {
+        if (req){
+            return next()
+        }
+        res.redirect('/generalManager')
+    },
+    generalManagerController.addnewDevice
+)
 
 module.exports = generalManagerRouter;

@@ -11,9 +11,23 @@ const generalmanagerLogin = (req, res) => {
 
 const generalmanagerOverview = async (req, res, next) => {
     try{
-        const generalManager = await GeneralManager.findById(req.params.generalManager_id).lean()
-        if (!generalManager){
+        const gm = await GeneralManager.findById(req.params.generalManager_id).lean()
+        if (!gm){
             return res.sendStatus(404)
+        }
+
+        const gmD = {
+            check: true,
+            _id: gm._id,
+            Id: gm.Id,
+            FirstName: gm.FirstName,
+            LastName: gm.LastName,
+            Gender: gm.Gender,
+            Position: gm.Position,
+            Email: gm.Email,
+            ContactNumber: gm.ContactNumber,
+            Age: gm.Age,
+            Password: gm.Password,
         }
 
         const allDevicesArray = await Device.find({})
@@ -25,7 +39,7 @@ const generalmanagerOverview = async (req, res, next) => {
 
         res.render('generalManager_areaD.hbs', {
             layout: 'generalManager_area',
-            gm: generalManager,
+            gm: gmD,
             AllDeviceList: allDevicesList,
         })
     }catch(err){
@@ -39,9 +53,22 @@ const getaccoutPage = async (req, res, next) => {
         if (!gm){
             return res.sendStatus(404)
         }
+        const gmD = {
+            check: true,
+            _id: gm._id,
+            Id: gm.Id,
+            FirstName: gm.FirstName,
+            LastName: gm.LastName,
+            Gender: gm.Gender,
+            Position: gm.Position,
+            Email: gm.Email,
+            ContactNumber: gm.ContactNumber,
+            Age: gm.Age,
+            Password: gm.Password,
+        }
         res.render('gm_accountD.hbs', { 
             layout: 'gm_account',
-            gm: gm
+            gm: gmD
         })
     }catch(err){
         return next(err)
@@ -54,15 +81,30 @@ const getdevicesdata = async (req, res, next) => {
         if (!gm){
             return res.sendStatus(404)
         }
+        const gmD = {
+            check: true,
+            _id: gm._id,
+            Id: gm.Id,
+            FirstName: gm.FirstName,
+            LastName: gm.LastName,
+            Gender: gm.Gender,
+            Position: gm.Position,
+            Email: gm.Email,
+            ContactNumber: gm.ContactNumber,
+            Age: gm.Age,
+            Password: gm.Password,
+        }
         const allDevicesArray = await Device.find({})
         var allDevicesList = new Array()
         for (let i = 0; i < allDevicesArray.length; i++){
             var onedeviceData = await Device.findById(allDevicesArray[i]).lean()
             allDevicesList.push(onedeviceData)
         }
+        const checkmanager = {gm: true}
         res.render('gm_dataD.hbs', {
             layout: 'gm_data',
-            gm: gm,
+            gm: gmD,
+            checkm: checkmanager,
             AllDeviceList: allDevicesList
         })
     }catch(err){
@@ -76,6 +118,19 @@ const getprofilepage = async (req, res, next) => {
         if (!gm){
             return res.sendStatus(404)
         }
+        const gmD = {
+            check: true,
+            _id: gm._id,
+            Id: gm.Id,
+            FirstName: gm.FirstName,
+            LastName: gm.LastName,
+            Gender: gm.Gender,
+            Position: gm.Position,
+            Email: gm.Email,
+            ContactNumber: gm.ContactNumber,
+            Age: gm.Age,
+            Password: gm.Password,
+        }
         const gender = gm.Gender
         if(gender == "Male"){
             var genderList = {Male: true, Female: false, other: false}
@@ -87,7 +142,7 @@ const getprofilepage = async (req, res, next) => {
 
         res.render('gm_profileD.hbs', { 
             layout: 'gm_profile',
-            gm: gm,
+            gm: gmD,
             gender: genderList,
         })
     }catch(err){
@@ -101,11 +156,25 @@ const getstaffpage = async (req, res, next) => {
         if (!gm){
             return res.sendStatus(404)
         }
+        const gmD = {
+            check: true,
+            _id: gm._id,
+            Id: gm.Id,
+            FirstName: gm.FirstName,
+            LastName: gm.LastName,
+            Gender: gm.Gender,
+            Position: gm.Position,
+            Email: gm.Email,
+            ContactNumber: gm.ContactNumber,
+            Age: gm.Age,
+            Password: gm.Password,
+        }
         const staffList = await User.find({})
         var allStaffList = new Array()
         for (let i = 0; i < staffList.length; i++){
             var onestaff = await User.findById(staffList[i]._id).lean()
             allStaffList.push({
+                check: true,
                 gm_id: gm._id,
                 staff_id: onestaff._id,
                 FirstName: onestaff.FirstName,
@@ -127,6 +196,7 @@ const getstaffpage = async (req, res, next) => {
         for (let i = 0; i < managerList.length; i++){
             var onemanager = await Manager.findById(managerList[i]._id).lean()
             allStaffList.push({
+                check: true,
                 gm_id: gm._id,
                 staff_id: onemanager._id,
                 FirstName: onemanager.FirstName,
@@ -145,7 +215,7 @@ const getstaffpage = async (req, res, next) => {
 
         res.render('gm_staffD.hbs', { 
             layout: 'gm_staff',
-            gm: gm,
+            gm: gmD,
             StaffList: allStaffList,
             ManagerList: allmanagerList
         })
@@ -160,6 +230,19 @@ const getdepartmentpage = async (req, res, next) => {
         if (!gm){
             return res.sendStatus(404)
         }
+        const gmD = {
+            check: true,
+            _id: gm._id,
+            Id: gm.Id,
+            FirstName: gm.FirstName,
+            LastName: gm.LastName,
+            Gender: gm.Gender,
+            Position: gm.Position,
+            Email: gm.Email,
+            ContactNumber: gm.ContactNumber,
+            Age: gm.Age,
+            Password: gm.Password,
+        }
         const deList = await Department.find({})
         var alldeList = new Array()
         for (let i = 0; i < deList.length; i++){
@@ -168,7 +251,7 @@ const getdepartmentpage = async (req, res, next) => {
         }
         res.render('gm_departmentD.hbs', { 
             layout: 'gm_department',
-            gm: gm,
+            gm: gmD,
             DeList: alldeList
         })
     }catch(err){
@@ -179,14 +262,39 @@ const getdepartmentpage = async (req, res, next) => {
 const getstaffdetail = async (req, res, next) => {
     try {
         const gm = await GeneralManager.findById(req.params.generalManager_id).lean()
-        const onestaff = await User.findById(req.params.staff_id).lean()
+        let staff = await User.findById(req.params.staff_id).lean()
         if (!gm){
             return res.sendStatus(404)
         }
+        const gmD = {
+            check: true,
+            _id: gm._id,
+            Id: gm.Id,
+            FirstName: gm.FirstName,
+            LastName: gm.LastName,
+            Gender: gm.Gender,
+            Position: gm.Position,
+            Email: gm.Email,
+            ContactNumber: gm.ContactNumber,
+            Age: gm.Age,
+            Password: gm.Password,
+        }
+        if(!staff){
+            staff = await Manager.findById(req.params.staff_id).lean()
+            var availableDevicesList = new Array()
+        }else{
+            const AvailabledevicesArray = staff.AvailableDevices
+            var availableDevicesList = new Array()
+            for (let i = 0; i < AvailabledevicesArray.length; i++){
+                var onedeviceData = await Device.findById(AvailabledevicesArray[i]).lean()
+                availableDevicesList.push(onedeviceData)
+            }
+        }
         res.render('gm_staffdetailD.hbs', { 
             layout: 'gm_staffdetail',
-            gm: gm,
-            staff:onestaff
+            gm: gmD,
+            staff: staff,
+            availableDevices: availableDevicesList
         })
     }catch(err){
         return next(err)
@@ -280,6 +388,96 @@ const changePassword = async (req, res, next) => {
     }
 }
 
+const editdepartment = async (req, res, next) => {
+    try{
+        const gm = await GeneralManager.findById(req.params.generalManager_id).lean()
+        if (!gm) {
+            return res.sendStatus(404)
+        }
+        const deletede = req.body.deleDe
+        const newdeN = req.body.adddepart
+        if(deletede){
+             await Department.remove({DepartmentName: deletede}).lean()
+        }else{
+            const newde ={
+                DepartmentName: newdeN,
+                Devices: [],
+                Cocal: [],
+                Electricity: [],
+                Natural_Gas: [],
+                Hydrogen: [],
+                other: []
+            }
+    
+            const onedep = new Department(newde)
+            await Department.create(onedep).catch((err) => res.send(err))
+        }
+        return res.redirect('/generalmanager/' + gm._id + '/department')
+    }catch(err){
+        return next(err)
+    }
+}
+
+const editStaff = async (req, res, next) => {
+    try{
+        const gm = await GeneralManager.findById(req.params.generalManager_id).lean()
+        let staff = await User.findById(req.params.staff_id).lean()
+        if (!gm){
+            return res.sendStatus(404)
+        }
+        if(!staff){
+            staff = await Manager.findById(req.params.staff_id).lean()
+        }
+        const newDevice = req.body.newDeviceAdd
+        const deletDevice = req.body.deleDe
+        const deletStaff = req.body.deleteS
+        if(deletDevice){
+            const onedevice = await Device.findOne({Department: staff.Department, Device_name: deletDevice}).lean()
+            const AvailabledevicesArray = staff.AvailableDevices
+            var availableDevicesList = new Array()
+            for (let i = 0; i < AvailabledevicesArray.length; i++){
+                var onedeviceData = await Device.findById(AvailabledevicesArray[i]).lean()
+                if(onedevice.Device_name != onedeviceData.Device_name){
+                    availableDevicesList.push(onedeviceData._id)
+                }
+            }
+            staff.AvailableDevices = availableDevicesList
+            await User.replaceOne({_id: staff._id}, staff).catch((err) => res.send(err))
+            return res.redirect('/generalmanager/' + gm._id + '/' + staff._id + '/staffdetail')
+        }else if(newDevice){
+            const onedevice = await Device.findOne({Department: staff.Department, Device_name: newDevice}).lean()
+            staff.AvailableDevices.push(onedevice._id)
+            await User.replaceOne({_id: staff._id}, staff).catch((err) => res.send(err))
+            return res.redirect('/generalmanager/' + gm._id + '/' + staff._id + '/staffdetail')
+        }else if(deletStaff){
+            await User.remove({_id: staff._id}).lean()
+            return res.redirect('/generalmanager/' + gm._id + '/staff')
+        }
+    }catch(err){
+        return next(err)
+    }
+}
+
+const addnewDevice = async (req, res, next) => {
+    try{
+        const gm = await GeneralManager.findById(req.params.generalManager_id).lean()
+        const dname = req.body.deviceName
+        const type = req.body.energyType
+        const dDepart = req.body.device_area
+        console.log(req.files.imgfile)
+        if (!image) return res.sendStatus(400);
+
+        // Move the uploaded image to our upload folder
+        image.mv('/picture' + '/upload/' + image.jpeg);
+        if (!gm){
+            return res.sendStatus(404)
+        }
+        return res.redirect('/generalmanager/' + gm._id + '/devices')
+    }catch(err){
+        return next(err)
+    }
+}
+
 module.exports = {
     generalmanagerLogin,
     getaccoutPage,
@@ -291,5 +489,8 @@ module.exports = {
     generalmanagerOverview,
     createAccount,
     updatePersonalDetail,
-    changePassword
+    changePassword,
+    editdepartment,
+    editStaff,
+    addnewDevice
 }
