@@ -30,21 +30,95 @@ const generalmanagerOverview = async (req, res, next) => {
             Password: gm.Password,
         }
 
-        const allDevicesArray = await Device.find({})
-        var allDevicesList = new Array()
-        for (let i = 0; i < allDevicesArray.length; i++){
-            var onedeviceData = await Device.findById(allDevicesArray[i]).lean()
-            allDevicesList.push(onedeviceData)
+        const allDepartArray = await Department.find({})
+        var DepartmentName = new Array()
+        var elecUsage = new Array()
+        var coalUsage = new Array()
+        var hydrogenUsage = new Array()
+        var gasUsage = new Array()
+        var otherUsage =new Array()
+        for (let i = 0; i < allDepartArray.length; i++){
+            var onedepart = allDepartArray[i]
+            DepartmentName.push(onedepart.DepartmentName)
+            //electricity usage
+            let oneElecUsage = 0
+            for(let j = 0; j < onedepart.Electricity.length; j++){
+                var onedevice = await Device.findById(onedepart.Electricity[j]).lean()
+                oneElecUsage += onedevice.Week_Energy_Usage
+            }
+            elecUsage.push(oneElecUsage)
+            //cocal usage
+            let oneCoalUsage = 0
+            for(let j = 0; j < onedepart.Cocal.length; j++){
+                var onedevice = await Device.findById(onedepart.Cocal[j]).lean()
+                oneCoalUsage += onedevice.Week_Energy_Usage
+            }
+            coalUsage.push(oneCoalUsage)
+            //hydrogen usage
+            let oneHydrogenU = 0
+            for(let j = 0; j < onedepart.Hydrogen.length; j++){
+                var onedevice = await Device.findById(onedepart.Hydrogen[j]).lean()
+                oneHydrogenU += onedevice.Week_Energy_Usage
+            }
+            hydrogenUsage.push(oneHydrogenU)
+            //natural gas usage
+            let onegasUsage = 0
+            for(let j = 0; j < onedepart.Natural_Gas.length; j++){
+                var onedevice = await Device.findById(onedepart.Natural_Gas[j]).lean()
+                onegasUsage += onedevice.Week_Energy_Usage
+            }
+            gasUsage.push(onegasUsage)
+            //other usage
+            let oneotherUsage = 0
+            for(let j = 0; j < onedepart.other.length; j++){
+                var onedevice = await Device.findById(onedepart.other[j]).lean()
+                oneotherUsage += onedevice.Week_Energy_Usage
+            }
+            otherUsage.push(oneotherUsage)
+
+            var departmentUsage = {
+                electricity: elecUsage,
+                coal: coalUsage,
+                hydrogen: hydrogenUsage,
+                gas: gasUsage,
+                other: otherUsage,
+            }
+        }
+        var elecPercent = caculateoercentage(elecUsage);
+        var coalPercent = caculateoercentage(coalUsage);
+        var hydrogenPercent = caculateoercentage(hydrogenUsage);
+        var gasPercent = caculateoercentage(gasUsage);
+        var otherPercent = caculateoercentage(otherUsage);
+        var departmentUPercent = {
+            electricity: elecPercent,
+            coal: coalPercent,
+            hydrogen: hydrogenPercent,
+            gas: gasPercent,
+            other: otherPercent,
         }
 
         res.render('generalManager_areaD.hbs', {
             layout: 'generalManager_area',
             gm: gmD,
-            AllDeviceList: allDevicesList,
+            DepartName: DepartmentName,
+            DepartU: departmentUsage,
+            DepartP: departmentUPercent
         })
     }catch(err){
         return next(err)
     }
+}
+
+function caculateoercentage(a){
+    var total = 0
+    var b = new Array()
+    for(let i = 0; i < a.length; i++){
+        total += a[i]
+    }
+    for(let i = 0; i < a.length; i++){
+        b.push(a[i] /total)
+    }
+    return b
 }
 
 const getaccoutPage = async (req, res, next) => {
@@ -66,9 +140,16 @@ const getaccoutPage = async (req, res, next) => {
             Age: gm.Age,
             Password: gm.Password,
         }
+        const deList = await Department.find({})
+        var alldeList = new Array()
+        for (let i = 0; i < deList.length; i++){
+            var onede = await Department.findById(deList[i]._id).lean()
+            alldeList.push(onede)
+        }
         res.render('gm_accountD.hbs', { 
             layout: 'gm_account',
-            gm: gmD
+            gm: gmD,
+            deList: alldeList
         })
     }catch(err){
         return next(err)
@@ -397,7 +478,10 @@ const editdepartment = async (req, res, next) => {
         const deletede = req.body.deleDe
         const newdeN = req.body.adddepart
         if(deletede){
-             await Department.remove({DepartmentName: deletede}).lean()
+            await Device.deleteOne({Department: deletede}).lean()
+            await User.deleteOne({Department: deletede}).lean()
+            await Manager.deleteOne({Department: deletede}).lean()
+            await Department.deleteOne({DepartmentName: deletede}).lean()
         }else{
             const newde ={
                 DepartmentName: newdeN,
@@ -428,30 +512,101 @@ const editStaff = async (req, res, next) => {
         if(!staff){
             staff = await Manager.findById(req.params.staff_id).lean()
         }
-        const newDevice = req.body.newDeviceAdd
+        const newDevice = req.body.newDeviceAdd.toLowerCase()
         const deletDevice = req.body.deleDe
         const deletStaff = req.body.deleteS
         if(deletDevice){
             const onedevice = await Device.findOne({Department: staff.Department, Device_name: deletDevice}).lean()
+            //delete device in the user model
             const AvailabledevicesArray = staff.AvailableDevices
             var availableDevicesList = new Array()
             for (let i = 0; i < AvailabledevicesArray.length; i++){
-                var onedeviceData = await Device.findById(AvailabledevicesArray[i]).lean()
-                if(onedevice.Device_name != onedeviceData.Device_name){
-                    availableDevicesList.push(onedeviceData._id)
+                if(String(onedevice._id) != String(AvailabledevicesArray[i])){
+                    availableDevicesList.push(AvailabledevicesArray[i])
                 }
             }
             staff.AvailableDevices = availableDevicesList
+
+            //update the device model
+            const staffList = new Array()
+            for (let i = 0; i < onedevice.Staff.length; i++){
+                if(String(staff._id) != String(onedevice.Staff[i])){
+                    staffList.push(onedevice.Staff[i])
+                }
+            }
+            onedevice.Staff = staffList
+
+            await Device.replaceOne({_id: onedevice._id}, onedevice).catch((err) => res.send(err))
             await User.replaceOne({_id: staff._id}, staff).catch((err) => res.send(err))
             return res.redirect('/generalmanager/' + gm._id + '/' + staff._id + '/staffdetail')
         }else if(newDevice){
             const onedevice = await Device.findOne({Department: staff.Department, Device_name: newDevice}).lean()
+            //update staff data
             staff.AvailableDevices.push(onedevice._id)
+            //update device data
+            onedevice.Staff.push(staff._id)
+            await Device.replaceOne({_id: onedevice._id}, onedevice).catch((err) => res.send(err))
             await User.replaceOne({_id: staff._id}, staff).catch((err) => res.send(err))
             return res.redirect('/generalmanager/' + gm._id + '/' + staff._id + '/staffdetail')
         }else if(deletStaff){
             await User.remove({_id: staff._id}).lean()
             return res.redirect('/generalmanager/' + gm._id + '/staff')
+        }
+    }catch(err){
+        return next(err)
+    }
+}
+
+const deleteDevice = async (req, res, next) => {
+    try{
+        const gm = await GeneralManager.findById(req.params.generalManager_id).lean()
+        const deviceid = req.body.deletdevice
+        if(!deviceid){
+            return next();
+        }else{
+            const onedevice = await Device.findById(deviceid).lean()
+
+            //delete the data of this device in the department
+            const depart = await Department.findOne({Department: onedevice.Department}).lean()
+            const AvailabledevicesArray = depart.Devices
+            var availableDevicesList = new Array()
+            for (let i = 0; i < AvailabledevicesArray.length; i++){
+                if(String(onedevice._id) != String(AvailabledevicesArray[i])){
+                    availableDevicesList.push(AvailabledevicesArray[i])
+                }
+            }
+            depart.Devices = availableDevicesList
+        
+            //delete device in the array of energytype
+            if(onedevice.Energy_type == "electricity"){
+                const typearray = depart.Electricity
+                var typeList = new Array()
+                for (let i = 0; i < typearray.length; i++){
+                    if(String(onedevice._id) != String(typearray[i])){
+                        typeList.push(typearray[i])
+                    }
+                }
+                depart.Electricity = typeList
+            }
+            //update the department data
+            await Department.replaceOne({_id: depart._id}, depart).catch((err) => res.send(err))
+
+            //delete the device in the user model
+            const staffList = onedevice.Staff
+            for(let i = 0; i < onedevice.Staff.length; i++){
+                const onestaff = await User.findById(onedevice.Staff[i]).lean()
+                var onestaffDeviceList = new Array()
+                for(let j = 0; j < onestaff.AvailableDevices.length; j++){
+                    if(String(onedevice._id) != String(onestaff.AvailableDevices[j])){
+                        onestaffDeviceList.push(onestaff.AvailableDevices[j])
+                    }
+                }
+                onestaff.AvailableDevices = onestaffDeviceList
+                await User.replaceOne({_id: onestaff._id}, onestaff).catch((err) => res.send(err))
+            }
+
+            await Device.deleteOne({_id: deviceid}).lean()
+            return res.redirect('/generalmanager/' + gm._id + '/devices')
         }
     }catch(err){
         return next(err)
@@ -464,11 +619,13 @@ const addnewDevice = async (req, res, next) => {
         const dname = req.body.deviceName
         const type = req.body.energyType
         const dDepart = req.body.device_area
-        console.log(req.files.imgfile)
-        if (!image) return res.sendStatus(400);
+        const image = req.files.imgfile
+        if (!image){
+            return res.sendStatus(400);
+        }
 
         // Move the uploaded image to our upload folder
-        image.mv('/picture' + '/upload/' + image.jpeg);
+        //image.mv('/picture' + '/upload/' + image.jpeg);
         if (!gm){
             return res.sendStatus(404)
         }
@@ -492,5 +649,6 @@ module.exports = {
     changePassword,
     editdepartment,
     editStaff,
-    addnewDevice
+    addnewDevice,
+    deleteDevice,
 }

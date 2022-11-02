@@ -135,7 +135,9 @@ generalManagerRouter.post(
         }
         res.redirect('/generalManager')
     },
+    generalManagerController.deleteDevice,
     generalManagerController.addnewDevice
 )
+
 
 module.exports = generalManagerRouter;

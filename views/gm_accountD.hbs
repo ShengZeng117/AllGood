@@ -76,12 +76,10 @@
         <div id="thrline">
             <div id="departmentselect">
                 <span>Department:</span>
-                <select name="departmentBox" class="box" id="departmentBox" >
-                    <option value="IT">IT</option>
-                    <option value="Sales">Sales</option>
-                    <option value="Design">Design</option>
-                    <option value="Administration">Administration</option>
-                    <option value="HumanResources">Human Resources</option>
+                <select name="departmentBox" class="box" id="departmentBox">
+                    {{#each deList}}
+                    <option value={{this.DepartmentName}}>{{this.DepartmentName}}</option>
+                    {{/each}}
                 </select>
             </div>
             <div id="positionselect">

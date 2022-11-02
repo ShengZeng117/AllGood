@@ -42,15 +42,18 @@ function inittable(){
     tbody.innerHTML = "";
     let deviceHTML = "";
     for (i = 0; i<deviceDataList.length; i++){
-        deviceHTML += `<tr>
+        deviceHTML += `
+        <tr>
         <td>${deviceDataList[i].name}</td>
         <td>${deviceDataList[i].id}</td>
         <td>${deviceDataList[i].energytype}</td>
         <td>${deviceDataList[i].area}</td>
         <td>${deviceDataList[i].usage}</td>
         <td class="${deviceDataList[i].status}"></td>
-        <td><img src="/picture/delet.png" alt="" class="deletDevice"></td>
-    </tr>
+        <td><button name="deletdevice" value=${deviceDataList[i].id}>
+            <img class="delet_device" src="/picture/delet.png"></img>
+        </button></td>
+        </tr>
         `;
     }
     tbody.innerHTML = deviceHTML;

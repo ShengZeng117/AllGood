@@ -56,52 +56,103 @@
     </div>
 </div>
 <div class="content" id="over">
-    <div id="upperC">
+        <div id="upperC">
             <div id="fst">
             </div>
+            <form method="post">
             <div class="type1">
-                <label class="radio"><input type="radio" name="energy" value="electricity" checked="checked"><i></i>Electricity</label>
-                <label class="radio"><input type="radio" name="energy" value="water"><i></i>Water</label>
-                <label class="radio"><input type="radio" name="energy" value="naturalGas"><i></i>Natural Gas</label>
-                <label class="radio"><input type="radio" name="energy" value="hydrogen"><i></i>Hydrogen</label>
-                <label class="radio"><input type="radio" name="energy" value="other"><i></i>other</label>
+                <label class="radio"><input type="radio" name="energy" id="bar1" value="electricity" checked="checked" onclick=test("bar1")><i></i>Electricity</label>
+                <label class="radio"><input type="radio" name="energy" id="bar2" value="coal" onclick=test("bar2")><i></i>Coal</label>
+                <label class="radio"><input type="radio" name="energy" id="bar3" value="gas" onclick=test("bar3")><i></i>Natural Gas</label>
+                <label class="radio"><input type="radio" name="energy" id="bar4" value="hydrogen" onclick=test("bar4")><i></i>Hydrogen</label>
+                <label class="radio"><input type="radio" name="energy" id="bar5" value="other" onclick=test("bar5")><i></i>other</label>
             </div>
+            </form>
         </div>
-        <div id="lowerC">
+    <div id="lowerC">
             <div id="sec">
             </div>
-            <div class="type1">
-                <label class="radio"><input type="radio" name="energy1" value="electricity" checked="checked"><i></i>Electricity</label>
-                <label class="radio"><input type="radio" name="energy1" value="water"><i></i>Water</label>
-                <label class="radio"><input type="radio" name="energy1" value="naturalGas"><i></i>Natural Gas</label>
-                <label class="radio"><input type="radio" name="energy1" value="hydrogen"><i></i>Hydrogen</label>
-                <label class="radio"><input type="radio" name="energy1" value="other"><i></i>other</label>
+            <div class="type1" id="pie">
+                <label class="radio"><input type="radio" name="energy1"  id="pie1" value="electricity" checked="checked" onclick=test1("pie1")><i></i>Electricity</label>
+                <label class="radio"><input type="radio" name="energy1" id="pie2" value="coal" onclick=test1("pie2")><i></i>Coal</label>
+                <label class="radio"><input type="radio" name="energy1" id="pie3" value="gas" onclick=test1("pie3")><i></i>Natural Gas</label>
+                <label class="radio"><input type="radio" name="energy1" id="pie4" value="hydrogen" onclick=test1("pie4")><i></i>Hydrogen</label>
+                <label class="radio"><input type="radio" name="energy1" id="pie5" value="other" onclick=test1("pie5")><i></i>other</label>
         
             </div>
-        </div>
+    </div>
 </div>
 
-<script src="/js/PieCharts.js"></script>
-
 <script>
-    var usage_array = new Array();
+    var departname = new Array();
+    var usagepercent = new Array();
 </script>
 
-{{#each AllDeviceList}}
+{{#each DepartName}}
 <script>
-    usage_array.push({{this.Week_Energy_Usage}});
+    departname.push('{{this}}');
 </script>
 {{/each}}
 
-<script src="/js/barChart.js"></script>
-<script src="/js/managePage1.js"></script>
+{{#with DepartU}}
+<script>
+    var usage_array = new Array({{this.electricity}});
+    var typename;
+    var chart;
 
-    <script>
-        let firestaff = document.getElementById("firestaff");
-        firestaff.onclick = function(){
-            if(confirm("Are you sure?")){
-                console.log("111");
+    function test(a){
+        $("."+a).find("input[type='radio'").prop("checked",true);
+        let type = document.getElementsByName("energy");
+        for(let i = 0; i < type.length; i++){
+            if(type[i].checked == true){
+                typename = type[i].value;
             }
         }
-        
-    </script>
+        if(typename == "electricity"){
+            usage_array = new Array({{this.electricity}});
+        }else if(typename == "coal"){
+            usage_array = new Array({{this.coal}});
+        }else if(typename == "gas"){
+            usage_array = new Array({{this.gas}});
+        }else if(typename == "hydrogen"){
+            usage_array = new Array({{this.hydrogen}});
+        }else{
+            usage_array = new Array({{this.other}});
+        }
+
+        barcharts(departname, usage_array);
+    }
+</script>
+{{/with}}
+
+{{#with DepartP}}
+<script>
+    var percent_array = new Array();
+    var typeTName;
+    function test1(a){
+        $("."+a).find("input[type='radio'").prop("checked",true);
+        let type = document.getElementsByName("energy1");
+        for(let i = 0; i < type.length; i++){
+            if(type[i].checked == true){
+                typeTName = type[i].value;
+            }
+        }
+        if(typeTName == "electricity"){
+            percent_array = new Array({{this.electricity}});
+        }else if(typeTName == "coal"){
+            percent_array = new Array({{this.coal}});
+        }else if(typeTName == "gas"){
+            percent_array = new Array({{this.gas}});
+        }else if(typeTName == "hydrogen"){
+            percent_array = new Array({{this.hydrogen}});
+        }else{
+            percent_array = new Array({{this.other}});
+        }
+        getpie(departname, percent_array);
+    }
+</script>
+{{/with}}
+
+<script src="/js/gm_barchart.js"></script>
+<script src="/js/gm_PieCharts.js"></script>
+<script src="/js/managePage1.js"></script>

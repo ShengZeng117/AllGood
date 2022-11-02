@@ -51,9 +51,57 @@ const staffoverview = async (req, res, next) => {
         const department = await Department.findById(staff.DepartmentId).lean()
         const allDevicesArray = department.Devices
         var allDevicesList = new Array()
+        var elecdailyU = [0,0,0,0,0,0,0]
+        var coaldailyU = [0,0,0,0,0,0,0]
+        var hydailyU = [0,0,0,0,0,0,0]
+        var gasdailyU = [0,0,0,0,0,0,0]
+        var otherdailyU = [0,0,0,0,0,0,0]
         for (let i = 0; i < allDevicesArray.length; i++){
             var onedeviceData = await Device.findById(allDevicesArray[i]).lean()
             allDevicesList.push(onedeviceData)
+            var dailyU_array = onedeviceData.Daily_Energy_Usage
+            if(onedeviceData.Energy_type == "electricity"){
+                for(let i = 0; i < 7; i++){
+                    elecdailyU[i] += dailyU_array[i]
+                }
+            }else if(onedeviceData.Energy_type == "coal"){
+                for(let i = 0; i < 7; i++){
+                    coaldailyU[i] += dailyU_array[i]
+                }
+            }else if(onedeviceData.Energy_type == "gas"){
+                for(let i = 0; i < 7; i++){
+                    gasdailyU[i] += dailyU_array[i]
+                }
+            }else if(onedeviceData.Energy_type == "hydrogen"){
+                for(let i = 0; i < 7; i++){
+                    hydailyU[i] += dailyU_array[i]
+                }
+            }else{
+                for(let i = 0; i < 7; i++){
+                    otherdailyU[i] += dailyU_array[i]
+                }
+            }
+        }
+
+        var dailyUsage = {
+            electricity: elecdailyU,
+            coal: coaldailyU,
+            hydrogen: hydailyU,
+            gas: gasdailyU,
+            other: otherdailyU,
+        }
+
+        var elecPercent = caculateoercentage(elecdailyU);
+        var coalPercent = caculateoercentage(coaldailyU);
+        var hydrogenPercent = caculateoercentage(hydailyU);
+        var gasPercent = caculateoercentage(gasdailyU);
+        var otherPercent = caculateoercentage(otherdailyU);
+        var dailyUPercent = {
+            electricity: elecPercent,
+            coal: coalPercent,
+            hydrogen: hydrogenPercent,
+            gas: gasPercent,
+            other: otherPercent,
         }
 
 
@@ -63,10 +111,28 @@ const staffoverview = async (req, res, next) => {
             DeviceList: availableDevicesList,
             AllDeviceList: allDevicesList,
             gender: genderList,
+            dailyArray: dailyUsage,
+            dailyP: dailyUPercent
         })
     }catch(err){
         return next(err)
     }
+}
+
+function caculateoercentage(a){
+    var total = 0
+    var b = new Array()
+    for(let i = 0; i < a.length; i++){
+        total += a[i]
+    }
+    if(total == 0){
+        b = [0,0,0,0,0,0,0]
+    }else{
+        for(let i = 0; i < a.length; i++){
+            b.push(a[i] /total)
+        }
+    }
+    return b
 }
 
 

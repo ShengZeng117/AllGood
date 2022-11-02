@@ -82,7 +82,7 @@
         </div>
         <a href="#" id="resetFilter">RESET FILTERS</a>
     </div>
-
+    <form method="post">
     <table border="1" id="dataOverview">
         <thead>
             <th class="sort" data-key="name">Device</th>
@@ -93,23 +93,12 @@
             <th class="sort" data-key="status">Status</th>
                 
         </thead>
-        {{#each AllDeviceList}}
-        <tr>
-            <td>{{this.Device_name}}</td>
-            <td>{{this._id}}</td>
-            <td>{{this.Energy_type}}</td>
-            <td>{{this.Department}}</td>
-            <td>{{this.Week_Energy_Usage}}</td>
-            {{#if this.Status}}
-            <td class="on"></td>
-            {{else}}
-            <td class="off"></td>
-            {{/if}}
-            <td><img class="delet_device" src="/picture/delet.png"></img></td>
-        </tr>
-        {{/each}}
+        <tbody>
+
+        </tbody>
             
     </table>
+    </form>
         <table >
             <tr class="lastRow">
                 <td></td>
@@ -124,19 +113,19 @@
 
 <div class="content" id="addNewDevice">
         <div class="title"><span id="fst">Data</span><span id="secd">/Device's Addition</span></div>
-        <form action="" method="post">
         <div class="device">
+            <form action="" method="post" enctype="multipart/form-data">
             <div class="deviceInf">
                 <div>Device Name: <input type="text" name="deviceName" id="deviceName"></div>
-                <div>Energy Type: <input type="text" id="energyType"></div>
-                <div>Department: <input type="text" id="device_area"></div>
-                <input type="file" name="imgfile" id="imgfile" value="uploadImage">
+                <div>Energy Type: <input type="text" name="energyType" id="energyType"></div>
+                <div>Department: <input type="text" name="device_area" id="device_area"></div>
+                <input type="file" name="imgfile" id="imgfile" value="uploadImage" accept="image/*">
                 <div id="pseudo-style">Upload Image</div>
                 <button class="btn2" id="saveNewDevice">Save</button>
             </div>
+            </form>
             <div id="preview"></div>
         </div>
-        </form>
 </div>
 <script>
         var preview = document.getElementById("preview");
@@ -144,7 +133,6 @@
         var file = document.getElementById("imgfile");
 
         file.onchange = function() {
-        
             var fileReader = new FileReader();
             fileReader.readAsDataURL(this.files[0]);
             fileReader.onload = function() {

@@ -9,7 +9,8 @@ const schema = new mongoose.Schema({
     Status: Boolean,
     Department:{ type: String, required: true },
     Location: { type: String, required: true },
-    Daily_Energy_Usage: [Number]
+    Daily_Energy_Usage: [Number],
+    Staff: [mongoose.Schema.Types.ObjectId]
 
 }, {versionKey: false})
 const Devices = mongoose.model('Devices', schema)
