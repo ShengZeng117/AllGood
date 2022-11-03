@@ -41,7 +41,10 @@ function getSelectValue() {
     let tbody = document.querySelector("#dataOverview tbody");
     tbody.innerHTML = "";
     let deviceHTML = "";
-    for (i = 0; i < deviceDataList.length; i++) {
+    if（selectedValue == "all"）{
+        inittable();
+    }else{
+        for (i = 0; i < deviceDataList.length; i++) {
         let str1 = deviceDataList[i].energytype.toLowerCase().replace(/\s*/g,"");
         
         if(str1 == selectedValue){
@@ -58,6 +61,8 @@ function getSelectValue() {
         }
         tbody.innerHTML = deviceHTML;
     }
+    }
+    
 }
 
 
