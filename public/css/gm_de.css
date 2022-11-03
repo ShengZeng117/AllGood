@@ -163,10 +163,15 @@ body{
     line-height: 16px;
     cursor: pointer;
   }
-  
   .form-submit {
     text-align: center;
-  }
+    width: 88px;
+    border-radius: 7px;
+    height: 32px;
+    background-color: rgb(162, 213, 247);
+    border: none;
+}
+
   
 .lb{
     font: 28px/52px Arial;
@@ -175,13 +180,7 @@ body{
     font: 26px/52px Arial;
     text-align: center;
 }
-.form-submit{
-    margin-top: 2%;
-}
-.form-submit input{
-    width: 150px;
-    height: 30px;
-} 
+
 /* delet button in department part */
 .delet_device {
     float: right;
