@@ -62,7 +62,8 @@
             </div>
     </div>
 </div>
-
+<script src="/js/gm_barchart.js"></script>
+<script src="/js/gm_PieCharts.js"></script>
 <script>
     var departname = new Array();
     var usagepercent = new Array();
@@ -102,6 +103,8 @@
 
         barcharts(departname, usage_array);
     }
+    
+    barcharts(departname, usage_array);
 </script>
 {{/with}}
 
@@ -133,6 +136,5 @@
 </script>
 {{/with}}
 
-<script src="/js/gm_barchart.js"></script>
-<script src="/js/gm_PieCharts.js"></script>
+
 <script src="/js/managePage1.js"></script>
