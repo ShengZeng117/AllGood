@@ -98,10 +98,7 @@ body{
     line-height: 100px;
     margin-top: 20px;
 }
-#depa img{
-    position: absolute;
-    right: 10%;
-}
+
 .addDepa{
     height: 80px;
     display: flex;
@@ -185,3 +182,10 @@ body{
     width: 150px;
     height: 30px;
 } 
+/* delet button in department part */
+.delet_device {
+    float: right;
+    margin-right: 3%;
+    margin-top: 22px;
+    border: none;
+}
