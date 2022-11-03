@@ -36,6 +36,50 @@ function compare(key,sort){
     }
 }
 
+function filterTable(v1,v2){
+    let tbody = document.querySelector("#dataOverview tbody");
+    tbody.innerHTML = "";
+    let deviceHTML = "";
+    for (i = 0; i < deviceDataList.length; i++) {
+        let str1 = deviceDataList[i].area.toLowerCase().replace(/\s*/g,"");
+        let str2 = deviceDataList[i].energytype.toLowerCase().replace(/\s*/g,"");
+        if(str1 == v1 && str2 == v2 || str1 == v1 && v2 == "all" || v1=="all" && str2 ==v2){
+            console.log("1111");
+            deviceHTML += `
+            
+                <tr>
+                <td>${deviceDataList[i].name}</td>
+                <td>${deviceDataList[i].id}</td>
+                <td>${deviceDataList[i].energytype}</td>
+                <td>${deviceDataList[i].area}</td>
+                <td>${deviceDataList[i].usage}</td>
+                <td class="${deviceDataList[i].status}"></td>
+                <td><button name="deletdevice" value=${deviceDataList[i].id}>
+                    <img class="delet_device" src="/picture/delet.png"></img>
+                </button></td>
+                </tr>
+                `;
+        }
+        tbody.innerHTML = deviceHTML;
+}
+}
+function getSelectValue() {
+    var selectedValue = document.getElementById("area").value;
+    var selectedValue1 = document.getElementById("type").value;
+    console.log(selectedValue);
+    console.log(selectedValue1);
+    
+    if (selectedValue == "all" && selectedValue1 == "all"){
+        inittable();
+    }else{
+        filterTable(selectedValue,selectedValue1);    
+    }
+    
+    
+    
+}
+
+
 // creat table by deviceData
 function inittable(){
     let tbody = document.querySelector("#dataOverview tbody");
