@@ -36,34 +36,7 @@ function compare(key,sort){
     }
 }
 
-function getSelectValue() {
-    var selectedValue = document.getElementById("type").value;
-    let tbody = document.querySelector("#dataOverview tbody");
-    tbody.innerHTML = "";
-    let deviceHTML = "";
-    if（selectedValue == "all"）{
-        inittable();
-    }else{
-        for (i = 0; i < deviceDataList.length; i++) {
-        let str1 = deviceDataList[i].energytype.toLowerCase().replace(/\s*/g,"");
-        
-        if(str1 == selectedValue){
-            deviceHTML += `
-                <tr>
-                    <td>${deviceDataList[i].name}</td>
-                    <td>${deviceDataList[i].id}</td>
-                    <td>${deviceDataList[i].energytype}</td>
-                    <td>${deviceDataList[i].area}</td>
-                    <td>${deviceDataList[i].usage}</td>
-                    <td class="${deviceDataList[i].status}"></td>
-                </tr>
-                `;
-        }
-        tbody.innerHTML = deviceHTML;
-    }
-    }
-    
-}
+
 
 
 // creat table by deviceData
