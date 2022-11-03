@@ -101,10 +101,25 @@
                 <span class="info">Devices:</span>
                 {{#each availableDevices}}
                 <span id="staffDevice">{{this.Device_name}}</span>
-                <button style="border: none" name="deleDe" value="{{this.Device_name}}"><img src="/picture/delet.png"></img></button>
+                <button style="border: none" value="{{this.Device_name}}"><img src="/picture/delet.png"></img></button>
                 {{/each}}
                 <img src="/picture/add.png" alt="" id="addToStaff">
                 <input type="text" name="newDeviceAdd" id="newDeviceAdd">
+            </div>
+        </div>
+        <div id="s_mask" class="mask"></div>
+        <div id="s_formAdd" class="form-add">
+            <div class="form-add-title">
+                <span>Fire Staff</span>
+                <div id="j_hideFormAdd">x</div>
+            </div>
+            
+
+            <div class="form-submit">
+                <input type="button" value="Yes" id="yesBtn">
+            </div>
+            <div class="form-submit">
+                <input type="button" value="No" id="noBtn">
             </div>
         </div>
         <div id="bottom">
@@ -131,5 +146,28 @@ addToStaff.onclick = function(){
     
     
 }
+let fireStaff = document.getElementById("firestaff");
+let SMask = document.getElementById("s_mask");
+let SFormAdd = document.getElementById("s_formAdd");
+fireStaff.onclick = function(){
+    SMask.style.display = "block";
+    SFormAdd.style.display = "block";
+}
+
+function closeDeletPage(){
+    SMask.style.display = "none";
+    SFormAdd.style.display = "none";
+}
+let noBtn = document.getElementById("noBtn");
+noBtn.onclick = function(){
+    closeDeletPage();
+}
+
+let yesBtn = document.getElementById("yesBtn");
+yesBtn.onclick = function(){
+    closeDeletPage();
+}
+
+
 
 </script>

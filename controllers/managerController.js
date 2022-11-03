@@ -5,6 +5,7 @@ const Department = require('../models/Department')
 const User = require('../models/User')
 var uuid = require('node-uuid');
 var ImageM = require('../models/image');
+const { connect } = require('mongoose')
 
 const managerLogin = (req, res) => {
     res.render('manager_loginD.hbs', { layout: 'manager_login'})
@@ -57,7 +58,7 @@ const managerOverview = async (req, res, next) => {
             Department: am.Department,
             DepartmentId: am.DepartmentId
         }
-        const position = am.Position
+        /*const position = am.Position
         if (position == "Area"){
             const department = await Department.findById(am.DepartmentId).lean()
             const allDevicesArray = department.Devices
@@ -66,16 +67,92 @@ const managerOverview = async (req, res, next) => {
                 var onedeviceData = await Device.findById(allDevicesArray[i]).lean()
                 allDevicesList.push(onedeviceData)
             }
+        }*/
+
+        //find all the devices that are in this department
+        const department = await Department.findById(am.DepartmentId).lean()
+        const allDevicesArray = department.Devices
+        var allDevicesList = new Array()
+        var elecdailyU = [0,0,0,0,0,0,0]
+        var coaldailyU = [0,0,0,0,0,0,0]
+        var hydailyU = [0,0,0,0,0,0,0]
+        var gasdailyU = [0,0,0,0,0,0,0]
+        var otherdailyU = [0,0,0,0,0,0,0]
+        for (let i = 0; i < allDevicesArray.length; i++){
+            var onedeviceData = await Device.findById(allDevicesArray[i]).lean()
+            allDevicesList.push(onedeviceData)
+            var dailyU_array = onedeviceData.Daily_Energy_Usage
+            if(onedeviceData.Energy_type == "electricity"){
+                for(let i = 0; i < 7; i++){
+                    elecdailyU[i] += dailyU_array[i]
+                }
+            }else if(onedeviceData.Energy_type == "coal"){
+                for(let i = 0; i < 7; i++){
+                    coaldailyU[i] += dailyU_array[i]
+                }
+            }else if(onedeviceData.Energy_type == "gas"){
+                for(let i = 0; i < 7; i++){
+                    gasdailyU[i] += dailyU_array[i]
+                }
+            }else if(onedeviceData.Energy_type == "hydrogen"){
+                for(let i = 0; i < 7; i++){
+                    hydailyU[i] += dailyU_array[i]
+                }
+            }else{
+                for(let i = 0; i < 7; i++){
+                    otherdailyU[i] += dailyU_array[i]
+                }
+            }
         }
 
-        res.render('generalManager_areaD.hbs', {
-            layout: 'generalManager_area',
+        var dailyUsage = {
+            electricity: elecdailyU,
+            coal: coaldailyU,
+            hydrogen: hydailyU,
+            gas: gasdailyU,
+            other: otherdailyU,
+        }
+
+        var elecPercent = caculateoercentage(elecdailyU);
+        var coalPercent = caculateoercentage(coaldailyU);
+        var hydrogenPercent = caculateoercentage(hydailyU);
+        var gasPercent = caculateoercentage(gasdailyU);
+        var otherPercent = caculateoercentage(otherdailyU);
+        var dailyUPercent = {
+            electricity: elecPercent,
+            coal: coalPercent,
+            hydrogen: hydrogenPercent,
+            gas: gasPercent,
+            other: otherPercent,
+        }
+        console.log(elecPercent)
+
+        res.render('managerD.hbs', {
+            layout: 'manager',
             gm: amD,
             AllDeviceList: allDevicesList,
+            dailyArray: dailyUsage,
+            dailyP: dailyUPercent
         })
     }catch(err){
         return next(err)
     }
+}
+
+function caculateoercentage(a){
+    var total = 0
+    var b = new Array()
+    for(let i = 0; i < a.length; i++){
+        total += a[i]
+    }
+    if(total == 0){
+        b = [0,0,0,0,0,0,0]
+    }else{
+        for(let i = 0; i < a.length; i++){
+            b.push(a[i] /total)
+        }
+    }
+    return b
 }
 
 const getaccoutPage = async (req, res, next) => {
