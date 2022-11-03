@@ -4,6 +4,10 @@ const Department = require('../models/Department')
 const User = require('../models/User')
 const Manager = require('../models/Manager')
 var uuid = require('node-uuid');
+var ImageM = require('../models/image');
+var fs = require("fs");
+
+
 
 const generalmanagerLogin = (req, res) => {
     res.render('manager_loginD.hbs', { layout: 'manager_login'})
@@ -181,12 +185,20 @@ const getdevicesdata = async (req, res, next) => {
             var onedeviceData = await Device.findById(allDevicesArray[i]).lean()
             allDevicesList.push(onedeviceData)
         }
+
+        const deList = await Department.find({})
+        var alldeList = new Array()
+        for (let i = 0; i < deList.length; i++){
+            alldeList.push(deList[i].DepartmentName)
+        }
+
         const checkmanager = {gm: true}
         res.render('gm_dataD.hbs', {
             layout: 'gm_data',
             gm: gmD,
             checkm: checkmanager,
-            AllDeviceList: allDevicesList
+            AllDeviceList: allDevicesList,
+            alldeparList: alldeList,
         })
     }catch(err){
         return next(err)
@@ -435,10 +447,7 @@ const updatePersonalDetail = async (req, res, next) => {
         const contactN = req.body.Cnumber
         const gen = req.body.gender
 
-        if(!req.body.firstName){
-            return next()
-        }else if(firstN != gm.FirstName || lastN != gm.LastName || contactN != gm.ContactNumber || gen != gm.Gender){
-            console.log("personal")
+        if(firstN != gm.FirstName || lastN != gm.LastName || contactN != gm.ContactNumber || gen != gm.Gender){
             gm.FirstName = firstN
             gm.LastName = lastN
             gm.ContactNumber = contactN
@@ -616,19 +625,52 @@ const deleteDevice = async (req, res, next) => {
 const addnewDevice = async (req, res, next) => {
     try{
         const gm = await GeneralManager.findById(req.params.generalManager_id).lean()
-        const dname = req.body.deviceName
-        const type = req.body.energyType
-        const dDepart = req.body.device_area
-        const image = req.files.imgfile
-        if (!image){
-            return res.sendStatus(400);
-        }
-
-        // Move the uploaded image to our upload folder
-        //image.mv('/picture' + '/upload/' + image.jpeg);
         if (!gm){
             return res.sendStatus(404)
         }
+        const dname = req.body.deviceName.toLowerCase()
+        const type = req.body.typeBox
+        const dDepart = req.body.departmentBox
+        const image = req.files.imgfile.data.toString('base64')
+        var newimg = {
+            name: dname,
+            date: image,
+        }
+        const oneImage = new ImageM(newimg)
+        await ImageM.create(oneImage).catch((err) => res.send(err))
+
+        //create new device
+        const oneimg = await ImageM.findOne({name: dname}).lean()
+        var device = {
+            Device_name: dname,
+            Energy_type: type,
+            Department: dDepart,
+            Month_Energy_Usage: 0,
+            Week_Energy_Usage: 0,
+            Weekly_usage: [0,0,0,0,0,0],
+            Status: true,
+            Daily_Energy_Usage: [0,0,0,0,0,0,0],
+            staff: [],
+            image: oneimg._id,
+        }
+        const onedevice = new Device(device)
+        await Device.create(onedevice).catch((err) => res.send(err))
+        const newdevice = await Device.findOne({Device_name: dname}).lean()
+
+        const depart = await Department.findOne({DepartmentName: dDepart}).lean()
+        depart.Devices.push(newdevice._id)
+        if(type == "electricity"){
+            depart.Electricity.push(newdevice._id)
+        }else if(type == "coal"){
+            depart.Coal.push(newdevice._id)
+        }else if(type == "gas"){
+            depart.Natural_Gas.push(newdevice._id)
+        }else if(type == "hydrogen"){
+            depart.Hydrogen.push(newdevice._id)
+        }else{
+            depart.other.push(newdevice._id)
+        }
+        await Department.replaceOne({_id: depart._id}, depart).lean()
         return res.redirect('/generalmanager/' + gm._id + '/devices')
     }catch(err){
         return next(err)

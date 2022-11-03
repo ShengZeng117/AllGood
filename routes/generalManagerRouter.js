@@ -127,8 +127,9 @@ generalManagerRouter.post(
     },
     generalManagerController.editStaff
 )
+
 generalManagerRouter.post(
-    '/:generalManager_id/devices', 
+    '/:generalManager_id/devices',
     function managerLogin(req, res, next) {
         if (req){
             return next()

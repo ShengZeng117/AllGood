@@ -8,9 +8,10 @@ const schema = new mongoose.Schema({
     Weekly_usage: [Number],
     Status: Boolean,
     Department:{ type: String, required: true },
-    Location: { type: String, required: true },
+    Location: { type: String},
     Daily_Energy_Usage: [Number],
-    Staff: [mongoose.Schema.Types.ObjectId]
+    Staff: [mongoose.Schema.Types.ObjectId],
+    image: mongoose.Schema.Types.ObjectId
 
 }, {versionKey: false})
 const Devices = mongoose.model('Devices', schema)

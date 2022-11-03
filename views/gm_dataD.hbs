@@ -117,8 +117,24 @@
             <form action="" method="post" enctype="multipart/form-data">
             <div class="deviceInf">
                 <div>Device Name: <input type="text" name="deviceName" id="deviceName"></div>
-                <div>Energy Type: <input type="text" name="energyType" id="energyType"></div>
-                <div>Department: <input type="text" name="device_area" id="device_area"></div>
+                <div id="departmentselect">
+                <span>Department:</span>
+                <select name="departmentBox" class="box" id="departmentBox">
+                    {{#each alldeparList}}
+                    <option value={{this}}>{{this}}</option>
+                    {{/each}}
+                </select>
+                <div id="departmentselect">
+                <span>Energy Type:</span>
+                <select name="typeBox" class="box" id="typeBox">
+                    <option value="electricity">Electricity</option>
+                    <option value="coal">Coal</option>
+                    <option value="gas">NaturalGas</option>
+                    <option value="hydrogen">Hydrogen</option>
+                    <option value="other">Other</option>
+                </select>
+                </div>
+                </div>
                 <input type="file" name="imgfile" id="imgfile" value="uploadImage" accept="image/*">
                 <div id="pseudo-style">Upload Image</div>
                 <button class="btn2" id="saveNewDevice">Save</button>
@@ -137,6 +153,7 @@
             fileReader.readAsDataURL(this.files[0]);
             fileReader.onload = function() {
                 img.src = fileReader.result;
+                console.log(fileReader.result);
                 img.name = "upload";
                 img.style.width = "100%";
                 img.style.height = "91%";
