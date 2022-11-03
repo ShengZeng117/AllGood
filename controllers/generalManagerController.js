@@ -405,27 +405,41 @@ const createAccount = async (req, res, next) => {
         const Dep = await Department.findOne({DepartmentName: req.body.departmentBox}).lean()
 
 
-        const info = {
-            FirstName: req.body.firstNa,
-            LastName: req.body.lastNa,
-            Gender: req.body.genderbox,
-            Position: req.body.position,
-            Email: req.body.email,
-            EntryTime: new Date(),
-            ContactNumber: req.body.contactNumber,
-            StaffId: userid1,
-            Age: 0,
-            Password: '123456789',
-            AvailiableDevices: [],
-            Department: req.body.departmentBox,
-            DepartmentId: Dep._id
-        }
-
-        if(info.Position == 'Staff'){
+        if(req.body.position == 'Staff'){
+            const info = {
+                FirstName: req.body.firstNa,
+                LastName: req.body.lastNa,
+                Gender: req.body.genderbox,
+                Position: req.body.position,
+                Email: req.body.email,
+                EntryTime: new Date(),
+                ContactNumber: req.body.contactNumber,
+                StaffId: userid1,
+                Age: 0,
+                Password: '123456789',
+                AvailiableDevices: [],
+                Department: req.body.departmentBox,
+                DepartmentId: Dep._id
+            }
             const oneuser = new User(info)
             await User.create(oneuser).catch((err) => res.send(err))
             return res.redirect('/generalmanager/' + gm._id + '/createAccount')
         }else{
+            const info = {
+                FirstName: req.body.firstNa,
+                LastName: req.body.lastNa,
+                Gender: req.body.genderbox,
+                Position: req.body.position,
+                Email: req.body.email,
+                EntryTime: new Date(),
+                ContactNumber: req.body.contactNumber,
+                Id: userid1,
+                Age: 0,
+                Password: '123456789',
+                AvailiableDevices: [],
+                Department: req.body.departmentBox,
+                DepartmentId: Dep._id
+            }
             const onemanager = new Manager(info)
             await Manager.create(onemanager).catch((err) => res.send(err))
             return res.redirect('/generalmanager/' + gm._id + '/createAccounte')
@@ -446,7 +460,7 @@ const updatePersonalDetail = async (req, res, next) => {
         const lastN = req.body.lastName
         const contactN = req.body.Cnumber
         const gen = req.body.gender
-        
+
         if(firstN || lastN || contactN || gen){
             gm.FirstName = firstN
             gm.LastName = lastN
