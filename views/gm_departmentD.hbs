@@ -57,12 +57,12 @@
 </div>
 
 <div class="content" id="depa">
-        <form method="post">
+    <form action="" method="post">
         <div id="departmentset">
             <div class="departmentEle" id="headDepa">Department Name </div>
             {{#each DeList}}
             <div class="departmentEle">{{this.DepartmentName}}
-            <button class="delet_device" name="deleDe" value="{{this.DepartmentName}}"><img src="/picture/delet.png"></img></button>
+                <button class="delet_device" name="deleDe" id="deleDe" value="{{this.DepartmentName}}"><img src="/picture/delet.png"></img></button>
             </div>
             {{/each}}
         </div>
@@ -90,6 +90,21 @@
             <button class="form-submit" id="j_btnAdd">add</button>
     </div>
 </form>
+<div id="s_mask" class="mask"></div>
+        <div id="s_formAdd" class="form-add">
+            <div class="form-add-title">
+                <span>Fire Staff</span>
+                <div id="j_hideFormAdd">x</div>
+            </div>
+            <span>Are you sure you want to delet this department?</span>
+
+            <div class="form-submit">
+                <button class="form-submit" name="deleDe" id="yesBtn" value="1">Yes</button>
+            </div>
+            <div class="form-submit">
+                <button class="form-submit" id="noBtn">No</button>
+            </div>
+        </div>
 
 <script>
     let mask = document.getElementById('a_mask');
@@ -104,7 +119,7 @@
         formAdd.style.display="none";
     }
 
-    let all_a_delDepa = document.getElementsByClassName("delet_device");
+    /*let all_a_delDepa = document.getElementsByClassName("delet_device");
 
     for (var i = 0; i < all_a_delDepa.length; i++) {
         all_a_delDepa[i].onclick = function () {
@@ -113,7 +128,33 @@
         
         
             if (confirm("Do you want to remove this department?")) {
-            };
+
+            }else{
+                deleDepartment.value = "";
+            }
         };
-    };
+    };*/
+</script>
+<script>
+    let fireStaff = document.getElementById("deleDepart");
+    let SMask = document.getElementById("s_mask");
+    let SFormAdd = document.getElementById("s_formAdd");
+    fireStaff.onclick = function(){
+        SMask.style.display = "block";
+        SFormAdd.style.display = "block";
+    }
+
+    function closeDeletPage(){
+        SMask.style.display = "none";
+        SFormAdd.style.display = "none";
+    }
+    let noBtn = document.getElementById("noBtn");
+    noBtn.onclick = function(){
+        closeDeletPage();
+    }
+
+    let yesBtn = document.getElementById("yesBtn");
+    yesBtn.onclick = function(){
+        closeDeletPage();
+    }
 </script>

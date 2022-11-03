@@ -62,8 +62,6 @@
             </div>
     </div>
 </div>
-<script src="/js/gm_barchart.js"></script>
-<script src="/js/gm_PieCharts.js"></script>
 <script>
     var departname = new Array();
     var usagepercent = new Array();
@@ -75,12 +73,13 @@
 </script>
 {{/each}}
 
+<script src="/js/gm_barchart.js"></script>
+
 {{#with DepartU}}
 <script>
     var usage_array = new Array({{this.electricity}});
     var typename;
     var chart;
-    
     function test(a){
         $("."+a).find("input[type='radio'").prop("checked",true);
         let type = document.getElementsByName("energy");
@@ -108,9 +107,10 @@
 </script>
 {{/with}}
 
+<script src="/js/gm_PieCharts.js"></script>
 {{#with DepartP}}
 <script>
-    var percent_array = new Array();
+    var percent_array = new Array({{this.electricity}});
     var typeTName;
     function test1(a){
         $("."+a).find("input[type='radio'").prop("checked",true);

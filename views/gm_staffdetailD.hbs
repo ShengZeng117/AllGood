@@ -113,20 +113,23 @@
                 <span>Fire Staff</span>
                 <div id="j_hideFormAdd">x</div>
             </div>
-            
+            <span>Are you sure you want to delet this staff?</span>
 
             <div class="form-submit">
-                <input type="button" value="Yes" id="yesBtn">
+                <button class="form-submit" name="deleteS" id="yesBtn" value="1">Yes</button>
             </div>
             <div class="form-submit">
-                <input type="button" value="No" id="noBtn">
+                <button class="form-submit" id="noBtn">No</button>
             </div>
         </div>
         <div id="bottom">
             <button id="saveChanges" disabled>Save</button>
-            <button id="firestaff" name="deleteS" value="1">Delete</button>
+            <input type="button" value="Delete" id="firestaff">
         </div>
     </form>
+    <!--div id="bottom">
+        <button id="firestaff" value="">Delete</button>
+    </div-->
 </div>
 
 <script>

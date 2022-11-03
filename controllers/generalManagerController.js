@@ -505,7 +505,7 @@ const editdepartment = async (req, res, next) => {
             await User.deleteOne({Department: deletede}).lean()
             await Manager.deleteOne({Department: deletede}).lean()
             await Department.deleteOne({DepartmentName: deletede}).lean()
-        }else{
+        }else if(newdeN){
             const newde ={
                 DepartmentName: newdeN,
                 Devices: [],
@@ -542,6 +542,7 @@ const editStaff = async (req, res, next) => {
         const newDevice = req.body.newDeviceAdd.toLowerCase()
         const deletDevice = req.body.deleDe
         const deletStaff = req.body.deleteS
+        console.log(deletStaff)
         if(deletDevice){
             const onedevice = await Device.findOne({Department: staff.Department, Device_name: deletDevice}).lean()
             //delete device in the user model
@@ -578,6 +579,8 @@ const editStaff = async (req, res, next) => {
         }else if(deletStaff){
             await User.remove({_id: staff._id}).lean()
             return res.redirect('/generalmanager/' + gm._id + '/staff')
+        }else{
+            return res.redirect('/generalmanager/' + gm._id + '/' + staff._id + '/staffdetail')
         }
     }catch(err){
         return next(err)

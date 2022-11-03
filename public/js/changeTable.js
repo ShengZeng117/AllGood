@@ -65,14 +65,3 @@ let area_1 = document.getElementById("area");
 
 
 inittable();
-
-var deleBtn = document.getElementsByClassName('deletDevice');
-    
-    for (var i = 0; i < deleBtn.length; i++) {
-        deleBtn[i].onclick = function () {
-            if(confirm("Do you want to remove this device?")){
-            }
-            
-        }
-    }
-    var deviceDataList = new Array();

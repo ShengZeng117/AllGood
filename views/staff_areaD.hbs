@@ -46,6 +46,7 @@
     var usagepercent = new Array();
 </script>
 
+<script src="/js/barChart.js"></script>
 {{#with dailyArray}}
 <script>
     var usage_array = new Array({{this.electricity}});
@@ -74,8 +75,11 @@
 
         barcharts(usage_array);
     }
+    barcharts(usage_array);
 </script>
 {{/with}}
+
+<script src="/js/PieChart.js"></script>
 
 {{#with dailyP}}
 <script>
@@ -103,10 +107,9 @@
         }
         getpie(percent_array);
     }
+    getpie(percent_array);
 </script>
 {{/with}}
-<script src="/js/PieChart.js"></script>
-<script src="/js/barChart.js"></script>
 
 <div class="content" id="usag">
     {{#each DeviceList}}
