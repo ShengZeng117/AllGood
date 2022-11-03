@@ -446,8 +446,8 @@ const updatePersonalDetail = async (req, res, next) => {
         const lastN = req.body.lastName
         const contactN = req.body.Cnumber
         const gen = req.body.gender
-
-        if(firstN != gm.FirstName || lastN != gm.LastName || contactN != gm.ContactNumber || gen != gm.Gender){
+        
+        if(firstN || lastN || contactN || gen){
             gm.FirstName = firstN
             gm.LastName = lastN
             gm.ContactNumber = contactN
