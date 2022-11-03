@@ -170,6 +170,7 @@ body{
     height: 32px;
     background-color: rgb(162, 213, 247);
     border: none;
+    margin-top: 10px;
 }
 .form-submit input{
     width: 150px;
