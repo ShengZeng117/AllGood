@@ -222,13 +222,13 @@ body{
 }
 
 
-.form-submit input {
+.form-submit button {
     width: 150px;
     height: 65%;
     border-radius: 10px;
     border:none;
 
 }
-.form-submit input:hover{
+.form-submit button:hover{
     background-color: rgb(173, 228, 253);
 }   
