@@ -79,7 +79,7 @@
     var usage_array = new Array({{this.electricity}});
     var typename;
     var chart;
-
+    barcharts(departname, usage_array);
     function test(a){
         $("."+a).find("input[type='radio'").prop("checked",true);
         let type = document.getElementsByName("energy");
