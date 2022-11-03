@@ -153,7 +153,13 @@ body{
     margin-left:0;
     display:none;
 }
-#s_mask {
+
+
+
+/*
+出现弹窗和遮盖层
+*/
+ #s_mask {
     width: 100vw;
     height: 100vh;
     position: absolute;
@@ -162,9 +168,9 @@ body{
     background: #000;
     opacity: 0.15;
     display: none;
-  }
-  
-  .form-add {
+}
+
+.form-add {
     position: fixed;
     top: 30%;
     left: 50%;
@@ -174,17 +180,17 @@ body{
     width: 20%;
     height: 20%;
     text-align: center;
-  }
-  
-  .form-add-title {
+}
+
+.form-add-title {
     background-color: #f7f7f7;
     border-width: 1px 1px 0 1px;
     border-bottom: 0;
     margin-bottom: 15px;
     position: relative;
-  }
-  
-  .form-add-title span {
+}
+
+.form-add-title span {
     font-size: 16px;
     font-weight: bold;
     color: rgb(102, 102, 102);
@@ -194,9 +200,9 @@ body{
     display: block;
     overflow: hidden;
     text-align: left;
-  }
-  
-  .form-add-title div {
+}
+
+.form-add-title div {
     width: 16px;
     height: 20px;
     position: absolute;
@@ -205,16 +211,24 @@ body{
     font-size: 30px;
     line-height: 16px;
     cursor: pointer;
-  }
-  
-  .form-submit {
+}
+
+.form-submit {
     text-align: center;
     display: flex;
     justify-content: center;
-  }
-  
+    height: 40%;
+    align-items: center;
+}
 
-.form-submit input{
+
+.form-submit input {
     width: 150px;
-    height: 30px;
-} 
+    height: 65%;
+    border-radius: 10px;
+    border:none;
+
+}
+.form-submit input:hover{
+    background-color: rgb(173, 228, 253);
+}   

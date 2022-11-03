@@ -254,3 +254,20 @@ body{
     position: relative;
     top: -14px;
 }
+
+
+/*add device 里的department input和energytype input*/
+.box {
+    width: 40%;
+    height: 40px;
+    font: 25px/40px Arial;
+    padding-left: 10px;
+    border-radius: 5px;
+    position: relative;
+}
+#departmentBox {
+    right: -80px;
+}
+#typeBox {
+    right: -66px;
+}
