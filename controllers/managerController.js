@@ -4,6 +4,7 @@ const Device = require('../models/Devices')
 const Department = require('../models/Department')
 const User = require('../models/User')
 var uuid = require('node-uuid');
+var ImageM = require('../models/image');
 
 const managerLogin = (req, res) => {
     res.render('manager_loginD.hbs', { layout: 'manager_login'})
@@ -129,7 +130,7 @@ const getdevicesdata = async (req, res, next) => {
             DepartmentId: gm.DepartmentId
         }
 
-        const allDevicesArray = await Device.find({})
+        const allDevicesArray = await Device.find({Department: gm.Department})
         var allDevicesList = new Array()
         for (let i = 0; i < allDevicesArray.length; i++){
             var onedeviceData = await Device.findById(allDevicesArray[i]).lean()
@@ -284,7 +285,7 @@ const getdepartmentpage = async (req, res, next) => {
 const getstaffdetail = async (req, res, next) => {
     try {
         const gm = await Manager.findById(req.params.manager_id).lean()
-        const onestaff = await User.findById(req.params.staff_id).lean()
+        const staff = await User.findById(req.params.staff_id).lean()
         if (!gm){
             return res.sendStatus(404)
         }
@@ -303,10 +304,17 @@ const getstaffdetail = async (req, res, next) => {
             Department: gm.Department,
             DepartmentId: gm.DepartmentId
         }
+        const AvailabledevicesArray = staff.AvailableDevices
+            var availableDevicesList = new Array()
+            for (let i = 0; i < AvailabledevicesArray.length; i++){
+                var onedeviceData = await Device.findById(AvailabledevicesArray[i]).lean()
+                availableDevicesList.push(onedeviceData)
+            }
         res.render('gm_staffdetailD.hbs', { 
             layout: 'gm_staffdetail',
             gm: gmD,
-            staff:onestaff
+            staff: staff,
+            availableDevices: availableDevicesList
         })
     }catch(err){
         return next(err)
@@ -347,6 +355,212 @@ const createAccount = async (req, res, next) => {
     }
 }
 
+const updatePersonalDetail = async (req, res, next) => {
+    try{
+        const gm = await Manager.findById(req.params.manager_id).lean()
+        if (!gm) {
+            return res.sendStatus(404)
+        }
+        const firstN = req.body.firstName
+        const lastN = req.body.lastName
+        const contactN = req.body.Cnumber
+        const gen = req.body.gender
+
+        if(firstN != gm.FirstName || lastN != gm.LastName || contactN != gm.ContactNumber || gen != gm.Gender){
+            gm.FirstName = firstN
+            gm.LastName = lastN
+            gm.ContactNumber = contactN
+            gm.Gender = gen
+            await Manager.replaceOne({_id: gm._id}, gm).catch((err) => res.send(err))
+
+            return res.redirect('/manager/' + gm._id + '/profile')
+        }else{
+            return next()
+        }
+    }catch(err){
+        return next(err)
+    }
+}
+
+const changePassword = async (req, res, next) => {
+    try{
+        const gm = await Manager.findById(req.params.manager_id).lean()
+        if (!gm) {
+            return res.sendStatus(404)
+        }
+        const newP = req.body.newPassword
+        gm.Password = newP
+        await Manager.replaceOne({_id: gm._id}, gm).catch((err) => res.send(err))
+        return res.redirect('/manager/' + gm._id + '/profile')
+    }catch(err){
+        return next(err)
+    }
+}
+
+const editStaff = async (req, res, next) => {
+    try{
+        const gm = await Manager.findById(req.params.manager_id).lean()
+        let staff = await User.findById(req.params.staff_id).lean()
+        if (!gm){
+            return res.sendStatus(404)
+        }
+        const newDevice = req.body.newDeviceAdd.toLowerCase()
+        const deletDevice = req.body.deleDe
+        const deletStaff = req.body.deleteS
+        if(deletDevice){
+            const onedevice = await Device.findOne({Department: staff.Department, Device_name: deletDevice}).lean()
+            //delete device in the user model
+            const AvailabledevicesArray = staff.AvailableDevices
+            var availableDevicesList = new Array()
+            for (let i = 0; i < AvailabledevicesArray.length; i++){
+                if(String(onedevice._id) != String(AvailabledevicesArray[i])){
+                    availableDevicesList.push(AvailabledevicesArray[i])
+                }
+            }
+            staff.AvailableDevices = availableDevicesList
+
+            //update the device model
+            const staffList = new Array()
+            for (let i = 0; i < onedevice.Staff.length; i++){
+                if(String(staff._id) != String(onedevice.Staff[i])){
+                    staffList.push(onedevice.Staff[i])
+                }
+            }
+            onedevice.Staff = staffList
+
+            await Device.replaceOne({_id: onedevice._id}, onedevice).catch((err) => res.send(err))
+            await User.replaceOne({_id: staff._id}, staff).catch((err) => res.send(err))
+            return res.redirect('/manager/' + gm._id + '/' + staff._id + '/staffdetail')
+        }else if(newDevice){
+            const onedevice = await Device.findOne({Department: staff.Department, Device_name: newDevice}).lean()
+            //update staff data
+            staff.AvailableDevices.push(onedevice._id)
+            //update device data
+            onedevice.Staff.push(staff._id)
+            await Device.replaceOne({_id: onedevice._id}, onedevice).catch((err) => res.send(err))
+            await User.replaceOne({_id: staff._id}, staff).catch((err) => res.send(err))
+            return res.redirect('/manager/' + gm._id + '/' + staff._id + '/staffdetail')
+        }else if(deletStaff){
+            await User.remove({_id: staff._id}).lean()
+            return res.redirect('/manager/' + gm._id + '/staff')
+        }
+    }catch(err){
+        return next(err)
+    }
+}
+
+const deleteDevice = async (req, res, next) => {
+    try{
+        const gm = await Manager.findById(req.params.manager_id).lean()
+        const deviceid = req.body.deletdevice
+        if(!deviceid){
+            return next();
+        }else{
+            const onedevice = await Device.findById(deviceid).lean()
+
+            //delete the data of this device in the department
+            const depart = await Department.findOne({Department: onedevice.Department}).lean()
+            const AvailabledevicesArray = depart.Devices
+            var availableDevicesList = new Array()
+            for (let i = 0; i < AvailabledevicesArray.length; i++){
+                if(String(onedevice._id) != String(AvailabledevicesArray[i])){
+                    availableDevicesList.push(AvailabledevicesArray[i])
+                }
+            }
+            depart.Devices = availableDevicesList
+        
+            //delete device in the array of energytype
+            if(onedevice.Energy_type == "electricity"){
+                const typearray = depart.Electricity
+                var typeList = new Array()
+                for (let i = 0; i < typearray.length; i++){
+                    if(String(onedevice._id) != String(typearray[i])){
+                        typeList.push(typearray[i])
+                    }
+                }
+                depart.Electricity = typeList
+            }
+            //update the department data
+            await Department.replaceOne({_id: depart._id}, depart).catch((err) => res.send(err))
+
+            //delete the device in the user model
+            const staffList = onedevice.Staff
+            for(let i = 0; i < onedevice.Staff.length; i++){
+                const onestaff = await User.findById(onedevice.Staff[i]).lean()
+                var onestaffDeviceList = new Array()
+                for(let j = 0; j < onestaff.AvailableDevices.length; j++){
+                    if(String(onedevice._id) != String(onestaff.AvailableDevices[j])){
+                        onestaffDeviceList.push(onestaff.AvailableDevices[j])
+                    }
+                }
+                onestaff.AvailableDevices = onestaffDeviceList
+                await User.replaceOne({_id: onestaff._id}, onestaff).catch((err) => res.send(err))
+            }
+
+            await Device.deleteOne({_id: deviceid}).lean()
+            return res.redirect('/manager/' + gm._id + '/devices')
+        }
+    }catch(err){
+        return next(err)
+    }
+}
+
+const addnewDevice = async (req, res, next) => {
+    try{
+        const gm = await Manager.findById(req.params.manager_id).lean()
+        if (!gm){
+            return res.sendStatus(404)
+        }
+        const dname = req.body.deviceName.toLowerCase()
+        const type = req.body.typeBox
+        const dDepart = req.body.departmentBox
+        const image = req.files.imgfile.data.toString('base64')
+        var newimg = {
+            name: dname,
+            date: image,
+        }
+        const oneImage = new ImageM(newimg)
+        await ImageM.create(oneImage).catch((err) => res.send(err))
+
+        //create new device
+        const oneimg = await ImageM.findOne({name: dname}).lean()
+        var device = {
+            Device_name: dname,
+            Energy_type: type,
+            Department: dDepart,
+            Month_Energy_Usage: 0,
+            Week_Energy_Usage: 0,
+            Weekly_usage: [0,0,0,0,0,0],
+            Status: true,
+            Daily_Energy_Usage: [0,0,0,0,0,0,0],
+            staff: [],
+            image: oneimg._id,
+        }
+        const onedevice = new Device(device)
+        await Device.create(onedevice).catch((err) => res.send(err))
+        const newdevice = await Device.findOne({Device_name: dname}).lean()
+
+        const depart = await Department.findOne({DepartmentName: dDepart}).lean()
+        depart.Devices.push(newdevice._id)
+        if(type == "electricity"){
+            depart.Electricity.push(newdevice._id)
+        }else if(type == "coal"){
+            depart.Coal.push(newdevice._id)
+        }else if(type == "gas"){
+            depart.Natural_Gas.push(newdevice._id)
+        }else if(type == "hydrogen"){
+            depart.Hydrogen.push(newdevice._id)
+        }else{
+            depart.other.push(newdevice._id)
+        }
+        await Department.replaceOne({_id: depart._id}, depart).lean()
+        return res.redirect('/manager/' + gm._id + '/devices')
+    }catch(err){
+        return next(err)
+    }
+}
+
+
 module.exports = {
     managerLogin,
     managerOverview,
@@ -357,5 +571,10 @@ module.exports = {
     getstaffdetail,
     getdepartmentpage,
     getmanagerID,
-    createAccount
+    createAccount,
+    updatePersonalDetail,
+    changePassword,
+    editStaff,
+    deleteDevice,
+    addnewDevice
 }

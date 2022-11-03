@@ -143,6 +143,7 @@
             <div id="preview"></div>
         </div>
 </div>
+
 <script>
         var preview = document.getElementById("preview");
         var img = document.createElement("img"); 
@@ -171,21 +172,21 @@ addDevice.onclick = function(){
     addDevicePage.style.display = "flex";
 }
 //finish adding device, turn back to data page
-var del_btn = document.createElement("img");
+/*var del_btn = document.createElement("img");
 del_btn.onclick = function(){
     if(confirm("Do you want to remove this device?")){
         this.parentElement.parentElement.remove();
     }
         
-}
+}*/
+</script>
 
-
-    var deleBtn = document.getElementsByClassName('deletDevice');
+<script>
+var deleBtn = document.getElementsByClassName('deletDevice');
     
     for (var i = 0; i < deleBtn.length; i++) {
         deleBtn[i].onclick = function () {
             if(confirm("Do you want to remove this device?")){
-                this.parentElement.parentElement.remove();
             }
             
         }
@@ -207,4 +208,5 @@ del_btn.onclick = function(){
     deviceDataList.push(oneD);
 </script>
 {{/each}}
+
 <script src="/js/changeTable.js"></script>

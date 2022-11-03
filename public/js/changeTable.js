@@ -50,7 +50,7 @@ function inittable(){
         <td>${deviceDataList[i].area}</td>
         <td>${deviceDataList[i].usage}</td>
         <td class="${deviceDataList[i].status}"></td>
-        <td><button name="deletdevice" value=${deviceDataList[i].id}>
+        <td><button class="deletdevice" name="deletdevice" value=${deviceDataList[i].id}>
             <img class="delet_device" src="/picture/delet.png"></img>
         </button></td>
         </tr>
@@ -65,3 +65,14 @@ let area_1 = document.getElementById("area");
 
 
 inittable();
+
+var deleBtn = document.getElementsByClassName('deletDevice');
+    
+    for (var i = 0; i < deleBtn.length; i++) {
+        deleBtn[i].onclick = function () {
+            if(confirm("Do you want to remove this device?")){
+            }
+            
+        }
+    }
+    var deviceDataList = new Array();

@@ -95,7 +95,7 @@
                     <td>{{this.LastName}}</td>
                     <td>{{this.Department}}</td>
                     <td>{{this.Position}}</td>
-                    <td>{{this.StaffId}}</td>
+                    <td>{{this.Id}}</td>
                     <td>{{this.Email}}</td>
                     <td>{{this.ContactNumber}}</td>
                 </tr>
@@ -103,35 +103,3 @@
             </tbody>
         </table>
     </div>
-
-<script>
-    let staffDetail=document.getElementsByClassName("staffDetail");
-
-for (link of staffDetail){
-    link.onclick = function(){
-
-        staf.style.display = "none";
-        staffDetailPage.style.display = "flex";
-        
-    }
-}
-
-let staffDevice = document.getElementById("staffDevice");
-let saveChanges = document.getElementById("saveChanges");
-let addToStaff = document.getElementById("addToStaff");
-let newDeviceAdd = document.getElementById("newDeviceAdd");
-addToStaff.onclick = function(){
-    newDeviceAdd.style.display = "inline-block";
-    saveChanges.removeAttribute('disabled');
-    saveChanges.onclick = function(){
-        staffDevice.textContent += ", ";
-        staffDevice.textContent += newDeviceAdd.value;
-        newDeviceAdd.style.display = "none";
-        newDeviceAdd.value = "";
-        
-    }
-    
-    
-}
-
-</script>

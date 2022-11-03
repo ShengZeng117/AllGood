@@ -298,7 +298,7 @@ const getstaffpage = async (req, res, next) => {
                 Position: onemanager.Position,
                 Email: onemanager.Email,
                 ContactNumber: onemanager.ContactNumber,
-                StaffId: onemanager.StaffId,
+                StaffId: onemanager.Id,
                 Age: onemanager.Age,
                 Password: onemanager.Password,
                 Department: onemanager.Department,
@@ -520,6 +520,10 @@ const editStaff = async (req, res, next) => {
         }
         if(!staff){
             staff = await Manager.findById(req.params.staff_id).lean()
+            if(req.body.deleteS){
+                await Manager.remove({_id: staff._id}).lean()
+                return res.redirect('/generalmanager/' + gm._id + '/staff')
+            }
         }
         const newDevice = req.body.newDeviceAdd.toLowerCase()
         const deletDevice = req.body.deleDe

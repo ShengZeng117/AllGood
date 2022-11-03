@@ -3,7 +3,7 @@ const Department = require('./Department')
 const ObjectId = require('mongoose').ObjectId
 
 const schema = new mongoose.Schema({
-    StaffId: { type: String, required: true },
+    Id: { type: String, required: true },
     FirstName: { type: String, required: true },
     LastName: { type: String, required: true },
     Age: Number,
