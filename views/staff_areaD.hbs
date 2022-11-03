@@ -352,13 +352,20 @@
 
 {{#each AllDeviceList}}
 <script>
+    var crrstatus = {{this.Status}};
+    var st;
+    if(crrstatus == true){
+        st = "on"
+    }else{
+        st = "off"
+    }
     var oneD = {
         name: '{{this.Device_name}}',
         id: '{{this._id}}',
         energytype: '{{this.Energy_type}}',
         area: '{{this.Department}}',
         usage: {{this.Week_Energy_Usage}},
-        status: {{this.Status}}
+        status: st,
     };
 
     deviceDataList.push(oneD);
