@@ -171,6 +171,11 @@ body{
     background-color: rgb(162, 213, 247);
     border: none;
 }
+.form-submit input{
+    width: 150px;
+    height: 30px;
+    background-color: rgb(162, 213, 247);
+} 
 
   
 .lb{
