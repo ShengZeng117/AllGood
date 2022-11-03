@@ -60,7 +60,7 @@
     <div class="topFilter">
         <div>
             <span>Area:</span>
-            <select name="area" class="box" id="area">
+            <select name="area" class="box" id="area" onchange="getSelectValue()">
                 <option value="all" selected>All</option>
                 <option value="it">IT</option>
                 <option value="sales">Sales</option>
@@ -71,7 +71,7 @@
         </div>
         <div>
             <span>Type:</span>
-            <select name="type" class="box" id="type">
+            <select name="type" class="box" id="type" onchange="getSelectValue()">
                 <option value="all" selected>All</option>
                 <option value="coal">Coal</option>
                 <option value="hydrogen">Hydrogen</option>
