@@ -621,6 +621,18 @@ const deleteDevice = async (req, res, next) => {
                 }
             }
             depart.Devices = availableDevicesList
+
+            var typeDevice
+            if(onedevice.Energy_type == "electricity"){
+                typeDevice = depart.Electricity
+            }
+            var typeDevicesList = new Array()
+            for (let i = 0; i < typeDevice.length; i++){
+                if(String(onedevice._id) != String(typeDevice[i])){
+                    typeDevicesList.push(typeDevice[i])
+                }
+            }
+            depart.Electricity = typeDevicesList
         
             //delete device in the array of energytype
             if(onedevice.Energy_type == "electricity"){
@@ -691,7 +703,7 @@ const addnewDevice = async (req, res, next) => {
         }
         const onedevice = new Device(device)
         await Device.create(onedevice).catch((err) => res.send(err))
-        const newdevice = await Device.findOne({Device_name: dname}).lean()
+        const newdevice = await Device.findOne({Device_name: dname, Department: dDepart}).lean()
 
         const depart = await Department.findOne({DepartmentName: dDepart}).lean()
         depart.Devices.push(newdevice._id)
