@@ -62,7 +62,7 @@
             <div class="departmentEle" id="headDepa">Department Name </div>
             {{#each DeList}}
             <div class="departmentEle">{{this.DepartmentName}}
-                <button class="delet_device" name="deleDe" id="deleDe" value="{{this.DepartmentName}}"><img src="/picture/delet.png"></img></button>
+                <button class="delet_device" name="deleDe" id="deleDe" value="{{this.DepartmentName}}" onclick="confirmDel()"><img src="/picture/delet.png"></img></button>
             </div>
             {{/each}}
         </div>
@@ -122,12 +122,12 @@
         mask.style.display = "none";
     }
     
-   /*functio confirmDel(){
+   functio confirmDel(){
         var depa_set = this.parentNode.parentNode;
         if(confirm("Do you want to remove this department?")){
             depa_set.removeChild(this.parentNode);
         }
-    }*/
+    }
 </script>
 <script>
     let fireStaff = document.getElementById("deleDepart");
