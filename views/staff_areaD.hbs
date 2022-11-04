@@ -380,4 +380,14 @@
 
 <script src="/js/changestafftable.js"></script>
 <script src="/js/index.js"></script>
+<script>
+    let areaFilter = document.getElementById('area');
+    let typeFilter = document.getElementById('type');
 
+    let resetFilter = document.getElementById('resetFilter');
+    resetFilter.onclick = function () {
+        typeFilter.value = 'all';
+        inittable();
+    }
+
+</script>
