@@ -62,7 +62,7 @@
             <div class="departmentEle" id="headDepa">Department Name </div>
             {{#each DeList}}
             <div class="departmentEle">{{this.DepartmentName}}
-                <button class="delet_device" name="deleDe" id="deleDe" value="{{this.DepartmentName}}"><img src="/picture/delet.png"></img></button>
+                <button class="delet_device" name="deleDe" id="deleDe" value="{{this.DepartmentName}}" "JavaScript:return confirm('Are you sure?')"><img src="/picture/delet.png"></img></button>
             </div>
             {{/each}}
         </div>
