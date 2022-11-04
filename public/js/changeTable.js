@@ -55,7 +55,7 @@ function filterTable(v1,v2){
                 <td>${deviceDataList[i].usage}</td>
                 <td class="${deviceDataList[i].status}"></td>
                 <td><button name="deletdevice" value=${deviceDataList[i].id}>
-                    <img class="delet_device" src="/picture/delet.png" onclick = confirmDel()></img>
+                    <img class="delet_device" src="/picture/delet.png"></img>
                 </button></td>
                 </tr>
                 `;
