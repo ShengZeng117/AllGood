@@ -210,3 +210,15 @@ del_btn.onclick = function(){
 {{/each}}
 
 <script src="/js/changeTable.js"></script>
+<script>
+    let areaFilter = document.getElementById('area');
+    let typeFilter = document.getElementById('type');
+
+    let resetFilter = document.getElementById('resetFilter');
+    resetFilter.onclick = function () {
+        areaFilter.value = 'all';
+        typeFilter.value = 'all';
+        inittable();
+    }
+
+</script>
