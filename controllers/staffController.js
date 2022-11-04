@@ -2,6 +2,7 @@ const User = require('../models/User')
 const Device = require('../models/Devices')
 const Department = require('../models/Department')
 var moment = require('moment')
+var ImageM = require('../models/image');
 
 const stafflogIn = (req, res) => {
     res.render('staff_loginD.hbs', { layout: 'staff_login'})
@@ -44,9 +45,16 @@ const staffoverview = async (req, res, next) => {
         var availableDevicesList = new Array()
         for (let i = 0; i < AvailabledevicesArray.length; i++){
             var onedeviceData = await Device.findById(AvailabledevicesArray[i]).lean()
-            availableDevicesList.push(onedeviceData)
+            const oneimg = await ImageM.findById(onedeviceData.image).lean()
+            const imgdata = 'data:' + oneimg.type + ';base64,' + oneimg.data.toString("base64")
+            availableDevicesList.push({
+                Device_name: onedeviceData.Device_name,
+                _id: onedeviceData._id,
+                Week_Energy_Usage: onedeviceData.Week_Energy_Usage,
+                image: oneimg.data.toString("base64"),
+                type: oneimg.type,
+            })
         }
-
         //find all the devices that are in this department
         const department = await Department.findById(staff.DepartmentId).lean()
         const allDevicesArray = department.Devices
@@ -57,7 +65,7 @@ const staffoverview = async (req, res, next) => {
         var gasdailyU = [0,0,0,0,0,0,0]
         var otherdailyU = [0,0,0,0,0,0,0]
         for (let i = 0; i < allDevicesArray.length; i++){
-            var onedeviceData = await Device.findById(allDevicesArray[i]).lean()
+            var onedeviceData = await Device.findById(allDevicesArray[i]._id).lean()
             allDevicesList.push(onedeviceData)
             var dailyU_array = onedeviceData.Daily_Energy_Usage
             if(onedeviceData.Energy_type == "electricity"){
@@ -182,6 +190,11 @@ const inputUsage = async (req, res, next) => {
             }
     
             onedeviceData.Week_Energy_Usage = weeklyU
+            if( (onedeviceData.Min < weeklyU) && (weeklyU < onedeviceData.Max)){
+                onedeviceData.Status = true
+            }else{
+                onedeviceData.Status = false
+            }
     
             await Device.replaceOne({_id: onedeviceData._id}, onedeviceData).catch((err) => res.send(err))
         }
@@ -208,7 +221,6 @@ const updatePersonalDetail = async (req, res, next) => {
         if(!req.body.firstName){
             return next()
         }else if(firstN != staff.FirstName || lastN != staff.LastName || contactN != staff.ContactNumber || gen != staff.Gender){
-            console.log("personal")
             staff.FirstName = firstN
             staff.LastName = lastN
             staff.ContactNumber = contactN

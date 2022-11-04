@@ -89,7 +89,6 @@
                 typeTName = type[i].value;
             }
         }
-        console.log(typeTName)
         if(typeTName == "electricity"){
             percent_array = new Array({{this.electricity}});
         }else if(typeTName == "coal"){
@@ -122,7 +121,7 @@
             </form>
         </div>
         <div>
-            <img src="/picture/homebac.jpeg" alt="">
+            <img id="deviceimg" src="data:{{this.type}};base64,{{this.image}}" alt="">
         </div>
     </div>
     {{/each}}

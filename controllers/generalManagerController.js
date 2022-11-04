@@ -5,7 +5,7 @@ const User = require('../models/User')
 const Manager = require('../models/Manager')
 var uuid = require('node-uuid');
 var ImageM = require('../models/image');
-var fs = require("fs");
+var fs = require('fs');
 
 
 
@@ -47,7 +47,7 @@ const generalmanagerOverview = async (req, res, next) => {
             //electricity usage
             let oneElecUsage = 0
             for(let j = 0; j < onedepart.Electricity.length; j++){
-                var onedevice = await Device.findById(onedepart.Electricity[j]).lean()
+                var onedevice = await Device.findById(onedepart.Electricity[j]._id).lean()
                 oneElecUsage += onedevice.Week_Energy_Usage
             }
             elecUsage.push(oneElecUsage)
@@ -557,7 +557,6 @@ const editStaff = async (req, res, next) => {
         const newDevice = req.body.newDeviceAdd.toLowerCase()
         const deletDevice = req.body.deleDe
         const deletStaff = req.body.deleteS
-        console.log(deletStaff)
         if(deletDevice){
             const onedevice = await Device.findOne({Department: staff.Department, Device_name: deletDevice}).lean()
             //delete device in the user model
@@ -610,6 +609,7 @@ const deleteDevice = async (req, res, next) => {
             return next();
         }else{
             const onedevice = await Device.findById(deviceid).lean()
+            await ImageM.deleteOne({_id: onedevice.image})
 
             //delete the data of this device in the department
             const depart = await Department.findOne({Department: onedevice.Department}).lean()
@@ -632,6 +632,46 @@ const deleteDevice = async (req, res, next) => {
                     }
                 }
                 depart.Electricity = typeList
+            }else if(onedevice.Energy_type == "coal"){
+                const typearray = depart.Cocal
+                var typeList = new Array()
+                for (let i = 0; i < typearray.length; i++){
+                    if(String(onedevice._id) != String(typearray[i])){
+                        typeList.push(typearray[i])
+                    }
+                }
+                depart.Cocal = typeList
+            }else if(onedevice.Energy_type == "gas"){
+                const typearray = depart.Natural_Gas
+                var typeList = new Array()
+                for (let i = 0; i < typearray.length; i++){
+                    if(String(onedevice._id) != String(typearray[i])){
+                        typeList.push(typearray[i])
+                    }
+                }
+                depart.Natural_Gas = typeList
+
+            }else if(onedevice.Energy_type == "hydrogen"){
+
+                const typearray = depart.Hydrogen
+                var typeList = new Array()
+                for (let i = 0; i < typearray.length; i++){
+                    if(String(onedevice._id) != String(typearray[i])){
+                        typeList.push(typearray[i])
+                    }
+                }
+                depart.Hydrogen = typeList
+
+            }else if(onedevice.Energy_type == "other"){
+                const typearray = depart.other
+                var typeList = new Array()
+                for (let i = 0; i < typearray.length; i++){
+                    if(String(onedevice._id) != String(typearray[i])){
+                        typeList.push(typearray[i])
+                    }
+                }
+                depart.other = typeList
+
             }
             //update the department data
             await Department.replaceOne({_id: depart._id}, depart).catch((err) => res.send(err))
@@ -667,10 +707,18 @@ const addnewDevice = async (req, res, next) => {
         const dname = req.body.deviceName.toLowerCase()
         const type = req.body.typeBox
         const dDepart = req.body.departmentBox
-        const image = req.files.imgfile.data.toString('base64')
+        const image = req.files.imgfile.data
+        const maxd = req.body.max
+        const mind = req.body.min
+        const oned = await Device.findOne({Device_name: dname, Department: dDepart}).lean()
+        if(oned){
+            console.log("device name is repeat")
+            return res.redirect('/generalmanager/' + gm._id + '/devices')
+        }
         var newimg = {
             name: dname,
-            date: image,
+            data: image,
+            type: req.files.imgfile.mimetype,
         }
         const oneImage = new ImageM(newimg)
         await ImageM.create(oneImage).catch((err) => res.send(err))
@@ -688,6 +736,8 @@ const addnewDevice = async (req, res, next) => {
             Daily_Energy_Usage: [0,0,0,0,0,0,0],
             staff: [],
             image: oneimg._id,
+            Max: maxd,
+            Min: mind,
         }
         const onedevice = new Device(device)
         await Device.create(onedevice).catch((err) => res.send(err))

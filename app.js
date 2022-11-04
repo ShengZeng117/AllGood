@@ -1,6 +1,6 @@
 const express = require('express')
 // Set your app up as an express app
-const fileUpload = require('express-fileupload');
+const fileUpload = require('express-fileupload')
 const app = express()
 app.use(fileUpload());
 // Set up to handle POST requests

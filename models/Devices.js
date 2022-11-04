@@ -11,7 +11,9 @@ const schema = new mongoose.Schema({
     Location: { type: String},
     Daily_Energy_Usage: [Number],
     Staff: [mongoose.Schema.Types.ObjectId],
-    image: mongoose.Schema.Types.ObjectId
+    image: mongoose.Schema.Types.ObjectId,
+    Max: Number,
+    Min: Number,
 
 }, {versionKey: false})
 const Devices = mongoose.model('Devices', schema)

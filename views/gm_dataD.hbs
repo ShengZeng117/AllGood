@@ -118,6 +118,8 @@
             <form action="" method="post" enctype="multipart/form-data">
             <div class="deviceInf">
                 <div>Device Name: <input type="text" name="deviceName" id="deviceName"></div>
+                <div>Max usage: <input type="text" name="max" id="max"></div>
+                <div>Min usage: <input type="text" name="min" id="min"></div>
                 <div id="departmentselect">
                 <span>Department:</span>
                 <select name="departmentBox" class="box" id="departmentBox">
@@ -129,10 +131,10 @@
                 <div id="departmentselect">
                 <span>Energy Type:</span>
                 <select name="typeBox" class="box" id="typeBox">
-                    <option value="electricity">Electricity</option>
-                    <option value="coal">Coal</option>
-                    <option value="gas">NaturalGas</option>
-                    <option value="hydrogen">Hydrogen</option>
+                    <option value="electricity">Electricity (kWh)</option>
+                    <option value="coal">Coal (mj/kg)</option>
+                    <option value="gas">Natural Gas (Nm³)</option>
+                    <option value="hydrogen">Hydrogen(ml)</option>
                     <option value="other">Other</option>
                 </select>
                
