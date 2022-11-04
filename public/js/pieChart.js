@@ -1,4 +1,5 @@
 function getpie(percent_array){
+    console.log(percent_array);
     var title = ['Monday','Tuesday ','Wednesday','Thursday','Friday','Saturday','Sunday'];
     var dailyPercent = new Array();
     for(let i = 0; i < percent_array.length; i++){

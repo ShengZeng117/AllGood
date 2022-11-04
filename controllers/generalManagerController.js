@@ -621,18 +621,6 @@ const deleteDevice = async (req, res, next) => {
                 }
             }
             depart.Devices = availableDevicesList
-
-            var typeDevice
-            if(onedevice.Energy_type == "electricity"){
-                typeDevice = depart.Electricity
-            }
-            var typeDevicesList = new Array()
-            for (let i = 0; i < typeDevice.length; i++){
-                if(String(onedevice._id) != String(typeDevice[i])){
-                    typeDevicesList.push(typeDevice[i])
-                }
-            }
-            depart.Electricity = typeDevicesList
         
             //delete device in the array of energytype
             if(onedevice.Energy_type == "electricity"){

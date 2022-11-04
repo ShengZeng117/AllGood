@@ -447,7 +447,7 @@ const updatePersonalDetail = async (req, res, next) => {
         const contactN = req.body.Cnumber
         const gen = req.body.gender
 
-        if(firstN != gm.FirstName || lastN != gm.LastName || contactN != gm.ContactNumber || gen != gm.Gender){
+        if(firstN || lastN || contactN || gen){
             gm.FirstName = firstN
             gm.LastName = lastN
             gm.ContactNumber = contactN
@@ -524,6 +524,8 @@ const editStaff = async (req, res, next) => {
         }else if(deletStaff){
             await User.remove({_id: staff._id}).lean()
             return res.redirect('/manager/' + gm._id + '/staff')
+        }else{
+            return res.redirect('/manager/' + gm._id + '/' + staff._id + '/staffdetail')
         }
     }catch(err){
         return next(err)
@@ -619,7 +621,7 @@ const addnewDevice = async (req, res, next) => {
         }
         const onedevice = new Device(device)
         await Device.create(onedevice).catch((err) => res.send(err))
-        const newdevice = await Device.findOne({Device_name: dname}).lean()
+        const newdevice = await Device.findOne({Device_name: dname, Department: dDepart}).lean()
 
         const depart = await Department.findOne({DepartmentName: dDepart}).lean()
         depart.Devices.push(newdevice._id)
