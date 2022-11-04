@@ -205,13 +205,6 @@ function checkOldPassword(dbP,InputP){
     }
 }
 
-let areaFilter = document.getElementById('area');
-let typeFilter = document.getElementById('type');
-
-let resetFilter = document.getElementById('resetFilter');
-resetFilter.onclick = function(){
-   typeFilter.value = 'all';
-}
 
 let table = document.getElementById('dataOverview');
 let totalUsage = document.getElementById('totalUsage');
