@@ -176,9 +176,13 @@ const getaccoutPage = async (req, res, next) => {
             Department: gm.Department,
             DepartmentId: gm.DepartmentId
         }
+        departs = new Array()
+        departs.push({DepartmentName: gm.Department})
+
         res.render('gm_accountD.hbs', { 
             layout: 'gm_account',
-            gm: gmD
+            gm: gmD,
+            deList: departs
         })
     }catch(err){
         return next(err)

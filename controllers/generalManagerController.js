@@ -373,7 +373,22 @@ const getstaffdetail = async (req, res, next) => {
             Password: gm.Password,
         }
         if(!staff){
-            staff = await Manager.findById(req.params.staff_id).lean()
+            manager = await Manager.findById(req.params.staff_id).lean()
+            staff ={
+                check: true,
+                _id: manager._id,
+                FirstName: manager.FirstName,
+                LastName: manager.LastName,
+                Gender: manager.Gender,
+                Position: manager.Position,
+                Email: manager.Email,
+                ContactNumber: manager.ContactNumber,
+                StaffId: manager.Id,
+                Age: manager.Age,
+                Password: manager.Password,
+                Department: manager.Department,
+                DepartmentId: manager.DepartmentId
+        }
             var availableDevicesList = new Array()
         }else{
             const AvailabledevicesArray = staff.AvailableDevices
