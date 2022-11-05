@@ -622,7 +622,7 @@ const deleteDevice = async (req, res, next) => {
             await ImageM.deleteOne({_id: onedevice.image})
 
             //delete the data of this device in the department
-            const depart = await Department.findOne({Department: onedevice.Department}).lean()
+            const depart = await Department.findOne({ DepartmentName: onedevice.Department}).lean()
             const AvailabledevicesArray = depart.Devices
             var availableDevicesList = new Array()
             for (let i = 0; i < AvailabledevicesArray.length; i++){
@@ -729,12 +729,13 @@ const addnewDevice = async (req, res, next) => {
             name: dname,
             data: image,
             type: req.files.imgfile.mimetype,
+            department: req.body.departmentBox
         }
         const oneImage = new ImageM(newimg)
         await ImageM.create(oneImage).catch((err) => res.send(err))
 
         //create new device
-        const oneimg = await ImageM.findOne({name: dname, data: image, type: req.files.imgfile.mimetype}).lean()
+        const oneimg = await ImageM.findOne({name: dname, data: image, department: req.body.departmentBox}).lean()
         var device = {
             Device_name: dname,
             Energy_type: type,

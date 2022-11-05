@@ -515,7 +515,17 @@ const editStaff = async (req, res, next) => {
         }else if(newDevice){
             const onedevice = await Device.findOne({Department: staff.Department, Device_name: newDevice}).lean()
             //update staff data
-            staff.AvailableDevices.push(onedevice._id)
+            let exist = true
+            for (let i = 0; i < staff.AvailableDevices.length; i++){
+                if(String(onedevice._id) == String(staff.AvailableDevices[i])){
+                    exist=false
+                    break
+                }
+            }
+            if(exist){
+                staff.AvailableDevices.push(onedevice._id)
+                exist = true
+            }
             //update device data
             onedevice.Staff.push(staff._id)
             await Device.replaceOne({_id: onedevice._id}, onedevice).catch((err) => res.send(err))
@@ -542,7 +552,7 @@ const deleteDevice = async (req, res, next) => {
             const onedevice = await Device.findById(deviceid).lean()
 
             //delete the data of this device in the department
-            const depart = await Department.findOne({Department: onedevice.Department}).lean()
+            const depart = await Department.findOne({DepartmentName: onedevice.Department}).lean()
             const AvailabledevicesArray = depart.Devices
             var availableDevicesList = new Array()
             for (let i = 0; i < AvailabledevicesArray.length; i++){
@@ -597,16 +607,25 @@ const addnewDevice = async (req, res, next) => {
         const dname = req.body.deviceName.toLowerCase()
         const type = req.body.typeBox
         const dDepart = req.body.departmentBox
-        const image = req.files.imgfile.data.toString('base64')
+        const image = req.files.imgfile.data
+        const maxd = req.body.max
+        const mind = req.body.min
+        const oned = await Device.findOne({Device_name: dname, Department: dDepart}).lean()
+        if(oned){
+            console.log("device name is repeat")
+            return res.redirect('/generalmanager/' + gm._id + '/devices')
+        }
         var newimg = {
             name: dname,
-            date: image,
+            data: image,
+            type: req.files.imgfile.mimetype,
+            department: req.body.departmentBox
         }
         const oneImage = new ImageM(newimg)
         await ImageM.create(oneImage).catch((err) => res.send(err))
 
         //create new device
-        const oneimg = await ImageM.findOne({name: dname}).lean()
+        const oneimg = await ImageM.findOne({name: dname, data: image, department: req.body.departmentBox}).lean()
         var device = {
             Device_name: dname,
             Energy_type: type,
@@ -618,6 +637,8 @@ const addnewDevice = async (req, res, next) => {
             Daily_Energy_Usage: [0,0,0,0,0,0,0],
             staff: [],
             image: oneimg._id,
+            Max: maxd,
+            Min: mind,
         }
         const onedevice = new Device(device)
         await Device.create(onedevice).catch((err) => res.send(err))
