@@ -583,8 +583,18 @@ const editStaff = async (req, res, next) => {
             return res.redirect('/generalmanager/' + gm._id + '/' + staff._id + '/staffdetail')
         }else if(newDevice){
             const onedevice = await Device.findOne({Department: staff.Department, Device_name: newDevice}).lean()
+            let exist = true
             //update staff data
-            staff.AvailableDevices.push(onedevice._id)
+            for (let i = 0; i < staff.AvailableDevices.length; i++){
+                if(String(onedevice._id) == String(staff.AvailableDevices[i])){
+                    exist=false
+                    break
+                }
+            }
+            if(exist){
+                staff.AvailableDevices.push(onedevice._id)
+                exist = true
+            }
             //update device data
             onedevice.Staff.push(staff._id)
             await Device.replaceOne({_id: onedevice._id}, onedevice).catch((err) => res.send(err))
@@ -724,7 +734,7 @@ const addnewDevice = async (req, res, next) => {
         await ImageM.create(oneImage).catch((err) => res.send(err))
 
         //create new device
-        const oneimg = await ImageM.findOne({name: dname}).lean()
+        const oneimg = await ImageM.findOne({name: dname, data: image, type: req.files.imgfile.mimetype}).lean()
         var device = {
             Device_name: dname,
             Energy_type: type,

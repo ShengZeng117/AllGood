@@ -158,7 +158,6 @@
             fileReader.readAsDataURL(this.files[0]);
             fileReader.onload = function() {
                 img.src = fileReader.result;
-                console.log(fileReader.result);
                 img.name = "upload";
                 img.style.width = "100%";
                 img.style.height = "91%";

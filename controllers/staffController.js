@@ -46,7 +46,6 @@ const staffoverview = async (req, res, next) => {
         for (let i = 0; i < AvailabledevicesArray.length; i++){
             var onedeviceData = await Device.findById(AvailabledevicesArray[i]).lean()
             const oneimg = await ImageM.findById(onedeviceData.image).lean()
-            const imgdata = 'data:' + oneimg.type + ';base64,' + oneimg.data.toString("base64")
             availableDevicesList.push({
                 Device_name: onedeviceData.Device_name,
                 _id: onedeviceData._id,
