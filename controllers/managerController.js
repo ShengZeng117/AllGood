@@ -8,7 +8,7 @@ var ImageM = require('../models/image');
 const { connect } = require('mongoose')
 
 const managerLogin = (req, res) => {
-    res.render('manager_loginD.hbs', { layout: 'manager_login'})
+    res.render('manager_loginD.hbs', { layout: 'manager_login', message: false})
 }
 
 const getmanagerID =  (req, res) => {
@@ -22,9 +22,9 @@ const getmanagerID =  (req, res) => {
                 if (err) {
                     return done(err)
                 }else if (!generalManager){
-                    return res.redirect('/manager')
+                    res.render('staff_loginD.hbs', { layout: 'staff_login', message: true})
                 }else if (password != generalManager.Password){
-                    return res.redirect('/manager')
+                    res.render('staff_loginD.hbs', { layout: 'staff_login', message: true})
                 }else{
                     return res.redirect('/generalManager/' + generalManager._id + '/personalpage')
                 }

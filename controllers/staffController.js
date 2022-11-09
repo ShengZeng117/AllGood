@@ -5,7 +5,7 @@ var moment = require('moment')
 var ImageM = require('../models/image');
 
 const stafflogIn = (req, res) => {
-    res.render('staff_loginD.hbs', { layout: 'staff_login'})
+    res.render('staff_loginD.hbs', { layout: 'staff_login', message: false})
 }
 
 const getstaffID =  (req, res) => {
@@ -15,9 +15,9 @@ const getstaffID =  (req, res) => {
         if (err) {
             return done(err)
         }else if (!staff){
-            return res.redirect('/staff/')
+            res.render('staff_loginD.hbs', { layout: 'staff_login', message: true})
         }else if (password != staff.Password){
-            return res.redirect('/staff/')
+            res.render('staff_loginD.hbs', { layout: 'staff_login', message: true})
         }else{
             return res.redirect('/staff/' + staff._id + '/personalpage')
         }
